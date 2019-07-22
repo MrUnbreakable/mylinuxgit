@@ -44,10 +44,10 @@ RM = /usr/local/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/linux/skiplist/skiplist4
+CMAKE_SOURCE_DIR = /home/linux/git/skiplist/skiplist4
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/linux/skiplist/skiplist4
+CMAKE_BINARY_DIR = /home/linux/git/skiplist/skiplist4
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -74,14 +74,14 @@ preinstall:
 CMakeFiles/skiplist.dir/all:
 	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/depend
 	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/linux/skiplist/skiplist4/CMakeFiles --progress-num=1,2 "Built target skiplist"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/linux/git/skiplist/skiplist4/CMakeFiles --progress-num=1,2 "Built target skiplist"
 .PHONY : CMakeFiles/skiplist.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/skiplist.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/linux/skiplist/skiplist4/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/linux/git/skiplist/skiplist4/CMakeFiles 2
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/skiplist.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/linux/skiplist/skiplist4/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/linux/git/skiplist/skiplist4/CMakeFiles 0
 .PHONY : CMakeFiles/skiplist.dir/rule
 
 # Convenience name for target.

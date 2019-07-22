@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/linux/skiplist/skiplist4/main.cpp
+/home/linux/git/skiplist/skiplist4/main.cpp
 iostream
 -
 vector
@@ -20,9 +20,9 @@ algorithm
 numeric
 -
 skiplist.h
-/home/linux/skiplist/skiplist4/skiplist.h
+/home/linux/git/skiplist/skiplist4/skiplist.h
 
-/home/linux/skiplist/skiplist4/skiplist.h
+/home/linux/git/skiplist/skiplist4/skiplist.h
 vector
 -
 iostream
@@ -34,9 +34,9 @@ time.h
 cmath
 -
 skipnode.h
-/home/linux/skiplist/skiplist4/skipnode.h
+/home/linux/git/skiplist/skiplist4/skipnode.h
 
-/home/linux/skiplist/skiplist4/skipnode.h
+/home/linux/git/skiplist/skiplist4/skipnode.h
 vector
 -
 

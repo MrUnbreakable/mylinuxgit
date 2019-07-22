@@ -17,7 +17,7 @@ int main() {
 		skiplist list;
 		srand((int)time(NULL));
 		vector<int>number;
-		for (i = 1; i <= 1000; i++) {
+		for (i = 1; i <= 100; i++) {
 			number.push_back(i);
 		}
 		random_shuffle(number.begin(), number.end());//生成乱序的1到n的数
