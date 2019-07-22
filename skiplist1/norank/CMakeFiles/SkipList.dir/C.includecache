@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/linux/skiplist/norank/skiplist.h
+
+/home/linux/skiplist/norank/skiplist_test.c
+stdio.h
+-
+stdlib.h
+-
+sys/time.h
+-
+time.h
+-
+skiplist.h
+/home/linux/skiplist/norank/skiplist.h
+
