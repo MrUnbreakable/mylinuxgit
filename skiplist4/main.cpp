@@ -16,7 +16,7 @@ int main()
     int i = 0;
     for (int kk = 1; kk <= ntime; kk++) 
     {
-        skiplist list;
+        Skiplist list;
 	srand((int)time(NULL));
 	vector<int>number;
 	for (i = 1; i <= 100; i++) 

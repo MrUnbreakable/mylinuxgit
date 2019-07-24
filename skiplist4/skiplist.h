@@ -6,17 +6,19 @@
 //#include "skipnode.h"
 using namespace std;
 
-struct skipnode//±í???????á?????á????
+//the struct of a node
+struct Skipnode
 {
-    int data;//????????
-    int level;//????
-    vector<skipnode* >p;//???á??????????×é
-    skipnode(int datain = 0, int levelin = 1)
-    {//???ì????
+    int data;//the value of node
+    int level;//the level of node
+    vector<Skipnode* >p;//pointer of the node
+    Skipnode(int datain = 0, int levelin = 1)
+    {
         setnode(datain, levelin);
     }
+    //set the member of the node
     void setnode(int datain = 0, int levelin = 1)
-    {//?è?????????±???è????×ép???¤????????????????
+    {
         data = datain;
         level = levelin;
         while (!p.empty())
@@ -29,27 +31,27 @@ struct skipnode//±í???????á?????á????
 };
 
 
-class skiplist
+class Skiplist
 {
     int level, maxlevel;
     int tailkey;
-    skipnode* head;
-    skipnode* tail;
+    Skipnode* head;
+    Skipnode* tail;
 public:
-    skiplist(int tailkeyin = 2000, int inmaxlevel = 30) 
+    Skiplist(int tailkeyin = 2000, int inmaxlevel = 30) 
     {//¹¹Ôìº¯Êı£¬¹¹ÔìÒ»¸ö¿ÕÌøÔ¾±í
         level = 1;
         //cout <<"Hello World" <<"\n" ;
         tailkey = tailkeyin;
         maxlevel = inmaxlevel;
-        head = new skipnode(-1, maxlevel + 1);
-        tail = new skipnode(tailkeyin, maxlevel + 1);
+        head = new Skipnode(-1, maxlevel + 1);
+        tail = new Skipnode(tailkeyin, maxlevel + 1);
         for (int i = 0; i < maxlevel; i++) 
         {
             head->p.at(i) = tail;
         }    
     }
-    ~skiplist() 
+    ~Skiplist() 
     {//Îö¹¹º¯Êı
         //cout <<"~skiplist" << "\n";
 	//getlevel();
@@ -68,10 +70,10 @@ public:
         //cout <<"clear" << "\n";
 	if (head->p.at(0) != tail) 
         {
-	    skipnode* ptr = head->p.at(0);//ÓÎ±ê
+	    Skipnode* ptr = head->p.at(0);//ÓÎ±ê
 	    while (ptr->p.at(0) != tail) 
             {
-	        skipnode* qian = ptr;
+	        Skipnode* qian = ptr;
 		ptr = ptr->p.at(0);
 		delete qian;
 	    }
@@ -88,7 +90,7 @@ public:
 	//cout << level << "\n";
 	for (int i = 0; i < level; i++) 
         {
-	    skipnode* ptr;//ÓÎ±ê
+	    Skipnode* ptr;//ÓÎ±ê
 	    ptr = head;
 	    cout << "No" << i << "level  head->";
 	    while (ptr->p.at(i) != tail) 
@@ -124,9 +126,9 @@ public:
     {//²åÈëĞÂµã
         int inlev = setgrade(p2);
 	if (level < inlev) level = inlev;
-	skipnode* ptr;//ÓÎ±êÖ¸Õë
+	Skipnode* ptr;//ÓÎ±êÖ¸Õë
 	ptr = head;//³õÊ¼»¯ÓÎ±êÖ¸Õë
-	vector<skipnode* >location;//ÓÃÀ´´æ²åÈëµÄÎ»ÖÃµÄÖ¸ÕëÊı×é
+	vector<Skipnode* >location;//ÓÃÀ´´æ²åÈëµÄÎ»ÖÃµÄÖ¸ÕëÊı×é
 	location.resize(inlev);
 	int kk = 0;
 	for (kk = level - 1; kk > inlev - 1;) 
@@ -152,8 +154,8 @@ public:
 	        ptr = ptr->p.at(kk);
 	    }
         }
-	skipnode* n1;
-	n1 = new skipnode(indata, inlev);
+	Skipnode* n1;
+	n1 = new Skipnode(indata, inlev);
 	for (int i = 0; i < inlev; i++) 
         {
 	    n1->p.at(i) = location.at(i)->p.at(i);
@@ -163,7 +165,7 @@ public:
     bool exist(int indata) 
     {//¼ì²éÒ»¸öµãÊÇ·ñ´æÔÚ
         bool exi = false;
-	skipnode* ptr;//ÓÎ±êÖ¸Õë
+	Skipnode* ptr;//ÓÎ±êÖ¸Õë
 	ptr = head;//³õÊ¼»¯ÓÎ±êÖ¸Õë
 	for (int kk = level - 1; kk >= 0;) 
         {
@@ -183,9 +185,9 @@ public:
 	}
 		return exi;
     }
-    skipnode* search(int indata) 
+    Skipnode* search(int indata) 
     {//·µ»ØÒª²éÕÒµÄµãµÄÖ¸Õë£¬Èç¹û²»´æÔÚÔò·µ»ØÎ²Ö¸Õë
-        skipnode* ptr;//ÓÎ±êÖ¸Õë
+        Skipnode* ptr;//ÓÎ±êÖ¸Õë
 	ptr = head;//³õÊ¼»¯ÓÎ±êÖ¸Õë
 	for (int kk = level - 1; kk >= 0;) 
         {
@@ -206,9 +208,9 @@ public:
     }
     void remove(int indata) 
     {//É¾³ı½áµã
-        skipnode* ptr;//ÓÎ±êÖ¸Õë
+        Skipnode* ptr;//ÓÎ±êÖ¸Õë
 	ptr = head;//³õÊ¼»¯ÓÎ±êÖ¸Õë
-	skipnode* d1;
+	Skipnode* d1;
 	int kk = 0;
 	for (kk = level - 1; kk >= 0;) 
         {
