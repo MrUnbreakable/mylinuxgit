@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/skiplist.dir/main.cpp.o"
-  "skiplist"
   "skiplist.pdb"
+  "skiplist"
 )
 
 # Per-language clean rules from dependency scanning.
