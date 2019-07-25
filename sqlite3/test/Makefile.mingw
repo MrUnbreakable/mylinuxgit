@@ -1,0 +1,10 @@
+CC=gcc
+LD=ld
+CFLAGS=${CFLAGS:-}
+CFLAGS += -I../../.. -g 
+
+all: sqlite3_ff_helper.o test.exe
+sqlite3_ff_helper.o: sqlite3_ff_helper.c
+test.exe: test.o
+	${CC} -L. -o test.exe test.o -lsqlite3 
+test.o: test.c
