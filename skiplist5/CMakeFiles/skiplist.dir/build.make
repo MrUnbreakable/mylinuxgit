@@ -57,38 +57,38 @@ include CMakeFiles/skiplist.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/skiplist.dir/flags.make
 
-CMakeFiles/skiplist.dir/main.cpp.o: CMakeFiles/skiplist.dir/flags.make
-CMakeFiles/skiplist.dir/main.cpp.o: main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/linux/linux/mylinuxgit/skiplist5/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/skiplist.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/skiplist.dir/main.cpp.o -c /home/linux/linux/mylinuxgit/skiplist5/main.cpp
+CMakeFiles/skiplist.dir/skiplist.cpp.o: CMakeFiles/skiplist.dir/flags.make
+CMakeFiles/skiplist.dir/skiplist.cpp.o: skiplist.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/linux/linux/mylinuxgit/skiplist5/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/skiplist.dir/skiplist.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/skiplist.dir/skiplist.cpp.o -c /home/linux/linux/mylinuxgit/skiplist5/skiplist.cpp
 
-CMakeFiles/skiplist.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/skiplist.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/linux/linux/mylinuxgit/skiplist5/main.cpp > CMakeFiles/skiplist.dir/main.cpp.i
+CMakeFiles/skiplist.dir/skiplist.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/skiplist.dir/skiplist.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/linux/linux/mylinuxgit/skiplist5/skiplist.cpp > CMakeFiles/skiplist.dir/skiplist.cpp.i
 
-CMakeFiles/skiplist.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/skiplist.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/linux/linux/mylinuxgit/skiplist5/main.cpp -o CMakeFiles/skiplist.dir/main.cpp.s
+CMakeFiles/skiplist.dir/skiplist.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/skiplist.dir/skiplist.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/linux/linux/mylinuxgit/skiplist5/skiplist.cpp -o CMakeFiles/skiplist.dir/skiplist.cpp.s
 
-CMakeFiles/skiplist.dir/main.cpp.o.requires:
+CMakeFiles/skiplist.dir/skiplist.cpp.o.requires:
 
-.PHONY : CMakeFiles/skiplist.dir/main.cpp.o.requires
+.PHONY : CMakeFiles/skiplist.dir/skiplist.cpp.o.requires
 
-CMakeFiles/skiplist.dir/main.cpp.o.provides: CMakeFiles/skiplist.dir/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/main.cpp.o.provides.build
-.PHONY : CMakeFiles/skiplist.dir/main.cpp.o.provides
+CMakeFiles/skiplist.dir/skiplist.cpp.o.provides: CMakeFiles/skiplist.dir/skiplist.cpp.o.requires
+	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/skiplist.cpp.o.provides.build
+.PHONY : CMakeFiles/skiplist.dir/skiplist.cpp.o.provides
 
-CMakeFiles/skiplist.dir/main.cpp.o.provides.build: CMakeFiles/skiplist.dir/main.cpp.o
+CMakeFiles/skiplist.dir/skiplist.cpp.o.provides.build: CMakeFiles/skiplist.dir/skiplist.cpp.o
 
 
 # Object files for target skiplist
 skiplist_OBJECTS = \
-"CMakeFiles/skiplist.dir/main.cpp.o"
+"CMakeFiles/skiplist.dir/skiplist.cpp.o"
 
 # External object files for target skiplist
 skiplist_EXTERNAL_OBJECTS =
 
-skiplist: CMakeFiles/skiplist.dir/main.cpp.o
+skiplist: CMakeFiles/skiplist.dir/skiplist.cpp.o
 skiplist: CMakeFiles/skiplist.dir/build.make
 skiplist: CMakeFiles/skiplist.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/linux/linux/mylinuxgit/skiplist5/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable skiplist"
@@ -99,7 +99,7 @@ CMakeFiles/skiplist.dir/build: skiplist
 
 .PHONY : CMakeFiles/skiplist.dir/build
 
-CMakeFiles/skiplist.dir/requires: CMakeFiles/skiplist.dir/main.cpp.o.requires
+CMakeFiles/skiplist.dir/requires: CMakeFiles/skiplist.dir/skiplist.cpp.o.requires
 
 .PHONY : CMakeFiles/skiplist.dir/requires
 

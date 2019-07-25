@@ -8,4 +8,4 @@ project(skiplist)
 SET( CMAKE_CXX_FLAGS "-std=c++11 -O3")
 
 #生成
-add_executable(skiplist main.cpp skiplist.h)
+add_executable(skiplist skiplist.cpp skiplist.h)

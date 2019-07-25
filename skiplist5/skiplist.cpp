@@ -8,10 +8,62 @@
 using namespace std;
 #define E exp(1)
 
-//获取当前跳跃表的层数
+//设置节点
+void Skipnode::setnode(int datain = 0, int levelin = 1)
+    {   
+        data = datain;
+        level = levelin;
+        while (!p.empty())
+            p.pop_back();
+        for (int i = 0; i < level; i++)
+        {
+            p.push_back(NULL);
+        }
+    }
+
+Skipnode* Skiplist::search(int indata)
+{
+    Skipnode* ptr;//游标指针
+    ptr = head;//初始化游标指针
+    for (int kk = level - 1; kk >= 0;)
+    {
+        if (indata == ptr->p.at(kk)->data)
+        {
+            return ptr->p.at(kk);//停止搜索
+        }
+        else if (indata < ptr->p.at(kk)->data)
+        {
+            kk--;//向下搜索
+        }
+        else
+        {
+            ptr = ptr->p.at(kk);//向右搜索
+        }
+    }
+    return tail;//如果不存在则返回尾结点的指针
+}
+
+Skiplist::Skiplist(int tailkeyin = 1000000, int inmaxlevel = 30)
+{
+    level = 1;
+    tailkey = tailkeyin;
+    maxlevel = inmaxlevel;
+    head = new Skipnode(-1, maxlevel + 1);
+    tail = new Skipnode(tailkeyin, maxlevel + 1);
+    for (int i = 0; i < maxlevel; i++)
+    {
+        head->p.at(i) = tail;
+    }
+}
+Skiplist::~Skiplist()    //析构函数
+{
+    clear();
+    delete head;
+    delete tail;
+}
 int Skiplist::getlevel() 
 {
-    //print();
+    print();
     return level;
 }
 //清空跳跃表
@@ -168,36 +220,13 @@ void Skiplist::remove(int indata)
 	}
 }
 
-/*Skipnode* search(int indata)
-{//返回要查找的点的指针，如果不存在则返回尾指针
-    Skipnode* ptr;//游标指针
-    ptr = head;//初始化游标指针
-    for (int kk = level - 1; kk >= 0;)
-    {
-        if (indata == ptr->p.at(kk)->data)
-        {//停止搜索
-            return ptr->p.at(kk);
-        }
-        else if (indata < ptr->p.at(kk)->data)
-        {//向下搜索
-            kk--;
-        }
-        else
-        {//向右搜索
-            ptr = ptr->p.at(kk);
-        }
-    }//如果不存在则返回尾结点的指针
-    return tail;
-}
-*/
-
 int main() 
 {
     vector<double>inserttime, searchtime, removetime;
     vector<int>levellist;
     float p = 1.0 / E;//概率因子
     int ntime = 100;//测试次数
-    int nodenumber = 100000;//跳跃表的节点总数
+    int nodenumber = 100;//跳跃表的节点总数
     int i = 0;
     for (int kk = 1; kk <= ntime; kk++) 
     {

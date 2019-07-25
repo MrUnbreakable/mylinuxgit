@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/linux/linux/mylinuxgit/skiplist4/main.cpp
+/home/linux/linux/mylinuxgit/skiplist4/SkiplistTest.cpp
 iostream
 -
 vector
@@ -19,10 +19,10 @@ algorithm
 -
 numeric
 -
-skiplist.h
-/home/linux/linux/mylinuxgit/skiplist4/skiplist.h
+SkiplistTest.h
+/home/linux/linux/mylinuxgit/skiplist4/SkiplistTest.h
 
-/home/linux/linux/mylinuxgit/skiplist4/skiplist.h
+/home/linux/linux/mylinuxgit/skiplist4/SkiplistTest.h
 vector
 -
 iostream

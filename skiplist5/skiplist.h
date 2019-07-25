@@ -1,9 +1,8 @@
 #include<vector>
 #include<iostream>
-#include <stdlib.h> 
-#include <time.h> 
-#include <cmath>
-//#include "skipnode.h"
+#include<stdlib.h> 
+#include<time.h> 
+#include<cmath>
 using namespace std;
 
 //构造跳跃表节点结构
@@ -16,69 +15,23 @@ struct Skipnode
     {
         setnode(datain, levelin);
     }
-    void setnode(int datain = 0, int levelin = 1)
-    {
-        data = datain;
-        level = levelin;
-        while (!p.empty())
-            p.pop_back();
-        for (int i = 0; i < level; i++) 
-        {   
-            p.push_back(NULL);
-        }   
-    }      
+    void setnode(int, int);//设置数据成员，设置数组p的长度并在里面赋空值     
 };
 
 
 class Skiplist
 {
 public:
-    Skiplist(int tailkeyin = 1000000, int inmaxlevel = 30)
-    {//构造函数，构造一个空跳跃表
-	level = 1;
-	tailkey = tailkeyin;
-	maxlevel = inmaxlevel;
-	head = new Skipnode(-1, maxlevel + 1);
-	tail = new Skipnode(tailkeyin, maxlevel + 1);
-	for (int i = 0; i < maxlevel; i++) 
-        {
-	    head->p.at(i) = tail;
-        }
-    }
-    ~Skiplist()
-    {//析构函数
-        clear();
-	delete head;
-	delete tail;
-    }
-    Skipnode* search(int indata)
-    {//返回要查找的点的指针，如果不存在则返回尾指针
-        Skipnode* ptr;//游标指针
-        ptr = head;//初始化游标指针
-        for (int kk = level - 1; kk >= 0;)
-        {
-            if (indata == ptr->p.at(kk)->data)
-            {//停止搜索
-                return ptr->p.at(kk);
-            }    
-            else if (indata < ptr->p.at(kk)->data)
-            {//向下搜索
-                kk--;
-            } 
-            else
-            {//向右搜索
-                ptr = ptr->p.at(kk);
-            }   
-        }//如果不存在则返回尾结点的指针
-        return tail;
-    }
-    int getlevel();
-    void clear();
-    void print();
-    int setgrade(float);
-    void insert(int, float); 
-    bool exist(int);
-    void remove(int);
+    Skiplist(int, int);//构造函数，创建一个空跳跃表
+    ~Skiplist();//析构函数
+    int getlevel();//获取当前跳跃表的层数
+    void clear();//清空跳跃表
+    void print();//显示跳跃表的内容
+    int setgrade(float);//生成新点的层数，默认的概率因子为0.5
+    void insert(int, float);//插入新点
+    Skipnode* search(int);//返回要查找的点的指针，如果不存在则返回尾指针
+    bool exist(int);//检查一个点是否存在
+    void remove(int);//删除结点
 private:
     int level, maxlevel;
     int tailkey;

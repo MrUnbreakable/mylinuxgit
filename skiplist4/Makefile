@@ -123,32 +123,32 @@ skiplist/fast:
 	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/build
 .PHONY : skiplist/fast
 
-main.o: main.cpp.o
+SkiplistTest.o: SkiplistTest.cpp.o
 
-.PHONY : main.o
+.PHONY : SkiplistTest.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/main.cpp.o
-.PHONY : main.cpp.o
+SkiplistTest.cpp.o:
+	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/SkiplistTest.cpp.o
+.PHONY : SkiplistTest.cpp.o
 
-main.i: main.cpp.i
+SkiplistTest.i: SkiplistTest.cpp.i
 
-.PHONY : main.i
+.PHONY : SkiplistTest.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/main.cpp.i
-.PHONY : main.cpp.i
+SkiplistTest.cpp.i:
+	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/SkiplistTest.cpp.i
+.PHONY : SkiplistTest.cpp.i
 
-main.s: main.cpp.s
+SkiplistTest.s: SkiplistTest.cpp.s
 
-.PHONY : main.s
+.PHONY : SkiplistTest.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/main.cpp.s
-.PHONY : main.cpp.s
+SkiplistTest.cpp.s:
+	$(MAKE) -f CMakeFiles/skiplist.dir/build.make CMakeFiles/skiplist.dir/SkiplistTest.cpp.s
+.PHONY : SkiplistTest.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... skiplist"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... SkiplistTest.o"
+	@echo "... SkiplistTest.i"
+	@echo "... SkiplistTest.s"
 .PHONY : help
 
 

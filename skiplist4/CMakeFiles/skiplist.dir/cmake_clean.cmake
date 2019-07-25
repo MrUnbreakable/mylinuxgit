@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/skiplist.dir/main.cpp.o"
+  "CMakeFiles/skiplist.dir/SkiplistTest.cpp.o"
   "skiplist.pdb"
   "skiplist"
 )

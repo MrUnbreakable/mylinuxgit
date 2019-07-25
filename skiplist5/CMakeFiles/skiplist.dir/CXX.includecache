@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/linux/linux/mylinuxgit/skiplist5/main.cpp
+/home/linux/linux/mylinuxgit/skiplist5/skiplist.cpp
 iostream
 -
 vector
