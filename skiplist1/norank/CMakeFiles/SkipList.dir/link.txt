@@ -1,1 +1,0 @@
-/usr/bin/cc   -rdynamic CMakeFiles/SkipList.dir/skiplist_test.c.o  -o SkipList 

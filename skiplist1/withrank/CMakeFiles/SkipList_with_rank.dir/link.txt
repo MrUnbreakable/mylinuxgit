@@ -1,1 +1,0 @@
-/usr/bin/cc   -rdynamic CMakeFiles/SkipList_with_rank.dir/skiplist_with_rank_test.c.o  -o SkipList_with_rank 
