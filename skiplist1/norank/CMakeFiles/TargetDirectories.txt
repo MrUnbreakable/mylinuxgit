@@ -1,3 +1,0 @@
-/home/linux/skiplist/norank/CMakeFiles/rebuild_cache.dir
-/home/linux/skiplist/norank/CMakeFiles/edit_cache.dir
-/home/linux/skiplist/norank/CMakeFiles/SkipList.dir

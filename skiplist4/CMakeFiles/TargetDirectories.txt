@@ -1,3 +1,0 @@
-/home/linux/linux/mylinuxgit/skiplist4/CMakeFiles/rebuild_cache.dir
-/home/linux/linux/mylinuxgit/skiplist4/CMakeFiles/edit_cache.dir
-/home/linux/linux/mylinuxgit/skiplist4/CMakeFiles/skiplist.dir
