@@ -49,7 +49,7 @@ extern "C" {
 	 */
 	CONHASH_API struct conhash_s* conhash_init(conhash_cb_hashfunc pfhash);
 
-        /*set a node */
+        /* set a node */
         CONHASH_API int conhash_set(struct conhash_s *conhash, struct node_s *node, const char *iden);
 
         /* remove a node */

@@ -123,7 +123,7 @@ conhash_get_vnodes_num	conhash_util.c	/^u_int conhash_get_vnodes_num(const struc
 conhash_init	conhash.c	/^struct conhash_s* conhash_init(conhash_cb_hashfunc pfhash)$/;"	f
 conhash_md5_digest	conhash_util.c	/^void conhash_md5_digest(const u_char *instr, u_char digest[16])$/;"	f
 conhash_s	conhash_inter.h	/^struct conhash_s$/;"	s
-conhash_set_hash	conhash.c	/^int conhash_set_hash(struct conhash_s *conhash, struct node_s *node, const char *iden, u_int replica)$/;"	f
+conhash_set	conhash.c	/^int conhash_set(struct conhash_s *conhash, struct node_s *node, const char *iden)$/;"	f
 conhash_set_node	conhash.c	/^void conhash_set_node(struct node_s *node, const char *iden, u_int replica)$/;"	f
 count	md5.h	/^    md5_word_t count[2];	\/* message length in bits, lsw first *\/$/;"	m	struct:md5_state_s
 cur	conhash_inter.h	/^	long size, cur;$/;"	m	struct:__get_vnodes_s

@@ -38,7 +38,7 @@ $(BIN)/sample : $(SAMPLE_OBJS)
 
 	
 $(BIN)/%.o : %.c
-	gcc $(INC) $(CFLAGS) -g -c $< -o $@	
+	gcc $(INC) $(CFLAGS) -c $< -o $@	
 
 # prepare the bin dir	
 .PHONY : prepare	
