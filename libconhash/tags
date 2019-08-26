@@ -1,0 +1,195 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AR	Makefile	/^AR  = ar -cqs$/;"	m
+BIN	Makefile	/^BIN = .\/bin$/;"	m
+BYTE_ORDER	md5.c	57;"	d	file:
+BYTE_ORDER	md5.c	59;"	d	file:
+BYTE_ORDER	md5.c	61;"	d	file:
+CONHASH_API	conhash.h	14;"	d
+CONHASH_API	conhash.h	16;"	d
+CONHASH_API	conhash.h	20;"	d
+F	md5.c	202;"	d	file:
+G	md5.c	228;"	d	file:
+H	md5.c	254;"	d	file:
+I	md5.c	280;"	d	file:
+INC	Makefile	/^INC = -I. -I.$/;"	m
+NODE_FLAG_IN	conhash.h	24;"	d
+NODE_FLAG_INIT	conhash.h	23;"	d
+OBJ	Makefile	/^OBJ = $(addprefix $(BIN)\/, \\$/;"	m
+ROTATE_LEFT	md5.c	197;"	d	file:
+SAMPLE_OBJS	Makefile	/^SAMPLE_OBJS = $(addprefix $(BIN)\/, \\$/;"	m
+SET	md5.c	203;"	d	file:
+SET	md5.c	223;"	d	file:
+SET	md5.c	229;"	d	file:
+SET	md5.c	249;"	d	file:
+SET	md5.c	255;"	d	file:
+SET	md5.c	275;"	d	file:
+SET	md5.c	281;"	d	file:
+SET	md5.c	301;"	d	file:
+T1	md5.c	65;"	d	file:
+T10	md5.c	74;"	d	file:
+T11	md5.c	75;"	d	file:
+T12	md5.c	76;"	d	file:
+T13	md5.c	77;"	d	file:
+T14	md5.c	78;"	d	file:
+T15	md5.c	79;"	d	file:
+T16	md5.c	80;"	d	file:
+T17	md5.c	81;"	d	file:
+T18	md5.c	82;"	d	file:
+T19	md5.c	83;"	d	file:
+T2	md5.c	66;"	d	file:
+T20	md5.c	84;"	d	file:
+T21	md5.c	85;"	d	file:
+T22	md5.c	86;"	d	file:
+T23	md5.c	87;"	d	file:
+T24	md5.c	88;"	d	file:
+T25	md5.c	89;"	d	file:
+T26	md5.c	90;"	d	file:
+T27	md5.c	91;"	d	file:
+T28	md5.c	92;"	d	file:
+T29	md5.c	93;"	d	file:
+T3	md5.c	67;"	d	file:
+T30	md5.c	94;"	d	file:
+T31	md5.c	95;"	d	file:
+T32	md5.c	96;"	d	file:
+T33	md5.c	97;"	d	file:
+T34	md5.c	98;"	d	file:
+T35	md5.c	99;"	d	file:
+T36	md5.c	100;"	d	file:
+T37	md5.c	101;"	d	file:
+T38	md5.c	102;"	d	file:
+T39	md5.c	103;"	d	file:
+T4	md5.c	68;"	d	file:
+T40	md5.c	104;"	d	file:
+T41	md5.c	105;"	d	file:
+T42	md5.c	106;"	d	file:
+T43	md5.c	107;"	d	file:
+T44	md5.c	108;"	d	file:
+T45	md5.c	109;"	d	file:
+T46	md5.c	110;"	d	file:
+T47	md5.c	111;"	d	file:
+T48	md5.c	112;"	d	file:
+T49	md5.c	113;"	d	file:
+T5	md5.c	69;"	d	file:
+T50	md5.c	114;"	d	file:
+T51	md5.c	115;"	d	file:
+T52	md5.c	116;"	d	file:
+T53	md5.c	117;"	d	file:
+T54	md5.c	118;"	d	file:
+T55	md5.c	119;"	d	file:
+T56	md5.c	120;"	d	file:
+T57	md5.c	121;"	d	file:
+T58	md5.c	122;"	d	file:
+T59	md5.c	123;"	d	file:
+T6	md5.c	70;"	d	file:
+T60	md5.c	124;"	d	file:
+T61	md5.c	125;"	d	file:
+T62	md5.c	126;"	d	file:
+T63	md5.c	127;"	d	file:
+T64	md5.c	128;"	d	file:
+T7	md5.c	71;"	d	file:
+T8	md5.c	72;"	d	file:
+T9	md5.c	73;"	d	file:
+TARGETS	Makefile	/^TARGETS = $(BIN)\/libconhash.a $(BIN)\/sample$/;"	m
+T_MASK	md5.c	64;"	d	file:
+_NULL	util_rbtree.c	7;"	d	file:
+__CONFIGURE_H_	configure.h	5;"	d
+__CONHASH_INTER_H_	conhash_inter.h	5;"	d
+__CON_HASH_H_	conhash.h	5;"	d
+__UTIL_RLTREE_H_	util_rbtree.h	5;"	d
+__conhash_add_replicas	conhash_inter.c	/^void __conhash_add_replicas(struct conhash_s *conhash, struct node_s *node)$/;"	f
+__conhash_del_rbnode	conhash_inter.c	/^void __conhash_del_rbnode(util_rbtree_node_t *rbnode)$/;"	f
+__conhash_del_replicas	conhash_inter.c	/^void __conhash_del_replicas(struct conhash_s *conhash, struct node_s *node)$/;"	f
+__conhash_get_rbnode	conhash_inter.c	/^util_rbtree_node_t *__conhash_get_rbnode(struct node_s *node, long hash)$/;"	f
+__conhash_hash_def	conhash_inter.c	/^long __conhash_hash_def(const char *instr)$/;"	f
+__conhash_node2string	conhash_inter.c	/^void __conhash_node2string(const struct node_s *node, u_int replica_idx, char buf[128], u_int *len)$/;"	f
+__get_vnodes	conhash_util.c	/^static void __get_vnodes(util_rbtree_node_t *node, void *data)$/;"	f	file:
+__get_vnodes_s	conhash_inter.h	/^struct __get_vnodes_s$/;"	s
+abcd	md5.h	/^    md5_word_t abcd[4];		\/* digest buffer *\/$/;"	m	struct:md5_state_s
+buf	md5.h	/^    md5_byte_t buf[64];		\/* accumulate block *\/$/;"	m	struct:md5_state_s
+cb_hashfunc	conhash_inter.h	/^	long (*cb_hashfunc)(const char *);$/;"	m	struct:conhash_s
+color	util_rbtree.h	/^    int color;$/;"	m	struct:util_rbtree_node_s
+conhash_add_node	conhash.c	/^int conhash_add_node(struct conhash_s *conhash, struct node_s *node)$/;"	f
+conhash_cb_hashfunc	conhash.h	/^typedef long (*conhash_cb_hashfunc)(const char *instr);$/;"	t
+conhash_del_node	conhash.c	/^int conhash_del_node(struct conhash_s *conhash, struct node_s *node)$/;"	f
+conhash_fini	conhash.c	/^void conhash_fini(struct conhash_s *conhash)$/;"	f
+conhash_get	conhash.c	/^const struct node_s* conhash_get(const struct conhash_s *conhash, const char *object)$/;"	f
+conhash_get_vnodes	conhash_util.c	/^void conhash_get_vnodes(const struct conhash_s *conhash, long *values, int size)$/;"	f
+conhash_get_vnodes_num	conhash_util.c	/^u_int conhash_get_vnodes_num(const struct conhash_s *conhash)$/;"	f
+conhash_init	conhash.c	/^struct conhash_s* conhash_init(conhash_cb_hashfunc pfhash)$/;"	f
+conhash_md5_digest	conhash_util.c	/^void conhash_md5_digest(const u_char *instr, u_char digest[16])$/;"	f
+conhash_s	conhash_inter.h	/^struct conhash_s$/;"	s
+conhash_set_hash	conhash.c	/^int conhash_set_hash(struct conhash_s *conhash, struct node_s *node, const char *iden, u_int replica)$/;"	f
+conhash_set_node	conhash.c	/^void conhash_set_node(struct node_s *node, const char *iden, u_int replica)$/;"	f
+count	md5.h	/^    md5_word_t count[2];	\/* message length in bits, lsw first *\/$/;"	m	struct:md5_state_s
+cur	conhash_inter.h	/^	long size, cur;$/;"	m	struct:__get_vnodes_s
+data	util_rbtree.h	/^	void *data;$/;"	m	struct:util_rbtree_node_s
+fini	util_rbtree.c	/^	int fini; \/* check failed ? *\/$/;"	m	struct:rbtree_check_s	file:
+flag	conhash.h	/^	u_int flag;$/;"	m	struct:node_s
+g_nodes	sample.c	/^struct node_s g_nodes[64];$/;"	v	typeref:struct:node_s
+hash	conhash_inter.h	/^	long hash;$/;"	m	struct:virtual_node_s
+iden	conhash.h	/^	char iden[64]; \/* node name or some thing identifies the node *\/$/;"	m	struct:node_s
+ivnodes	conhash_inter.h	/^	u_int ivnodes; \/* virtual node number *\/$/;"	m	struct:conhash_s
+key	util_rbtree.h	/^    long key;$/;"	m	struct:util_rbtree_node_s
+left	util_rbtree.h	/^    util_rbtree_node_t *left;$/;"	m	struct:util_rbtree_node_s
+main	sample.c	/^int main()$/;"	f
+maxd	util_rbtree.c	/^	short maxd; \/* max depth of the tree *\/$/;"	m	struct:rbtree_check_s	file:
+md5_INCLUDED	md5.h	51;"	d
+md5_append	md5.c	/^md5_append(md5_state_t *pms, const md5_byte_t *data, int nbytes)$/;"	f
+md5_byte_t	md5.h	/^typedef unsigned char md5_byte_t; \/* 8-bit byte *\/$/;"	t
+md5_finish	md5.c	/^md5_finish(md5_state_t *pms, md5_byte_t digest[16])$/;"	f
+md5_init	md5.c	/^md5_init(md5_state_t *pms)$/;"	f
+md5_process	md5.c	/^md5_process(md5_state_t *pms, const md5_byte_t *data \/*[64]*\/)$/;"	f	file:
+md5_state_s	md5.h	/^typedef struct md5_state_s {$/;"	s
+md5_state_t	md5.h	/^} md5_state_t;$/;"	t	typeref:struct:md5_state_s
+md5_word_t	md5.h	/^typedef unsigned int md5_word_t; \/* 32-bit word *\/$/;"	t
+node	conhash_inter.h	/^	struct node_s *node; \/* pointer to node *\/$/;"	m	struct:virtual_node_s	typeref:struct:virtual_node_s::node_s
+node_s	conhash.h	/^struct node_s$/;"	s
+null	util_rbtree.c	/^	const util_rbtree_node_t *null; \/* sentinel of the tree *\/$/;"	m	struct:rbtree_check_s	file:
+null	util_rbtree.h	/^    util_rbtree_node_t  null;$/;"	m	struct:util_rbtree_s
+parent	util_rbtree.h	/^    util_rbtree_node_t *parent;$/;"	m	struct:util_rbtree_node_s
+rbh	util_rbtree.c	/^	short rbh; \/* rb height of the tree *\/$/;"	m	struct:rbtree_check_s	file:
+rbt_clear_node	util_rbtree.h	37;"	d
+rbtree_check_s	util_rbtree.c	/^struct rbtree_check_s$/;"	s	file:
+rbtree_check_subtree	util_rbtree.c	/^static void rbtree_check_subtree(const util_rbtree_node_t *node, rbtree_check_t *check, $/;"	f	file:
+rbtree_check_t	util_rbtree.c	/^typedef struct rbtree_check_s rbtree_check_t;$/;"	t	typeref:struct:rbtree_check_s	file:
+rbtree_delete_fixup	util_rbtree.c	/^void rbtree_delete_fixup(util_rbtree_t *rbtree, util_rbtree_node_t *node)$/;"	f
+rbtree_insert_fixup	util_rbtree.c	/^void rbtree_insert_fixup(util_rbtree_t *rbtree, util_rbtree_node_t *node)$/;"	f
+rbtree_left_rotate	util_rbtree.c	/^void rbtree_left_rotate(util_rbtree_t *rbtree, util_rbtree_node_t *node)$/;"	f
+rbtree_mid_travel	util_rbtree.c	/^static void rbtree_mid_travel(util_rbtree_node_t *node, util_rbtree_node_t *sentinel, $/;"	f	file:
+rbtree_right_rotate	util_rbtree.c	/^void rbtree_right_rotate(util_rbtree_t *rbtree, util_rbtree_node_t *node)$/;"	f
+replicas	conhash.h	/^	u_int replicas; \/* number of replica virtual nodes *\/$/;"	m	struct:node_s
+right	util_rbtree.h	/^    util_rbtree_node_t *right;$/;"	m	struct:util_rbtree_node_s
+root	util_rbtree.h	/^    util_rbtree_node_t *root;$/;"	m	struct:util_rbtree_s
+size	conhash_inter.h	/^	long size, cur;$/;"	m	struct:__get_vnodes_s
+size	util_rbtree.h	/^    u_int size;$/;"	m	struct:util_rbtree_s
+u_char	configure.h	/^typedef unsigned char u_char;$/;"	t
+u_int	configure.h	/^typedef unsigned int u_int;$/;"	t
+util_long	configure.h	/^typedef long util_long;$/;"	t
+util_rbsubtree_max	util_rbtree.c	/^util_rbtree_node_t* util_rbsubtree_max(util_rbtree_node_t *node, util_rbtree_node_t *sentinel)$/;"	f
+util_rbsubtree_min	util_rbtree.c	/^util_rbtree_node_t* util_rbsubtree_min(util_rbtree_node_t *node, util_rbtree_node_t *sentinel)$/;"	f
+util_rbt_black	util_rbtree.h	31;"	d
+util_rbt_isblack	util_rbtree.h	33;"	d
+util_rbt_isred	util_rbtree.h	34;"	d
+util_rbt_red	util_rbtree.h	32;"	d
+util_rbtree_check	util_rbtree.c	/^int util_rbtree_check(const util_rbtree_t *rbtree, int *blackheight, int *maxdepth)$/;"	f
+util_rbtree_delete	util_rbtree.c	/^void util_rbtree_delete(util_rbtree_t *rbtree, util_rbtree_node_t *node)$/;"	f
+util_rbtree_init	util_rbtree.c	/^void util_rbtree_init(util_rbtree_t *rbtree)$/;"	f
+util_rbtree_insert	util_rbtree.c	/^void util_rbtree_insert(util_rbtree_t *rbtree, util_rbtree_node_t *node)$/;"	f
+util_rbtree_isempty	util_rbtree.h	44;"	d
+util_rbtree_lookup	util_rbtree.c	/^util_rbtree_node_t* util_rbtree_lookup(util_rbtree_t *rbtree, long key)$/;"	f
+util_rbtree_max	util_rbtree.h	56;"	d
+util_rbtree_mid_travel	util_rbtree.c	/^void util_rbtree_mid_travel(util_rbtree_t *rbtree, $/;"	f
+util_rbtree_min	util_rbtree.h	50;"	d
+util_rbtree_node_s	util_rbtree.h	/^struct util_rbtree_node_s$/;"	s
+util_rbtree_node_t	util_rbtree.h	/^typedef struct util_rbtree_node_s util_rbtree_node_t;$/;"	t	typeref:struct:util_rbtree_node_s
+util_rbtree_s	util_rbtree.h	/^struct util_rbtree_s$/;"	s
+util_rbtree_search	util_rbtree.c	/^util_rbtree_node_t* util_rbtree_search(util_rbtree_t *rbtree, long key)$/;"	f
+util_rbtree_t	util_rbtree.h	/^typedef struct util_rbtree_s util_rbtree_t;$/;"	t	typeref:struct:util_rbtree_s
+values	conhash_inter.h	/^	long *values;$/;"	m	struct:__get_vnodes_s
+virtual_node_s	conhash_inter.h	/^struct virtual_node_s$/;"	s
+vnode_tree	conhash_inter.h	/^	util_rbtree_t vnode_tree; \/* rbtree of virtual nodes *\/$/;"	m	struct:conhash_s
