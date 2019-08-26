@@ -66,7 +66,6 @@ extern "C" {
 	CONHASH_API void conhash_fini(struct conhash_s *conhash);
 
 	/* some utility functions export*/ 
-	CONHASH_API void  conhash_md5_digest(const u_char *instr, u_char digest[16]); 
 
         /* get virtual node number in the hash */
 	CONHASH_API u_int conhash_get_vnodes_num(const struct conhash_s *conhash);
