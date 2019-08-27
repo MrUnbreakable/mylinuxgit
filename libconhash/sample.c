@@ -12,7 +12,7 @@ int main()
     long hashes[128] = {0};
 
     /* init conhash instance */
-    struct conhash_s *conhash = conhash_init(NULL);
+    HANDLE *conhash = conhash_init(NULL);
     if(conhash)
     {
         conhash_set(conhash, &g_nodes[0], "192.168.10.1:10");

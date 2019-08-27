@@ -22,7 +22,7 @@ static void __get_vnodes(util_rbtree_node_t *node, void *data)
         vnodes->values[vnodes->cur++] = node->key;
     }
 }
-void conhash_get_vnodes(const struct conhash_s *conhash, long *values, int size)
+void conhash_get_vnodes(const HANDLE conhash, long *values, int size)
 {
     struct __get_vnodes_s vnodes;
     if((conhash==NULL) || (values==NULL) || (size<=0))
@@ -35,7 +35,7 @@ void conhash_get_vnodes(const struct conhash_s *conhash, long *values, int size)
     util_rbtree_mid_travel(&(conhash->vnode_tree), __get_vnodes, &vnodes);
 }
 
-u_int conhash_get_vnodes_num(const struct conhash_s *conhash)
+u_int conhash_get_vnodes_num(const HANDLE conhash)
 {
     if(conhash == NULL)
     {

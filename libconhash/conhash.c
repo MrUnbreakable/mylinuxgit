@@ -32,7 +32,7 @@ struct conhash_s* conhash_init(conhash_cb_hashfunc pfhash)
     return NULL;
 }
 
-void conhash_fini(struct conhash_s *conhash)
+void conhash_fini(const HANDLE conhash)
 {
 	if(conhash != NULL)
 	{
@@ -47,7 +47,7 @@ void conhash_fini(struct conhash_s *conhash)
 	}
 }
 
-int conhash_set(struct conhash_s *conhash, struct node_s *node, const char *iden)
+int conhash_set(HANDLE *conhash, struct node_s *node, const char *iden)
 {
     u_int replica = 16;
     conhash_set_node(node, iden, replica);
@@ -61,7 +61,7 @@ void conhash_set_node(struct node_s *node, const char *iden, u_int replica)
     node->flag = NODE_FLAG_INIT;
 }
 
-int conhash_add_node(struct conhash_s *conhash, struct node_s *node)
+int conhash_add_node(HANDLE *conhash, struct node_s *node)
 {
     if((conhash==NULL) || (node==NULL)) 
     {
@@ -79,7 +79,7 @@ int conhash_add_node(struct conhash_s *conhash, struct node_s *node)
     return 0;
 }
 
-int conhash_del_node(struct conhash_s *conhash, struct node_s *node)
+int conhash_del_node(HANDLE *conhash, struct node_s *node)
 {
    if((conhash==NULL) || (node==NULL)) 
     {
@@ -97,7 +97,7 @@ int conhash_del_node(struct conhash_s *conhash, struct node_s *node)
     return 0;
 }
 
-const struct node_s* conhash_get(const struct conhash_s *conhash, const char *object)
+const struct node_s* conhash_get(const HANDLE conhash, const char *object)
 {
     long hash;
     const util_rbtree_node_t *rbnode;

@@ -38,6 +38,7 @@ struct node_s
 typedef long (*conhash_cb_hashfunc)(const char *instr);
 
 struct conhash_s;
+typedef struct conhash_s *HANDLE;
 
 /* export interfaces */
 #ifdef  __cplusplus
@@ -47,35 +48,35 @@ extern "C" {
 	 * @pfhash : hash function, NULL to use default MD5 method
 	 * return a conhash_s instance
 	 */
-	CONHASH_API struct conhash_s* conhash_init(conhash_cb_hashfunc pfhash);
+	CONHASH_API HANDLE conhash_init(conhash_cb_hashfunc pfhash);
 
         /* set a node */
-        CONHASH_API int conhash_set(struct conhash_s *conhash, struct node_s *node, const char *iden);
+        CONHASH_API int conhash_set(HANDLE *conhash, struct node_s *node, const char *iden);
 
         /* remove a node */
-        CONHASH_API int conhash_del_node(struct conhash_s *conhash, struct node_s *node);
+        CONHASH_API int conhash_del_node(HANDLE *conhash, struct node_s *node);
 
 	/* 
 	 * get a server which object belongs to 
 	 * @object: the input string which indicates an object
 	 * return the server_s structure, do not modify the value, or it will cause a disaster
 	 */
-	CONHASH_API const struct node_s* conhash_get(const struct conhash_s *conhash, const char *object);
+	CONHASH_API const struct node_s* conhash_get(const HANDLE conhash, const char *object);
 
         /* finalize lib */
-	CONHASH_API void conhash_fini(struct conhash_s *conhash);
+	CONHASH_API void conhash_fini(const HANDLE conhash);
 
 	/* some utility functions export*/ 
 
         /* get virtual node number in the hash */
-	CONHASH_API u_int conhash_get_vnodes_num(const struct conhash_s *conhash);
+	CONHASH_API u_int conhash_get_vnodes_num(const HANDLE conhash);
 
         /*
 	 * get virtual nodes in ascending oder
 	 * @values, pointer to an array, stores all the nodes's hash value 
 	 * @size, how many nodes to get, can't be less than the array size
 	 */
-	CONHASH_API void  conhash_get_vnodes(const struct conhash_s *conhash, long *values, int size);
+	CONHASH_API void  conhash_get_vnodes(const HANDLE conhash, long *values, int size);
 
         /* set node */
 	CONHASH_API void conhash_set_node(struct node_s *node, const char *iden, u_int replica);
@@ -84,7 +85,7 @@ extern "C" {
 	 * add a new node 
 	 * @node: the node to add
 	 */
-	CONHASH_API int conhash_add_node(struct conhash_s *conhash, struct node_s *node);
+	CONHASH_API int conhash_add_node(HANDLE *conhash, struct node_s *node);
 
 #ifdef  __cplusplus
 }
