@@ -102,9 +102,15 @@ int conhash_del_node(HANDLE *conhash, const char *iden)
         return -1;
     }
     node[i]->flag &= (~NODE_FLAG_IN);
-    /* add replicas of server */
+    /* delete replicas of server */
     __conhash_del_replicas(conhash, node[i]);
     free(node[i]);
+    if(i != num-1)
+    {
+        node[i] = node[num-1];
+        node[num-1] = NULL;
+    }
+    num--;
     return 0;
 }
 

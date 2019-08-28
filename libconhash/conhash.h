@@ -85,15 +85,6 @@ extern "C" {
 	 */
 	CONHASH_API void  conhash_get_vnodes(const HANDLE conhash, long *values, int size);
 
-        /* set node */
-	CONHASH_API void conhash_set_node(struct node_s *node, const char *iden, u_int replica);
-
-	/* 
-	 * add a new node 
-	 * @node: the node to add
-	 */
-	CONHASH_API int conhash_add_node(HANDLE *conhash, struct node_s *node);
-
 #ifdef  __cplusplus
 }
 #endif
