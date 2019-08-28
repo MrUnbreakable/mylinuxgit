@@ -15,6 +15,7 @@ CONHASH_API	conhash.h	20;"	d
 F	md5.c	202;"	d	file:
 G	md5.c	228;"	d	file:
 H	md5.c	254;"	d	file:
+HANDLE	conhash.h	/^typedef struct conhash_s *HANDLE;$/;"	t	typeref:struct:conhash_s
 I	md5.c	280;"	d	file:
 INC	Makefile	/^INC = -I. -I.$/;"	m
 NODE_FLAG_IN	conhash.h	24;"	d
@@ -113,17 +114,18 @@ abcd	md5.h	/^    md5_word_t abcd[4];		\/* digest buffer *\/$/;"	m	struct:md5_sta
 buf	md5.h	/^    md5_byte_t buf[64];		\/* accumulate block *\/$/;"	m	struct:md5_state_s
 cb_hashfunc	conhash_inter.h	/^	long (*cb_hashfunc)(const char *);$/;"	m	struct:conhash_s
 color	util_rbtree.h	/^    int color;$/;"	m	struct:util_rbtree_node_s
-conhash_add_node	conhash.c	/^int conhash_add_node(struct conhash_s *conhash, struct node_s *node)$/;"	f
+conhash_add_node	conhash.c	/^int conhash_add_node(HANDLE *conhash, struct node_s *node)$/;"	f
 conhash_cb_hashfunc	conhash.h	/^typedef long (*conhash_cb_hashfunc)(const char *instr);$/;"	t
-conhash_del_node	conhash.c	/^int conhash_del_node(struct conhash_s *conhash, struct node_s *node)$/;"	f
-conhash_fini	conhash.c	/^void conhash_fini(struct conhash_s *conhash)$/;"	f
-conhash_get	conhash.c	/^const struct node_s* conhash_get(const struct conhash_s *conhash, const char *object)$/;"	f
-conhash_get_vnodes	conhash_util.c	/^void conhash_get_vnodes(const struct conhash_s *conhash, long *values, int size)$/;"	f
-conhash_get_vnodes_num	conhash_util.c	/^u_int conhash_get_vnodes_num(const struct conhash_s *conhash)$/;"	f
-conhash_init	conhash.c	/^struct conhash_s* conhash_init(conhash_cb_hashfunc pfhash)$/;"	f
+conhash_del_node	conhash.c	/^int conhash_del_node(HANDLE *conhash, struct node_s *node)$/;"	f
+conhash_fini	conhash.c	/^void conhash_fini(const HANDLE conhash)$/;"	f
+conhash_get	conhash.c	/^const struct node_s* conhash_get(const HANDLE conhash, const char *object)$/;"	f
+conhash_get_vnodes	conhash_util.c	/^void conhash_get_vnodes(const HANDLE conhash, long *values, int size)$/;"	f
+conhash_get_vnodes_num	conhash_util.c	/^u_int conhash_get_vnodes_num(const HANDLE conhash)$/;"	f
+conhash_init	conhash.c	/^struct conhash_s* conhash_init()$/;"	f
 conhash_md5_digest	conhash_util.c	/^void conhash_md5_digest(const u_char *instr, u_char digest[16])$/;"	f
 conhash_s	conhash_inter.h	/^struct conhash_s$/;"	s
-conhash_set	conhash.c	/^int conhash_set(struct conhash_s *conhash, struct node_s *node, const char *iden)$/;"	f
+conhash_select	conhash.c	/^int conhash_select(HANDLE conhash, conhash_cb_hashfunc pfhash)$/;"	f
+conhash_set	conhash.c	/^int conhash_set(HANDLE *conhash, struct node_s *node, const char *iden)$/;"	f
 conhash_set_node	conhash.c	/^void conhash_set_node(struct node_s *node, const char *iden, u_int replica)$/;"	f
 count	md5.h	/^    md5_word_t count[2];	\/* message length in bits, lsw first *\/$/;"	m	struct:md5_state_s
 cur	conhash_inter.h	/^	long size, cur;$/;"	m	struct:__get_vnodes_s

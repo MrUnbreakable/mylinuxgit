@@ -23,22 +23,23 @@
 #define NODE_FLAG_INIT  0x01 /* node is initialized */
 #define NODE_FLAG_IN    0x02 /* node is added in the server */
 
+typedef long (*conhash_cb_hashfunc)(const char *instr);
+struct conhash_s;
+typedef struct conhash_s *HANDLE;
+
 /* nodes structure */
 struct node_s
 {
 	char iden[64]; /* node name or some thing identifies the node */
 	u_int replicas; /* number of replica virtual nodes */
 	u_int flag;
+        //node_s(){ (node_s*) malloc(sizeof(node_s)); }
 };
 
 /* 
  * callback function to calculate hash value 
  * @instr: input string
  */
-typedef long (*conhash_cb_hashfunc)(const char *instr);
-
-struct conhash_s;
-typedef struct conhash_s *HANDLE;
 
 /* export interfaces */
 #ifdef  __cplusplus
@@ -48,9 +49,14 @@ extern "C" {
 	 * @pfhash : hash function, NULL to use default MD5 method
 	 * return a conhash_s instance
 	 */
-	CONHASH_API HANDLE conhash_init(conhash_cb_hashfunc pfhash);
+	CONHASH_API HANDLE conhash_init();
 
-        /* set a node */
+        /*select hash function*/
+        CONHASH_API int conhash_select_func(HANDLE conhash, conhash_cb_hashfunc pfhash);
+        
+        /* set a node 
+         *default number of virtural nodes is 16
+         */
         CONHASH_API int conhash_set(HANDLE *conhash, struct node_s *node, const char *iden);
 
         /* remove a node */
@@ -59,9 +65,9 @@ extern "C" {
 	/* 
 	 * get a server which object belongs to 
 	 * @object: the input string which indicates an object
-	 * return the server_s structure, do not modify the value, or it will cause a disaster
+	 * iden represents identity of the node, do not modify the value, or it will cause a disaster
 	 */
-	CONHASH_API const struct node_s* conhash_get(const HANDLE conhash, const char *object);
+	CONHASH_API int conhash_get(const HANDLE conhash, const char *object,const char* iden);
 
         /* finalize lib */
 	CONHASH_API void conhash_fini(const HANDLE conhash);

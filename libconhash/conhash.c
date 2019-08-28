@@ -4,7 +4,7 @@
 #include "conhash.h"
 #include "conhash_inter.h"
 
-struct conhash_s* conhash_init(conhash_cb_hashfunc pfhash)
+struct conhash_s* conhash_init()
 {
     /* alloc memory and set to zero */
     struct conhash_s *conhash = (struct conhash_s*)calloc(1, sizeof(struct conhash_s));
@@ -15,21 +15,17 @@ struct conhash_s* conhash_init(conhash_cb_hashfunc pfhash)
     do
 	{
         /* setup callback functions */
-        if(pfhash != NULL)
-        {
-            conhash->cb_hashfunc = pfhash;
-        }
-        else
-        {
             conhash->cb_hashfunc = __conhash_hash_def;
-        }
-		util_rbtree_init(&conhash->vnode_tree);
-        return conhash;
-
+            util_rbtree_init(&conhash->vnode_tree);
+            return conhash;
 	}while(0);
-
     free(conhash);
     return NULL;
+}
+
+int conhash_select_func(HANDLE conhash, conhash_cb_hashfunc pfhash)
+{
+    conhash->cb_hashfunc = pfhash;
 }
 
 void conhash_fini(const HANDLE conhash)
@@ -52,10 +48,12 @@ int conhash_set(HANDLE *conhash, struct node_s *node, const char *iden)
     u_int replica = 16;
     conhash_set_node(node, iden, replica);
     conhash_add_node(conhash, node);
+    return 0;
 }
 
 void conhash_set_node(struct node_s *node, const char *iden, u_int replica)
 {
+    //struct node_s *node = (struct node_s*)calloc(1, sizeof(struct node_s));
     strncpy(node->iden, iden, sizeof(node->iden)-1);
     node->replicas = replica;
     node->flag = NODE_FLAG_INIT;
@@ -97,13 +95,13 @@ int conhash_del_node(HANDLE *conhash, struct node_s *node)
     return 0;
 }
 
-const struct node_s* conhash_get(const HANDLE conhash, const char *object)
+int conhash_get(const HANDLE conhash, const char *object,const char* iden)
 {
     long hash;
     const util_rbtree_node_t *rbnode;
     if((conhash==NULL) || (conhash->ivnodes==0) || (object==NULL)) 
     {
-        return NULL;
+        return -1;
     }
     /* calc hash value */
     hash = conhash->cb_hashfunc(object);
@@ -112,7 +110,7 @@ const struct node_s* conhash_get(const HANDLE conhash, const char *object)
     if(rbnode != NULL)
     {
         struct virtual_node_s *vnode = rbnode->data;
-        return vnode->node;
+        strcpy(iden,vnode->node->iden);
     }
-    return NULL;
+    return 0;
 }

@@ -9,10 +9,11 @@ int main()
     int i;
     const struct node_s *node;
     char str[128];
+    char iden[64];
     long hashes[128] = {0};
 
     /* init conhash instance */
-    HANDLE *conhash = conhash_init(NULL);
+    HANDLE *conhash = conhash_init();
     if(conhash)
     {
         conhash_set(conhash, &g_nodes[0], "192.168.10.1:10");
@@ -27,8 +28,8 @@ int main()
         for(i = 0; i < 20; i++)
         {
             sprintf(str, "James.km%03d", i);
-            node = conhash_get(conhash, str);
-            if(node) printf("[%16s] is in node: [%16s],number of virtual nodes is %d\n", str, node->iden,node->replicas);
+            conhash_get(conhash, str,iden);
+            printf("[%16s] is in node:[%16s]\n", str,iden);
         }        
         conhash_get_vnodes(conhash, hashes, sizeof(hashes)/sizeof(hashes[0]));
         for(i = 0; i < sizeof(hashes)/sizeof(hashes[0]);i++)
@@ -44,8 +45,8 @@ int main()
         for(i = 0; i < 20; i++)
         {
             sprintf(str, "James.km%03d", i);
-            node = conhash_get(conhash, str);
-            if(node) printf("[%16s] is in node: [%16s],number of virtual nodes is %d\n", str, node->iden,node->replicas);
+            conhash_get(conhash, str,iden);
+            printf("[%16s] is in node: [%16s]\n", str,iden);
         }
         /*test add node*/
         conhash_add_node(conhash, &g_nodes[2]);
@@ -58,8 +59,8 @@ int main()
 	for(i = 0; i < 20; i++)
 	{
             sprintf(str, "James.km%03d", i);
-            node = conhash_get(conhash, str);
-            if(node) printf("[%16s] is in node: [%16s],number of virtual nodes is %d\n", str, node->iden,node->replicas);
+            conhash_get(conhash, str, iden);
+            printf("[%16s] is in node: [%16s]\n", str,iden);
         }
         memset(hashes , 0 ,sizeof hashes);
         conhash_get_vnodes(conhash, hashes, sizeof(hashes)/sizeof(hashes[0]));
