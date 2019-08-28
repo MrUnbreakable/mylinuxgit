@@ -55,12 +55,13 @@ extern "C" {
         CONHASH_API int conhash_select_func(HANDLE conhash, conhash_cb_hashfunc pfhash);
         
         /* set a node 
-         *default number of virtural nodes is 16
+         * default max number of real nodes is 64   
+         * default number of virtural nodes is 16
          */
         CONHASH_API int conhash_set(HANDLE *conhash, const char *iden);
 
         /* remove a node */
-        CONHASH_API int conhash_del_node(HANDLE *conhash, struct node_s *node);
+        CONHASH_API int conhash_del_node(HANDLE *conhash, const char *iden);
 
 	/* 
 	 * get a server which object belongs to 

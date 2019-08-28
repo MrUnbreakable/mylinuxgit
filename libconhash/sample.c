@@ -39,8 +39,8 @@ int main()
             }
         }
         /*test delete node*/
-        conhash_del_node(conhash, &g_nodes[2]);
-        printf("remove node[%s], virtual nodes number %d\n", g_nodes[2].iden, conhash_get_vnodes_num(conhash));
+        conhash_del_node(conhash, "192.168.10.1:12");
+        printf("remove node 192.168.10.1:12, virtual nodes number %d\n",conhash_get_vnodes_num(conhash));
         printf("the hashing results--------------------------------------:\n");
         for(i = 0; i < 20; i++)
         {
@@ -48,13 +48,16 @@ int main()
             conhash_get(conhash, str,iden);
             printf("[%16s] is in node: [%16s]\n", str,iden);
         }
-        /*test add node*/
-        conhash_add_node(conhash, &g_nodes[2]);
-        printf("add node[%s], virtual nodes number %d\n", g_nodes[2].iden, conhash_get_vnodes_num(conhash));
-        /*test set hash*/
+        memset(hashes , 0 ,sizeof hashes);
+        conhash_get_vnodes(conhash, hashes, sizeof(hashes)/sizeof(hashes[0]));
+        for(i = 0; i < sizeof(hashes)/sizeof(hashes[0]);i++)
+        {   if(hashes[i] != 0)
+            {
+                printf("hash[%d] is : %ld\n", i ,hashes[i]);
+            }
+        }
         conhash_set(conhash, "192.168.10.1:15");       
-        //conhash_add_node(conhash, &g_nodes[5]);
-        printf("add node[%s], virtual nodes number %d\n", g_nodes[5].iden, conhash_get_vnodes_num(conhash));
+        printf("add node 192.169.10.1:15, virtual nodes number %d\n",conhash_get_vnodes_num(conhash));
 	printf("the hashing results--------------------------------------:\n");
 	for(i = 0; i < 20; i++)
 	{

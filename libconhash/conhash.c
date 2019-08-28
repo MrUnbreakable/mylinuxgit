@@ -81,21 +81,30 @@ int conhash_add_node(HANDLE *conhash, struct node_s *node)
     return 0;
 }
 
-int conhash_del_node(HANDLE *conhash, struct node_s *node)
-{
-   if((conhash==NULL) || (node==NULL)) 
+int conhash_del_node(HANDLE *conhash, const char *iden)
+{  
+    int i = 0;
+    while( i < num && strcmp(iden,node[i]->iden))
+    {
+        i++;
+    }
+    if(i > num)
+    {
+        return -1;
+    }
+    if((conhash==NULL) || (node[i]==NULL)) 
     {
         return -1;
     }
     /* check node first */
-    if(!(node->flag&NODE_FLAG_INIT) || !(node->flag&NODE_FLAG_IN))
+    if(!(node[i]->flag&NODE_FLAG_INIT) || !(node[i]->flag&NODE_FLAG_IN))
     {
         return -1;
     }
-    node->flag &= (~NODE_FLAG_IN);
+    node[i]->flag &= (~NODE_FLAG_IN);
     /* add replicas of server */
-    __conhash_del_replicas(conhash, node);
-
+    __conhash_del_replicas(conhash, node[i]);
+    free(node[i]);
     return 0;
 }
 
