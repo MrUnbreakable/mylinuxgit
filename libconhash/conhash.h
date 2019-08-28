@@ -57,7 +57,7 @@ extern "C" {
         /* set a node 
          *default number of virtural nodes is 16
          */
-        CONHASH_API int conhash_set(HANDLE *conhash, struct node_s *node, const char *iden);
+        CONHASH_API int conhash_set(HANDLE *conhash, const char *iden);
 
         /* remove a node */
         CONHASH_API int conhash_del_node(HANDLE *conhash, struct node_s *node);
@@ -67,7 +67,7 @@ extern "C" {
 	 * @object: the input string which indicates an object
 	 * iden represents identity of the node, do not modify the value, or it will cause a disaster
 	 */
-	CONHASH_API int conhash_get(const HANDLE conhash, const char *object,const char* iden);
+	CONHASH_API int conhash_get(const HANDLE conhash, const char *object, const char* iden);
 
         /* finalize lib */
 	CONHASH_API void conhash_fini(const HANDLE conhash);

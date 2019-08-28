@@ -4,6 +4,8 @@
 #include "conhash.h"
 #include "conhash_inter.h"
 
+struct node_s *node[64];
+int num = 0;
 struct conhash_s* conhash_init()
 {
     /* alloc memory and set to zero */
@@ -26,6 +28,7 @@ struct conhash_s* conhash_init()
 int conhash_select_func(HANDLE conhash, conhash_cb_hashfunc pfhash)
 {
     conhash->cb_hashfunc = pfhash;
+    return 0;
 }
 
 void conhash_fini(const HANDLE conhash)
@@ -43,17 +46,18 @@ void conhash_fini(const HANDLE conhash)
 	}
 }
 
-int conhash_set(HANDLE *conhash, struct node_s *node, const char *iden)
+int conhash_set(HANDLE *conhash, const char *iden)
 {
     u_int replica = 16;
-    conhash_set_node(node, iden, replica);
-    conhash_add_node(conhash, node);
+    node[num] = (struct node_s*)malloc(sizeof(struct node_s));
+    conhash_set_node(node[num],iden, replica);
+    conhash_add_node(conhash, node[num]);
+    num++;
     return 0;
 }
 
 void conhash_set_node(struct node_s *node, const char *iden, u_int replica)
 {
-    //struct node_s *node = (struct node_s*)calloc(1, sizeof(struct node_s));
     strncpy(node->iden, iden, sizeof(node->iden)-1);
     node->replicas = replica;
     node->flag = NODE_FLAG_INIT;
