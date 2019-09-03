@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 2.8)
+project(test)
+set(CMAKE_CXX_FLAGS " -g -std=c++11 ${CMAKE_CXX_FLAGS}")
+include_directories(src)
+include_directories(inc)
+find_package(fmt)
+add_executable(test ./src/test.cpp)
+target_link_libraries(test fmt::fmt)
