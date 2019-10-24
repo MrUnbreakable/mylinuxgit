@@ -100,18 +100,7 @@ string writeFileJson(int** stu1out, int** stu2out, int** tools);   //½«ĞÅÏ¢±£´æÎ
 void sectionclassroom(int** stu1out, int** stu2out, int** tools);   //½«ĞÅÏ¢±£´æÎªJSON¸ñÊ½ 
 //string makeclass(string str);
 //**********************************************************************
-char * makeclassjson(char * inputstr)
-{
-	string strInput = inputstr;
-	string outputStr = makeclass(strInput);
 
-	char *data;
-	int len = outputStr.length();
-	data = (char *)malloc((len + 1) * sizeof(char));
-	outputStr.copy(data, len, 0);
-
-	return data;
-}
 string makeclass(string inputstr)
 {
 	/********´ÓjsonÎÄ¼ş¶ÁÈ¡**********/
@@ -1929,7 +1918,6 @@ int** readJson(int studentnumber_6_3)//´Ó×Ö·û´®ÖĞ¶ÁÈ¡JSON
 					//È¡³öÖ¾Ô¸²¢·­Òë È¡³öĞÔ±ğ Ñ§ºÅ  ÒÔÕûĞÎ´æ´¢
 					int* p;
 					string ach = root[i6]["value"][j6]["vlounteer"].asString();//È¡³öÔñ¿ÎÖ¾Ô¸
-					cout << ach << endl;
 					p = translate(ach);//ÖĞÎÄ×ª»»Îª¶ş½øÖÆb
 					for (k6 = 0; k6 < 10; k6++)
 					{
@@ -2036,8 +2024,8 @@ string writeFileJson(int** stu1out, int** stu2out, int** tools)//½«ĞÅÏ¢±£´æÎªJSO
 	Json::Value value;
 	for (i6 = 0; i6 < tools[4][1]; i6++)//¶¨ÈıÊä³ö
 	{
-		value["studentno_6_3"] = Json::Value(stu2out[i6][7]);
-		value["sex"] = Json::Value(stu2out[i6][8]);
+		value["studentno_6_3"] = Json::Value(stu2out[i6][6]);
+		value["sex"] = Json::Value(stu2out[i6][7]);
 		for (j6 = 0; j6 < tools[4][3]; j6++)
 		{
 			stringstream s2;
@@ -2067,12 +2055,12 @@ string writeFileJson(int** stu1out, int** stu2out, int** tools)//½«ĞÅÏ¢±£´æÎªJSO
 	}
 	for (i6 = 0; i6 < tools[4][4]; i6++)//¶¨¶şÊä³ö
 	{
-		value["studentno_6_3"] = Json::Value(stu1out[i6][7]);
-		value["sex"] = Json::Value(stu1out[i6][8]);
+		value["studentno_6_3"] = Json::Value(stu1out[i6][6]);
+		value["sex"] = Json::Value(stu1out[i6][7]);
 		for (j6 = 0; j6 < tools[4][3]; j6++)
 		{
 			stringstream s3;
-			s3 << studentno_6_3[j6][0];
+			s3 << studentno_6_3[i6][0];
 			int ii6;
 			s3 >> ii6;
 			int bbb = stu1out[i6][6];
