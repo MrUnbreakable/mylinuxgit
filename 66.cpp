@@ -3,7 +3,6 @@
 
 
 
-
 #include "stdafx.h"
 #include <sstream>
 #include <iostream>
@@ -12,6 +11,7 @@
 #include <string>  
 #include <vector>
 #include <algorithm>
+#include <stdio.h>
 //Ìí¼ÓĞèÒªµÄÍ·ÎÄ¼ş
 #include "include/json/json.h"
 #define MAX 25000
@@ -27,9 +27,10 @@ using namespace std;
 
 
 //************¡ıÒª¶ÁÈ¡µÄjsonÎÄ¼şÃû£¬ÎÄ¼şÓ¦¸Ã·ÅÔÚ¹¤³ÌÎÄ¼şÏÂ¡ı************
-const string  jsonfilename = "60966.json";
-const string  txtfilename = "609666.txt";
-string str;
+const string  jsonfilename = "a.json";
+const string  txtfilename = "a.txt";
+string str7;
+string returnstr;
 
 const int reader = 1;                      //0 ¶ÁÈ¡json ÎÄ¼ş    1¶ÁÈ¡×Ö·û´® str
 const int choose = 1;                      //0 ²»Ê¹ÓÃÑ§Ğ£¸ø³öÉÏÏÂÏŞ 1Ê¹ÓÃÑ§Ğ£¸ø³öÉÏÏÂÏŞ
@@ -43,121 +44,124 @@ struct element {                           //ÓÃÀ´ÅÅĞòµÄÊı¾İ½á¹¹
 	int index;                             // ĞòºÅ 
 };
 
-int i, j, k, ii;
-int times = 2;									  //Ã¿timesÂÖ¼õÉÙÒ»¸ö¶¨°à
-int lu = 0;                                       //°à¼¶ÈËÊıÉÏÏŞ
-int ld = 0;                                       //°à¼¶ÈËÊıÏÂÏŞ
-int classroomlu = 0;                              //½ÌÊÒÈËÊıÉÏÏŞ
-int unadd = 0;                                    //ÆÕÍ¨½ÌÊÒÊıÁ¿
-int add = 0;                                      //×ß°àÊ±Ôö¼ÓµÄ°à¼¶Êı
-int classsum = 0;                                 //×Ü°à¼¶Êı
-int bigclassmax = 0;							  //´ó½ÌÊÒÉÏÏŞ
-int bigclassnum = 0;							  //´ó½ÌÊÒ¸öÊı
+int i6, j6, k6, ii6;
+int times_6_3 = 2;									  //Ã¿timesÂÖ¼õÉÙÒ»¸ö¶¨°à
+int lu_6_3 = 0;                                       //°à¼¶ÈËÊıÉÏÏŞ
+int ld_6_3 = 0;                                       //°à¼¶ÈËÊıÏÂÏŞ
+int classroomlu_6_3 = 0;                              //½ÌÊÒÈËÊıÉÏÏŞ
+int unadd_6_3 = 0;                                    //ÆÕÍ¨½ÌÊÒÊıÁ¿
+int add_6_3 = 0;                                      //×ß°àÊ±Ôö¼ÓµÄ°à¼¶Êı
+int classsum_6_3 = 0;                                 //×Ü°à¼¶Êı
+int bigclassmax_6_3 = 0;							  //´ó½ÌÊÒÉÏÏŞ
+int bigclassnum_6_3 = 0;							  //´ó½ÌÊÒ¸öÊı
 const int NIND = 100;                             //ÖÖÈºÊıÁ¿
 const int MAXGEN = 100;                           //ÒÅ´«´úÊı
 const double px = 0.97;                           //½»²æÂÊ
 const double pm = 0.1;                            //±äÒìÂÊ
 const double GGAP = 0.9;                          //´ú¹µ
 
-int complete = 0;                                 //·Ö°àÍê³É±êÖ¾Î»
-int runsnumber = 0;                               //Ëã·¨Ö´ĞĞ´ÎÊı
-int maxrunsnumber = 3;                            //×î´óËã·¨Ö´ĞĞ´ÎÊı ÕâÀï¸³³õÖµ ÔÚgettoolsº¯ÊıÀï»á¸ù¾İ×ß°àÊıÁ¿×Ô¶¯¼ÆËãÖØĞÂ¸³Öµ
-int ** lists = new int *[2];                      //´´½¨¶¨Èı·Ö°à½á¹ûÁĞ±í
-int **out1 = new int *[2];                        //´æ¶¨¶ş×îºóÊä³ö×îÓÅ½á¹û  out1[2][PRECI]  0ĞĞ·Å°à¼¶ÀàĞÍ 1ĞĞ·ÅÈËÊı
-string ** studentno;                              //´´½¨Ñ§ÉúĞÕÃû¡¢Ñ§ºÅ¼ÇÂ¼±í ÓÃÓÚ×îºóÊä³öÆ¥ÅäÓÃ
-string ** teacherno;
-int teacher[6] = { 0,0,0,0,0,0 };
-string ** classno;
-int ** plotno;
-int ** classroomno;
-int * classname;
-int ** classname1;
-int ** shu;
-int ** studentinformation;
-int studentnumber;
-int ** disclass;//¶¨Èı+¶¨¶ş½á¹û
-int allgocla = 0;//×Ü×ß°àÊı
-int countq;//×Ü×ß°àÊı
+int complete_6_3 = 0;                                 //·Ö°àÍê³É±êÖ¾Î»
+int runsnumber_6_3 = 0;                               //Ëã·¨Ö´ĞĞ´ÎÊı
+int maxrunsnumber_6_3 = 3;                            //×î´óËã·¨Ö´ĞĞ´ÎÊı ÕâÀï¸³³õÖµ ÔÚgettoolsº¯ÊıÀï»á¸ù¾İ×ß°àÊıÁ¿×Ô¶¯¼ÆËãÖØĞÂ¸³Öµ
+int** lists_6_3 = new int* [2];                      //´´½¨¶¨Èı·Ö°à½á¹ûÁĞ±í
+int** out1_6_3 = new int* [2];                        //´æ¶¨¶ş×îºóÊä³ö×îÓÅ½á¹û  out1_6_3[2][PRECI]  0ĞĞ·Å°à¼¶ÀàĞÍ 1ĞĞ·ÅÈËÊı
+string** studentno_6_3;                              //´´½¨Ñ§ÉúĞÕÃû¡¢Ñ§ºÅ¼ÇÂ¼±í ÓÃÓÚ×îºóÊä³öÆ¥ÅäÓÃ
+string** teacherno_6_3;
+int teacher_6_3[6] = { 0,0,0,0,0,0 };
+string** classno_6_3;
+int** plotno_6_3;
+int** classroomno_6_3;
+int* classname_6_3;
+int** classname1_6_3;
+int** shu_6_3;
+int** studentinformation_6_3;
+int studentnumber_6_3;
+int** disclass_6_3;//¶¨Èı+¶¨¶ş½á¹û
+int allgocla_6_3 = 0;//×Ü×ß°àÊı
+int countq_6_3;//×Ü×ß°àÊı
 //************¡ıº¯ÊıÉùÃ÷¡ı**********************************************
-int ** gettools(int**stuinform, int stunum, int*randnumber);//»ñÈ¡¹Ì¶¨°àĞÅÏ¢
-int ** getstu1(int**stuinform, int **tools, int*randnumber);//»ñÈ¡×ß¶şÑ§ÉúĞÅÏ¢
-int ** getstu2(int**stuinform, int **tools, int*randnumber);//»ñÈ¡¶¨ÈıÑ§ÉúĞÅÏ¢
-int ** sectionstu2(int**stu2, int**tools);//¶¨Èı·Ö°à£¬·µ»ØÑ§Éú·Ö°à½á¹û
+int** gettools(int** stuinform, int stunum, int* randnumber);//»ñÈ¡¹Ì¶¨°àĞÅÏ¢
+int** getstu1(int** stuinform, int** tools, int* randnumber);//»ñÈ¡×ß¶şÑ§ÉúĞÅÏ¢
+int** getstu2(int** stuinform, int** tools, int* randnumber);//»ñÈ¡¶¨ÈıÑ§ÉúĞÅÏ¢
+int** sectionstu2(int** stu2, int** tools);//¶¨Èı·Ö°à£¬·µ»ØÑ§Éú·Ö°à½á¹û
 int getstudentnumber();                   //»ñÈ¡Ñ§ÉúÊıÁ¿£¬ÓÃÓÚ´´½¨Êı×é
 int getstudentnumberfromstring();                   //ÔÚ×Ö·û´®ÖĞ»ñÈ¡Ñ§ÉúÊıÁ¿£¬ÓÃÓÚ´´½¨Êı×é
-int ** readFileJson(int studentnumber);                    //´ÓÎÄ¼şÖĞ¶ÁÈ¡JSON£¬Ò»¸ö´æ´¢ÁËJSON¸ñÊ½×Ö·û´®µÄÎÄ¼ş
-int ** readJson(int studentnumber);                    //´Ó×Ö·û´®ÖĞ¶ÁÈ¡JSON
-int *swit(int p, int b[]);                //pÎª¿Î³ÌID bÊı×é´æ´¢¿Î³Ì¶ÔÓ¦ÁùÎ»¶ş½øÖÆ±àÂë
-int * translate(string volunteer);        //°ÑÑ¡¿ÎÇé¿öµÄºº×Ö×éºÏ·­Òë³ÉÒ»ĞĞÁùÁĞµÄ¶ş½øÖÆ±íÊ¾
-string translate2(int * b);               //°ÑÑ¡¿ÎÇé¿öµÄ¶ş½øÖÆ·­Òë³É×Ö·û´®
-int ** updatepopulation(int ** pop, double * objv, int gen, int PRECI, int ** out); //¸üĞÂÖÖÈº£¬°üÀ¨ÌôÑ¡ÓÅĞã¸öÌå¡¢½»²æ¡¢±äÒì
-int cmp(const void *a, const void *b);    //ÉıĞòÅÅÁĞ 
+int** readFileJson(int studentnumber_6_3);                    //´ÓÎÄ¼şÖĞ¶ÁÈ¡JSON£¬Ò»¸ö´æ´¢ÁËJSON¸ñÊ½×Ö·û´®µÄÎÄ¼ş
+int** readJson(int studentnumber_6_3);                    //´Ó×Ö·û´®ÖĞ¶ÁÈ¡JSON
+int* swit(int p, int b[]);                //pÎª¿Î³ÌID bÊı×é´æ´¢¿Î³Ì¶ÔÓ¦ÁùÎ»¶ş½øÖÆ±àÂë
+int* translate(string volunteer);        //°ÑÑ¡¿ÎÇé¿öµÄºº×Ö×éºÏ·­Òë³ÉÒ»ĞĞÁùÁĞµÄ¶ş½øÖÆ±íÊ¾
+string translate2(int* b);               //°ÑÑ¡¿ÎÇé¿öµÄ¶ş½øÖÆ·­Òë³É×Ö·û´®
+int** updatepopulation(int** pop, double* objv, int gen, int PRECI, int** out); //¸üĞÂÖÖÈº£¬°üÀ¨ÌôÑ¡ÓÅĞã¸öÌå¡¢½»²æ¡¢±äÒì
+int cmp(const void* a, const void* b);    //ÉıĞòÅÅÁĞ 
 void rand_of_n(int a[], int n);           //²úÉú 1-n µÄËæ»úÅÅÁĞ²¢´æµ½ a[] ÖĞ
-double  ** ranking(int**stu1, int **tools, int ** pop);//»ñÈ¡ÊÊÓ¦¶ÈÖµ
-int ** genetic(int**stu1, int **tools); //ÒÅ´«Ëã·¨
-void writeFileJson(int **stu1out, int **stu2out, int**tools);   //½«ĞÅÏ¢±£´æÎªJSON¸ñÊ½ 
-void sectionclassroom(int **stu1out, int **stu2out, int**tools);   //½«ĞÅÏ¢±£´æÎªJSON¸ñÊ½ 
+double** ranking(int** stu1, int** tools, int** pop);//»ñÈ¡ÊÊÓ¦¶ÈÖµ
+int** genetic(int** stu1, int** tools); //ÒÅ´«Ëã·¨
+string writeFileJson(int** stu1out, int** stu2out, int** tools);   //½«ĞÅÏ¢±£´æÎªJSON¸ñÊ½ 
+void sectionclassroom(int** stu1out, int** stu2out, int** tools);   //½«ĞÅÏ¢±£´æÎªJSON¸ñÊ½ 
+//string makeclass(string str);
 //**********************************************************************
+char * makeclassjson(char * inputstr)
+{
+	string strInput = inputstr;
+	string outputStr = makeclass(strInput);
 
-int main(int argc, char *argv[])
+	char *data;
+	int len = outputStr.length();
+	data = (char *)malloc((len + 1) * sizeof(char));
+	outputStr.copy(data, len, 0);
+
+	return data;
+}
+string makeclass(string inputstr)
 {
 	/********´ÓjsonÎÄ¼ş¶ÁÈ¡**********/
 	/******´Ó×Ö·û´®ÖĞ¶ÁÈ¡  ×Ö·û´®str¶ÁÈ¡ÓÚtxt**********/
-	if (reader == 1) 
+	if (reader == 1)
 	{
-		ifstream in_file;
-		in_file.open(txtfilename);
-		string item;
-		getline(in_file, item);       //´ÓÎÄ¼şÖĞ»ñÈ¡ÒÔ'\n'Îª½áÎ²µÄ×Ö·û´®
-		while (in_file)
-		{
-			str = str + item;
-			getline(in_file, item);
-		}
-		in_file.close();             //Êä³öÍê±Ï ¹Ø±ÕÎÄ¼ş
-		studentnumber = getstudentnumberfromstring();//ÔÚ×Ö·û´®ÖĞ»ñÈ¡Ñ§Éú×ÜÈËÊı
-		studentinformation = readJson(studentnumber);//»ñÈ¡Ñ§ÉúĞÅÏ¢µ½¶şÎ¬Êı×éstudentinformation
+		str7 = inputstr;
+		studentnumber_6_3 = getstudentnumberfromstring();//ÔÚ×Ö·û´®ÖĞ»ñÈ¡Ñ§Éú×ÜÈËÊı
+		studentinformation_6_3 = readJson(studentnumber_6_3);//»ñÈ¡Ñ§ÉúĞÅÏ¢µ½¶şÎ¬Êı×éstudentinformation
 	}
-	else if(reader == 0)
+	else if (reader == 0)
 	{
-		studentnumber = getstudentnumber();//»ñÈ¡Ñ§Éú×ÜÈËÊı
-		studentinformation = readFileJson(studentnumber);//»ñÈ¡Ñ§ÉúĞÅÏ¢µ½¶şÎ¬Êı×éstudentinformation
+		studentnumber_6_3 = getstudentnumber();//»ñÈ¡Ñ§Éú×ÜÈËÊı
+		studentinformation_6_3 = readFileJson(studentnumber_6_3);//»ñÈ¡Ñ§ÉúĞÅÏ¢µ½¶şÎ¬Êı×éstudentinformation
 	}
-		/*******************/
-	
+	/*******************/
+
 	if (choose != 0)
 	{
-		for(int i=0;i<5;i++)
+		for (int i6 = 0; i6 < 5; i6++)
 		{
-			if (plotno[i][0] == 1) lu = plotno[i][1];//Ñ¡ÔñÊÇ·ñÊ¹ÓÃÑ§Ğ£¸ø³öµÄ½ÌÊÒÉÏÏŞ
-			if (plotno[i][0] == 2) ld = plotno[i][1];//Ñ¡ÔñÊÇ·ñÊ¹ÓÃÑ§Ğ£¸ø³öµÄ½ÌÊÒÏÂÏŞ
+			if (plotno_6_3[i6][0] == 1) lu_6_3 = plotno_6_3[i6][1];//Ñ¡ÔñÊÇ·ñÊ¹ÓÃÑ§Ğ£¸ø³öµÄ½ÌÊÒÉÏÏŞ
+			if (plotno_6_3[i6][0] == 2) ld_6_3 = plotno_6_3[i6][1];//Ñ¡ÔñÊÇ·ñÊ¹ÓÃÑ§Ğ£¸ø³öµÄ½ÌÊÒÏÂÏŞ
 
 		}
 	}
-	for (int i = 0; i < 5; i++)
+	for (int i6 = 0; i6 < 5; i6++)
 	{
-		if (plotno[i][0] == 4) bigclassmax = plotno[i][1];//´ó½ÌÊÒÉÏÏŞ
-		if (plotno[i][0] == 5) bigclassnum = plotno[i][1];//´ó½ÌÊÒ¸öÊı
+		if (plotno_6_3[i6][0] == 4) bigclassmax_6_3 = plotno_6_3[i6][1];//´ó½ÌÊÒÉÏÏŞ
+		if (plotno_6_3[i6][0] == 5) bigclassnum_6_3 = plotno_6_3[i6][1];//´ó½ÌÊÒ¸öÊı
 	}
-	
-	int *rand = new int[studentnumber]; //´´½¨Êı×érand´æ·ÅÂÒĞòĞòºÅÓÃÀ´´òÂÒÑ§ÉúĞÅÏ¢Ë³Ğò
-	rand_of_n(rand, studentnumber);
-	while (complete != 1)
+
+	int* rand = new int[studentnumber_6_3]; //´´½¨Êı×érand´æ·ÅÂÒĞòĞòºÅÓÃÀ´´òÂÒÑ§ÉúĞÅÏ¢Ë³Ğò
+	rand_of_n(rand, studentnumber_6_3);
+	while (complete_6_3 != 1)
 	{
-		
-		if (runsnumber < maxrunsnumber)//Èç¹ûÔËĞĞ´ÎÊıÃ»µ½ÉÏÏŞ
+
+		if (runsnumber_6_3 < maxrunsnumber_6_3)//Èç¹ûÔËĞĞ´ÎÊıÃ»µ½ÉÏÏŞ
 		{
-			cout << "ÕıÔÚ½øĞĞ·Ö°à£¬½øĞĞµÚ" << runsnumber + 1 << "´Î³¢ÊÔ" << endl;
-			int ** tools = gettools(studentinformation, studentnumber, rand);//»ñÈ¡Í³¼Æ¹ıµÄ¹¤¾ßÊı×é
-			int ** stu2 = getstu2(studentinformation, tools, rand);//»ñÈ¡¶¨ÈıÑ§ÉúĞÅÏ¢
-			int ** stu1 = getstu1(studentinformation, tools, rand);//»ñÈ¡¶¨¶şÑ§ÉúĞÅÏ¢
-			int ** stu2out = sectionstu2(stu2, tools);//»ñÈ¡¶¨Èı·Ö°à½á¹û
-			int ** stu1out = genetic(stu1, tools); //ÒÅ´«Ëã·¨ »ñÈ¡¶¨¶ş·Ö°à½á¹û
-			runsnumber = runsnumber + 1;//¼ÇÂ¼Ëã·¨ÔËĞĞ´ÎÊı
-			if (complete == 1)//Èç¹û·ÖÍêÁË
+			cout << "ÕıÔÚ½øĞĞ·Ö°à£¬½øĞĞµÚ" << runsnumber_6_3 + 1 << "´Î³¢ÊÔ" << endl;
+			int** tools = gettools(studentinformation_6_3, studentnumber_6_3, rand);//»ñÈ¡Í³¼Æ¹ıµÄ¹¤¾ßÊı×é
+			int** stu2 = getstu2(studentinformation_6_3, tools, rand);//»ñÈ¡¶¨ÈıÑ§ÉúĞÅÏ¢
+			int** stu1 = getstu1(studentinformation_6_3, tools, rand);//»ñÈ¡¶¨¶şÑ§ÉúĞÅÏ¢
+			int** stu2out = sectionstu2(stu2, tools);//»ñÈ¡¶¨Èı·Ö°à½á¹û
+			int** stu1out = genetic(stu1, tools); //ÒÅ´«Ëã·¨ »ñÈ¡¶¨¶ş·Ö°à½á¹û
+			runsnumber_6_3 = runsnumber_6_3 + 1;//¼ÇÂ¼Ëã·¨ÔËĞĞ´ÎÊı
+			if (complete_6_3 == 1)//Èç¹û·ÖÍêÁË
 			{
 				sectionclassroom(stu1out, stu2out, tools);
-				writeFileJson(stu1out, stu2out, tools);
+				returnstr = writeFileJson(stu1out, stu2out, tools);
 			}
 		}
 		else
@@ -166,178 +170,179 @@ int main(int argc, char *argv[])
 			break;
 		}
 	}
+	return returnstr;
 }
-void sectionclassroom(int **stu1out, int **stu2out, int**tools)
+void sectionclassroom(int** stu1out, int** stu2out, int** tools)
 {
 	int PRECI = tools[4][5];           //»ñÈ¡¶¨¶ş°à¼¶ÊıÁ¿
 
-	int *classcontain = new int[PRECI];
-	for (i = 0; i < PRECI; i++)
+	int* classcontain = new int[PRECI];
+	for (i6 = 0; i6 < PRECI; i6++)
 	{
-		if (i < bigclassnum)classcontain[i] = bigclassmax;
-		else classcontain[i] = lu;
+		if (i6 < bigclassnum_6_3)classcontain[i6] = bigclassmax_6_3;
+		else classcontain[i6] = lu_6_3;
 	}
 	//¸øÃ¿¸öÑ§Éú·ÖÅä°à¼¶,6ĞĞÒÀ´Î´æ·Å°à¼¶ÀàĞÍ¡¢°à¼¶Ãû³Æ¡¢±¾À´Ó¦¸Ã·ÅµÄÈËÊı¡¢²Ù×÷¹ı³ÌÖĞ·ÅÁËµÄÈËÊı¡¢ÄĞÉúµÄÈËÊı¡¢Å®ÉúµÄÈËÊı¡£
-	int **stuplus = new int *[tools[4][3]];
-	for (i = 0; i < tools[4][3]; i++)		stuplus[i] = new int[9];
-	for (i = 0; i < tools[4][1]; i++)//·ÅÈë¶¨ÈıÑ§ÉúĞÅÏ¢
+	int** stuplus = new int* [tools[4][3]];
+	for (i6 = 0; i6 < tools[4][3]; i6++)		stuplus[i6] = new int[9];
+	for (i6 = 0; i6 < tools[4][1]; i6++)//·ÅÈë¶¨ÈıÑ§ÉúĞÅÏ¢
 	{
-		for (j = 0; j < 9; j++) stuplus[i][j] = stu2out[i][j];
+		for (j6 = 0; j6 < 9; j6++) stuplus[i6][j6] = stu2out[i6][j6];
 	}
-	for (i = tools[4][1]; i < tools[4][3]; i++)//·ÅÈë¶¨¶şÑ§ÉúĞÅÏ¢
+	for (i6 = tools[4][1]; i6 < tools[4][3]; i6++)//·ÅÈë¶¨¶şÑ§ÉúĞÅÏ¢
 	{
-		for (j = 0; j < 9; j++)
+		for (j6 = 0; j6 < 9; j6++)
 		{
-			stuplus[i][j] = stu1out[i - tools[4][1]][j];
+			stuplus[i6][j6] = stu1out[i6 - tools[4][1]][j6];
 		}
 	}
 	int stu2num = tools[4][1];//¶¨ÈıÈËÊı
 	int ss = tools[4][2];//¶¨Èı°àÊı
 	int NUM = tools[4][2] + tools[4][5];//×Ü°à¼¶ÊıÁ¿
 	//int PRECI = tools[4][5];//¶¨¶ş×ßÒ»°àÊıÁ¿
-    int stu1num = tools[4][4];//¶¨¶şÈËÊı
-	disclass = new int *[6]; //
-	for (i = 0; i < 6; i++)		disclass[i] = new int[NUM];
-	classname = new int[tools[4][3]];//ĞĞÕş°à°àÃû
-	classname1 = new int *[2]; //×ß°à°àÃûºÍÊÇ·ñÒÑ·ÖÅä
-	for (i = 0; i < 2; i++)		classname1[i] = new int[tools[4][4]];
-	for (i = 0; i < tools[4][4]; i++) classname1[1][i] = 0;//µÚ¶şĞĞÇåÁã ÓÃÀ´¼ÇÂ¼ÊÇ·ñ·ÖÅä¹ı
-	for (i = 0; i < ss; i++)
+	int stu1num = tools[4][4];//¶¨¶şÈËÊı
+	disclass_6_3 = new int* [6]; //
+	for (i6 = 0; i6 < 6; i6++)		disclass_6_3[i6] = new int[NUM];
+	classname_6_3 = new int[tools[4][3]];//ĞĞÕş°à°àÃû
+	classname1_6_3 = new int* [2]; //×ß°à°àÃûºÍÊÇ·ñÒÑ·ÖÅä
+	for (i6 = 0; i6 < 2; i6++)		classname1_6_3[i6] = new int[tools[4][4]];
+	for (i6 = 0; i6 < tools[4][4]; i6++) classname1_6_3[1][i6] = 0;//µÚ¶şĞĞÇåÁã ÓÃÀ´¼ÇÂ¼ÊÇ·ñ·ÖÅä¹ı
+	for (i6 = 0; i6 < ss; i6++)
 	{
-		disclass[0][i] = lists[0][i];//¹Ì¶¨°àĞÍ
-		disclass[2][i] = lists[1][i];//¹Ì¶¨°àÈİÁ¿
+		disclass_6_3[0][i6] = lists_6_3[0][i6];//¹Ì¶¨°àĞÍ
+		disclass_6_3[2][i6] = lists_6_3[1][i6];//¹Ì¶¨°àÈİÁ¿
 	}
-	for (i = ss; i < NUM; i++)
+	for (i6 = ss; i6 < NUM; i6++)
 	{
-		disclass[0][i] = out1[0][i - ss];//×ß°à°àĞÍ
-		disclass[2][i] = out1[1][i - ss];//×ß°àÈİÁ¿
+		disclass_6_3[0][i6] = out1_6_3[0][i6 - ss];//×ß°à°àĞÍ
+		disclass_6_3[2][i6] = out1_6_3[1][i6 - ss];//×ß°àÈİÁ¿
 	}
-	for (j = 0; j < classroomno[1][5]; j++)
+	for (j6 = 0; j6 < classroomno_6_3[1][5]; j6++)
 	{
-		if (classroomno[j][4] == 2)    classroomno[j][4] = 0;
-		else if (classroomno[j][4] == 3)    classroomno[j][4] = 1;
+		if (classroomno_6_3[j6][4] == 2)    classroomno_6_3[j6][4] = 0;
+		else if (classroomno_6_3[j6][4] == 3)    classroomno_6_3[j6][4] = 1;
 	}
-	for (i = 0; i < NUM; i++)
+	for (i6 = 0; i6 < NUM; i6++)
 	{
 		int flag = 0;
-		for (j = 0; j < classroomno[1][5]; j++)//ÎŞÂÛ¶¨×ß È«¶¼·ÖÅäÉÏ½ÌÊÒ
+		for (j6 = 0; j6 < classroomno_6_3[1][5]; j6++)//ÎŞÂÛ¶¨×ß È«¶¼·ÖÅäÉÏ½ÌÊÒ
 		{
-			if (classroomno[j][4] == 0 && flag == 0)//ÆÕÍ¨½ÌÊÒ
+			if (classroomno_6_3[j6][4] == 0 && flag == 0)//ÆÕÍ¨½ÌÊÒ
 			{
-				disclass[1][i] = classroomno[j][1];//½ÌÊÒÃüÃû ÓÃµÄ½ÌÊÒid
-				classroomno[j][4] = 2;
+				disclass_6_3[1][i6] = classroomno_6_3[j6][1];//½ÌÊÒÃüÃû ÓÃµÄ½ÌÊÒid
+				classroomno_6_3[j6][4] = 2;
 				flag = 1;
 			}
 		}
-		//for (int j = 0; j < classroomno[1][5]; j++)
+		//for (int j6 = 0; j6 < classroomno_6_3[1][5]; j6++)
 		//{
-		//	if (classroomno[j][4] == 1 && flag == 0)
+		//	if (classroomno_6_3[j6][4] == 1 && flag == 0)
 		//	{
-		//		disclass[1][i] = classroomno[j][1];//½ÌÊÒÃüÃû ÓÃµÄ½ÌÊÒid
-		//		classroomno[j][4] = 3;
+		//		disclass_6_3[1][i6] = classroomno_6_3[j6][1];//½ÌÊÒÃüÃû ÓÃµÄ½ÌÊÒid
+		//		classroomno_6_3[j6][4] = 3;
 		//		flag = 1;
 		//	}		
 		//}
-		disclass[3][i] = 0;//
-		disclass[4][i] = 0;//ÄĞ
-		disclass[5][i] = 0;//Å®
+		disclass_6_3[3][i6] = 0;//
+		disclass_6_3[4][i6] = 0;//ÄĞ
+		disclass_6_3[5][i6] = 0;//Å®
 	}
 
 
-	for (i = 0; i < tools[4][3]; i++)//±éÀúÑ§Éú ·Ö¶¨Èı ÄĞÅ®¾ù·Ö
+	for (i6 = 0; i6 < tools[4][3]; i6++)//±éÀúÑ§Éú ·Ö¶¨Èı ÄĞÅ®¾ù·Ö
 	{
 		int aaa = 1;//¼ÇÂ¼ÄÜ·ñ·Å½øÈ¥
 		int bbb = -1;//¼ÇÂ¼Î»ÖÃ
-		int ccc = lu;//¼ÇÂ¼×îĞ¡ÉÏÏŞ
-		for (j = 0; j < NUM; j++)//±éÀúËùÓĞ°à¼¶
+		int ccc = lu_6_3;//¼ÇÂ¼×îĞ¡ÉÏÏŞ
+		for (j6 = 0; j6 < NUM; j6++)//±éÀúËùÓĞ°à¼¶
 		{
-			aaa = stuplus[i][8] - disclass[0][j];//8°àĞÍ   °àĞÍÏà¼õ
+			aaa = stuplus[i6][8] - disclass_6_3[0][j6];//8°àĞÍ   °àĞÍÏà¼õ
 			if (aaa == 0)//Èç¹ûÄÜ·Å½øÈ¥
 			{
-				if (disclass[3][j] < disclass[2][j])//Èç¹û»¹Ã»·ÅÂúÕâ¸ö°à¼¶
+				if (disclass_6_3[3][j6] < disclass_6_3[2][j6])//Èç¹û»¹Ã»·ÅÂúÕâ¸ö°à¼¶
 				{
-					if (stuplus[i][7] == 1)//Èç¹ûÄĞ
+					if (stuplus[i6][7] == 1)//Èç¹ûÄĞ
 					{
-						if (disclass[4][j] < ccc)//Èç¹û×îĞ¡
+						if (disclass_6_3[4][j6] < ccc)//Èç¹û×îĞ¡
 						{
-							bbb = j;//¼ÇÂ¼Î»ÖÃ
-							ccc = disclass[4][j];//×îĞ¡¸üĞÂ
+							bbb = j6;//¼ÇÂ¼Î»ÖÃ
+							ccc = disclass_6_3[4][j6];//×îĞ¡¸üĞÂ
 						}
 					}
 					else
 					{
-						if (disclass[5][j] < ccc)
+						if (disclass_6_3[5][j6] < ccc)
 						{
 
-							bbb = j;
-							ccc = disclass[5][j];
+							bbb = j6;
+							ccc = disclass_6_3[5][j6];
 						}
 					}
 				}
 			}
 		}
-		classname[i] = disclass[1][bbb];//¼ÇÂ¼Õâ¸öÑ§Éú·ÖÅäµ½ÁËÄÄ¸ö½ÌÊÒ£¬ÊÓÎªĞÅÏ¢±íµÚÊ®ÁĞ
-		if (stuplus[i][7] == 1)
+		classname_6_3[i6] = disclass_6_3[1][bbb];//¼ÇÂ¼Õâ¸öÑ§Éú·ÖÅäµ½ÁËÄÄ¸ö½ÌÊÒ£¬ÊÓÎªĞÅÏ¢±íµÚÊ®ÁĞ
+		if (stuplus[i6][7] == 1)
 		{
-			disclass[4][bbb] = disclass[4][bbb] + 1;//ÅĞ¶ÏĞÔ±ğ 
+			disclass_6_3[4][bbb] = disclass_6_3[4][bbb] + 1;//ÅĞ¶ÏĞÔ±ğ 
 		}
 		else
 		{
-			disclass[5][bbb] = disclass[5][bbb] + 1;//
+			disclass_6_3[5][bbb] = disclass_6_3[5][bbb] + 1;//
 		}
-		disclass[3][bbb] = disclass[4][bbb] + disclass[5][bbb];
+		disclass_6_3[3][bbb] = disclass_6_3[4][bbb] + disclass_6_3[5][bbb];
 	}
 
 
-	int ** goone = new int *[8]; //´´½¨×ß¶ş¸÷°àÑ§¿ÆÍ³¼ÆÁĞ±í
-	for (i = 0; i < 8; i++)		goone[i] = new int[PRECI];//0 °àĞÍ 1°à¼¶id 2ÎïÀí3»¯Ñ§ 4ÉúÎï 5ÕşÖÎ 6ÀúÊ· 7µØÀí
-	for (i = ss; i < NUM; i++)
+	int** goone = new int* [8]; //´´½¨×ß¶ş¸÷°àÑ§¿ÆÍ³¼ÆÁĞ±í
+	for (i6 = 0; i6 < 8; i6++)		goone[i6] = new int[PRECI];//0 °àĞÍ 1°à¼¶id 2ÎïÀí3»¯Ñ§ 4ÉúÎï 5ÕşÖÎ 6ÀúÊ· 7µØÀí
+	for (i6 = ss; i6 < NUM; i6++)
 	{
-		goone[0][i - ss] = disclass[0][i];//°àĞÍ Õª³ö¶¨¶ş
-		goone[1][i - ss] = disclass[1][i];//°à¼¶Ãû
+		goone[0][i6 - ss] = disclass_6_3[0][i6];//°àĞÍ Õª³ö¶¨¶ş
+		goone[1][i6 - ss] = disclass_6_3[1][i6];//°à¼¶Ãû
 	}
-	for (i = 2; i < 8; i++) //ÇåÁã
+	for (i6 = 2; i6 < 8; i6++) //ÇåÁã
 	{
-		for (j = 0; j < PRECI; j++)
+		for (j6 = 0; j6 < PRECI; j6++)
 		{
-			goone[i][j] = 0;
+			goone[i6][j6] = 0;
 		}
 	}
-	for (i = 0; i < stu1num; i++)//±éÀúÑ§Éú
+	for (i6 = 0; i6 < stu1num; i6++)//±éÀúÑ§Éú
 	{
 		int ddd = 1;
-		for (j = 0; j < PRECI; j++)//±éÀú°à°à¼¶
+		for (j6 = 0; j6 < PRECI; j6++)//±éÀú°à°à¼¶
 		{
-			ddd = goone[1][j] - classname[i + tools[4][1]];//Èç¹ûÕâÑ§ÉúÊÇÕâ¸ö°àµÄ
+			ddd = goone[1][j6] - classname_6_3[i6 + tools[4][1]];//Èç¹ûÕâÑ§ÉúÊÇÕâ¸ö°àµÄ
 			if (ddd == 0)
 			{
-				for (k = 0; k < 6; k++)
+				for (k6 = 0; k6 < 6; k6++)
 				{
-					goone[k + 2][j] = goone[k + 2][j] + stuplus[i + tools[4][1]][k];//Í³¼ÆÑ§Éú¿ÆÄ¿ 
+					goone[k6 + 2][j6] = goone[k6 + 2][j6] + stuplus[i6 + tools[4][1]][k6];//Í³¼ÆÑ§Éú¿ÆÄ¿ 
 				}
 				break;
 			}
 		}
 	}
 
-	for (i = 2; i < 8; i++)//ÇåÁã¶¨¶ş°àµÄ¹Ì¶¨¿ÆÄ¿
+	for (i6 = 2; i6 < 8; i6++)//ÇåÁã¶¨¶ş°àµÄ¹Ì¶¨¿ÆÄ¿
 	{
-		for (j = 0; j < PRECI; j++)
+		for (j6 = 0; j6 < PRECI; j6++)
 		{
 			int b[6];
-			swit(goone[0][j], b);
-			for (k = 0; k < 6; k++)
+			swit(goone[0][j6], b);
+			for (k6 = 0; k6 < 6; k6++)
 			{
-				if (b[k] == 1) goone[k + 2][j] = 0;
+				if (b[k6] == 1) goone[k6 + 2][j6] = 0;
 			}
 		}
 	}
-	for (j = 0; j < 8; j++)//************************************************************************
+	for (j6 = 0; j6 < 8; j6++)//************************************************************************
 	{
-		for (k = 0; k < PRECI; k++)
+		for (k6 = 0; k6 < PRECI; k6++)
 		{
 			cout.width(3);
-			cout << goone[j][k] << " ";
+			cout << goone[j6][k6] << " ";
 		}
 		cout << endl;
 	}
@@ -349,57 +354,57 @@ void sectionclassroom(int **stu1out, int **stu2out, int**tools)
 	int gocla[6];//¸÷¿Æ×ß°àÊı
 	//cout << "ÌáÊ¾£º¿ÆÄ¿0-ÎïÀí 1-»¯Ñ§ 2-ÉúÎï 3-ÕşÖÎ 4-ÀúÊ· 5-µØÀí"<< endl;
 	int subjecttotal[6] = { 0,0,0,0,0,0 };
-	for (i = 0; i < 6; i++)
+	for (i6 = 0; i6 < 6; i6++)
 	{
 
-		for (int j = 0; j < PRECI; j++)
+		for (int j6 = 0; j6 < PRECI; j6++)
 		{
-			subjecttotal[i] = subjecttotal[i] + goone[i + 2][j];
+			subjecttotal[i6] = subjecttotal[i6] + goone[i6 + 2][j6];
 		}
-		gocla[i] = ceil(subjecttotal[i] / (lu*1.0));
+		gocla[i6] = ceil(subjecttotal[i6] / (lu_6_3 * 1.0));
 		string subtemp;
-		if (i == 0) subtemp = "Îï";
-		else if (i == 1) subtemp = "»¯";
-		else if (i == 2) subtemp = "Éú";
-		else if (i == 3) subtemp = "Õş";
-		else if (i == 4) subtemp = "Ê·";
-		else if (i == 5) subtemp = "µØ";
+		if (i6 == 0) subtemp = "Îï";
+		else if (i6 == 1) subtemp = "»¯";
+		else if (i6 == 2) subtemp = "Éú";
+		else if (i6 == 3) subtemp = "Õş";
+		else if (i6 == 4) subtemp = "Ê·";
+		else if (i6 == 5) subtemp = "µØ";
 
-		cout << "¿ÆÄ¿ " << subtemp << " Äâ×ß°àÈËÊıÎª" << subjecttotal[i] << "   ¹²¿ª°à" << gocla[i] << "¸ö" << endl;
-		allgocla = allgocla + gocla[i];
+		cout << "¿ÆÄ¿ " << subtemp << " Äâ×ß°àÈËÊıÎª" << subjecttotal[i6] << "   ¹²¿ª°à" << gocla[i6] << "¸ö" << endl;
+		allgocla_6_3 = allgocla_6_3 + gocla[i6];
 	}
 
-	cout << "×ÜÄâ×ß°àÊıÎª£º" << allgocla << endl;
+	cout << "×ÜÄâ×ß°àÊıÎª£º" << allgocla_6_3 << endl;
 
-	int * shu1 = new int[NUM];
-	for (j = 0; j < NUM; j++)
+	int* shu1 = new int[NUM];
+	for (j6 = 0; j6 < NUM; j6++)
 	{
-		shu1[j] = -1;
+		shu1[j6] = -1;
 	}
-	countq = 0;
+	countq_6_3 = 0;
 	int rn1[6] = { 0,0,0,0,0,0 };
-	for (j = 0; j < 6; j++)
+	for (j6 = 0; j6 < 6; j6++)
 	{
-		rn1[j] = gocla[j];
+		rn1[j6] = gocla[j6];
 	}
 
 
-	while (allgocla)
+	while (allgocla_6_3)
 	{
-		if (countq < PRECI)
+		if (countq_6_3 < PRECI)
 		{
 			int aa = -1;
 			int bb = -1;
 			int cc = -1;
-			for (j = 0; j < 6; j++)
+			for (j6 = 0; j6 < 6; j6++)
 			{
-				for (k = 0; k < PRECI; k++)
+				for (k6 = 0; k6 < PRECI; k6++)
 				{
-					if (goone[j + 2][k] > aa)
+					if (goone[j6 + 2][k6] > aa)
 					{
-						aa = goone[j + 2][k];
-						bb = j;
-						cc = k;
+						aa = goone[j6 + 2][k6];
+						bb = j6;
+						cc = k6;
 					}
 				}
 			}
@@ -408,85 +413,85 @@ void sectionclassroom(int **stu1out, int **stu2out, int**tools)
 			{
 				shu1[cc] = bb;
 				rn1[bb] = rn1[bb] - 1;
-				allgocla = allgocla - 1;
-				countq = countq + 1;
+				allgocla_6_3 = allgocla_6_3 - 1;
+				countq_6_3 = countq_6_3 + 1;
 				if (classcontain[cc] < subjecttotal[bb])
 				{
 					subjecttotal[bb] = subjecttotal[bb] - classcontain[cc];
-					if (ceil(subjecttotal[bb] * 1.0 / lu) < rn1[bb])
+					if (ceil(subjecttotal[bb] * 1.0 / lu_6_3) < rn1[bb])
 					{
 						gocla[bb] = gocla[bb] - 1;
 						rn1[bb] = rn1[bb] - 1;
-						allgocla = allgocla - 1;
+						allgocla_6_3 = allgocla_6_3 - 1;
 					}
 				}
 			}
 
 		}
-		else if (countq >= PRECI)
+		else if (countq_6_3 >= PRECI)
 		{
-			for (j = 0; j < 6; j++)
+			for (j6 = 0; j6 < 6; j6++)
 			{
-				if (rn1[j] != 0)
+				if (rn1[j6] != 0)
 				{
-					shu1[countq + 1] = j;
-					rn1[j] = rn1[j] - 1;
-					allgocla = allgocla - 1;
-					countq = countq + 1;
+					shu1[countq_6_3 + 1] = j6;
+					rn1[j6] = rn1[j6] - 1;
+					allgocla_6_3 = allgocla_6_3 - 1;
+					countq_6_3 = countq_6_3 + 1;
 
 					break;
 				}
 			}
 		}
 	}
-	int *classcontain1 = new int[countq];
-	for (j = 0; j < countq; j++)
+	int* classcontain1 = new int[countq_6_3];
+	for (j6 = 0; j6 < countq_6_3; j6++)
 	{
-		if (j < bigclassnum)classcontain1[j] = bigclassmax;
-		else classcontain1[j] = lu;
+		if (j6 < bigclassnum_6_3)classcontain1[j6] = bigclassmax_6_3;
+		else classcontain1[j6] = lu_6_3;
 	}
 
 	//×ß°à·ÖÅä½ÌÊÒ²¿·Ö	
-	int * all = new int[6 * PRECI];//´æ·Å¸÷°à×ß¿ÆÅÅĞò
-	for (i = 0; i < 6; i++)
+	int* all = new int[6 * PRECI];//´æ·Å¸÷°à×ß¿ÆÅÅĞò
+	for (i6 = 0; i6 < 6; i6++)
 	{
-		for (j = 0; j < PRECI; j++)
+		for (j6 = 0; j6 < PRECI; j6++)
 		{
-			all[i*PRECI + j] = goone[i + 2][j];//ËùÓĞ×ß¿Æµ¼Èëall
+			all[i6 * PRECI + j6] = goone[i6 + 2][j6];//ËùÓĞ×ß¿Æµ¼Èëall
 		}
 	}
 	int tempa;//ÅÅĞò
-	for (i = 0; i < 6 * PRECI; i++)
+	for (i6 = 0; i6 < 6 * PRECI; i6++)
 	{
-		for (j = 1; j < 6 * PRECI - i; j++)
+		for (j6 = 1; j6 < 6 * PRECI - i6; j6++)
 		{
-			if (all[j] > all[j - 1])
+			if (all[j6] > all[j6 - 1])
 			{
-				tempa = all[j];
-				all[j] = all[j - 1];
-				all[j - 1] = tempa;
+				tempa = all[j6];
+				all[j6] = all[j6 - 1];
+				all[j6 - 1] = tempa;
 			}
 		}
 	}//allÅÅĞòÍê³É
-	shu = new int *[3]; //´æ·ÅµÚÒ»ĞĞ °àºÅ µÚ¶şĞĞ  ÊÇ·ñ¿ª°à0Î´¿ª 1 ¿ª  µÚÈıĞĞ ¿ªÁËÊ²Ã´°à
-	for (i = 0; i < 3; i++)		shu[i] = new int[countq];
-	for (i = 0; i < countq; i++)
+	shu_6_3 = new int* [3]; //´æ·ÅµÚÒ»ĞĞ °àºÅ µÚ¶şĞĞ  ÊÇ·ñ¿ª°à0Î´¿ª 1 ¿ª  µÚÈıĞĞ ¿ªÁËÊ²Ã´°à
+	for (i6 = 0; i6 < 3; i6++)		shu_6_3[i6] = new int[countq_6_3];
+	for (i6 = 0; i6 < countq_6_3; i6++)
 	{
-		shu[1][i] = 0;
-		shu[2][i] = 6;
-		if (i < PRECI)
+		shu_6_3[1][i6] = 0;
+		shu_6_3[2][i6] = 6;
+		if (i6 < PRECI)
 		{
-			shu[0][i] = goone[1][i]; //dingerzouyi
+			shu_6_3[0][i6] = goone[1][i6]; //dingerzouyi
 		}
 		else
 		{
 			int flag2 = 0;
-			for (int j = 0; j < classroomno[1][5]; j++)
+			for (int j6 = 0; j6 < classroomno_6_3[1][5]; j6++)
 			{
-				if (classroomno[j][4] == 1 && flag2 == 0)
+				if (classroomno_6_3[j6][4] == 1 && flag2 == 0)
 				{
-					shu[0][i] = classroomno[j][1];//½ÌÊÒÃüÃû ÓÃµÄ½ÌÊÒid
-					classroomno[j][4] = 3;
+					shu_6_3[0][i6] = classroomno_6_3[j6][1];//½ÌÊÒÃüÃû ÓÃµÄ½ÌÊÒid
+					classroomno_6_3[j6][4] = 3;
 					flag2 = 1;
 				}
 			}
@@ -494,10 +499,10 @@ void sectionclassroom(int **stu1out, int **stu2out, int**tools)
 	}
 
 	int gocla1[6] = { 0,0,0,0,0,0 };//¼ÆÊıÒÑ¾­¿ªÁËÊ²Ã´°à
-	int * gocla2 = new int[PRECI];
-	for (i = 0; i < PRECI; i++)
+	int* gocla2 = new int[PRECI];
+	for (i6 = 0; i6 < PRECI; i6++)
 	{
-		gocla2[i] = 1;
+		gocla2[i6] = 1;
 	}
 	int ggg = -1, hhh = -1, js = 0, tt;
 	for (int qr = 0; qr < 6 * PRECI; qr++)//±éÀúall
@@ -505,16 +510,16 @@ void sectionclassroom(int **stu1out, int **stu2out, int**tools)
 		ggg = -1;
 		hhh = -1;
 		int flag1 = 0;
-		for (i = 0; i < 6; i++)//±éÀúgoone
+		for (i6 = 0; i6 < 6; i6++)//±éÀúgoone
 		{
-			for (j = 0; j < PRECI; j++)
+			for (j6 = 0; j6 < PRECI; j6++)
 			{
-				if (gocla2[j] == 1)//¶¨¶ş°à»¹Ã»·ÖÅä
+				if (gocla2[j6] == 1)//¶¨¶ş°à»¹Ã»·ÖÅä
 				{
-					tt = goone[i + 2][j] - all[qr];//ºË¶ÔÊÇ·ñÊÇ×îºÏÊÊµÄ°à¼¶
-					if (tt == 0 && gocla[i] - gocla1[i] != 0)
+					tt = goone[i6 + 2][j6] - all[qr];//ºË¶ÔÊÇ·ñÊÇ×îºÏÊÊµÄ°à¼¶
+					if (tt == 0 && gocla[i6] - gocla1[i6] != 0)
 					{
-						ggg = i; hhh = j;//¼ÇÂ¼ĞĞ ÁĞ
+						ggg = i6; hhh = j6;//¼ÇÂ¼ĞĞ ÁĞ
 						flag1 = 1;
 						break;
 					}
@@ -524,8 +529,8 @@ void sectionclassroom(int **stu1out, int **stu2out, int**tools)
 		}
 		if (gocla[ggg] - gocla1[ggg] != 0 && ggg != -1)//Èç¹û»¹Ã»¿ªÂú
 		{
-			shu[1][hhh] = 1;
-			shu[2][hhh] = ggg;
+			shu_6_3[1][hhh] = 1;
+			shu_6_3[2][hhh] = ggg;
 			gocla1[ggg] = gocla1[ggg] + 1;
 			js = js + 1;
 			gocla2[hhh] = 0;
@@ -536,113 +541,113 @@ void sectionclassroom(int **stu1out, int **stu2out, int**tools)
 		}
 	}
 
-	if (countq - PRECI > 0)//Èç¹ûÓĞadd
+	if (countq_6_3 - PRECI > 0)//Èç¹ûÓĞadd
 	{
-		for (i = 0; i < countq - PRECI; i++)//±éÀúadd
+		for (i6 = 0; i6 < countq_6_3 - PRECI; i6++)//±éÀúadd
 		{
-			for (j = 0; j < 6; j++)//±éÀúÁù¸öÑ§¿Æ
+			for (j6 = 0; j6 < 6; j6++)//±éÀúÁù¸öÑ§¿Æ
 			{
-				if (gocla[j] - gocla1[j] != 0)//Èç¹ıÓĞÄ³¿ÆÄ¿Ã»¿ªÍê
+				if (gocla[j6] - gocla1[j6] != 0)//Èç¹ıÓĞÄ³¿ÆÄ¿Ã»¿ªÍê
 				{
-					gocla1[j] = gocla1[j] + 1;
-					shu[1][PRECI + i] = 1;
-					shu[2][PRECI + i] = j;
+					gocla1[j6] = gocla1[j6] + 1;
+					shu_6_3[1][PRECI + i6] = 1;
+					shu_6_3[2][PRECI + i6] = j6;
 					break;
 				}
 			}
 		}
 	}
 
-	for (j = 0; j < countq; j++)
+	for (j6 = 0; j6 < countq_6_3; j6++)
 	{
-		shu[1][j] = 0;//ÇåÁã ÓÃÀ´¼ÆÊı
+		shu_6_3[1][j6] = 0;//ÇåÁã ÓÃÀ´¼ÆÊı
 	}
-	for (i = 0; i < stu1num; i++)
+	for (i6 = 0; i6 < stu1num; i6++)
 	{
 		int classsubj = 7;//½ÌÊÒ¿ÆÄ¿
 		int stusubj = 6;//Ñ§Éú¿ÆÄ¿
 		int classsubjno = -1;
-		for (j = 0; j < PRECI; j++)
+		for (j6 = 0; j6 < PRECI; j6++)
 		{
-			if (classname[stu2num + i] == shu[0][j])
+			if (classname_6_3[stu2num + i6] == shu_6_3[0][j6])
 			{
-				classsubj = shu[2][j];//¸ÃÉúÔ­½ÌÊÒµÄ×ß°à¿Î
-				classsubjno = j;
+				classsubj = shu_6_3[2][j6];//¸ÃÉúÔ­½ÌÊÒµÄ×ß°à¿Î
+				classsubjno = j6;
 			}
 		}
 		int b[6];
-		swit(stuplus[stu2num + i][8], b);
-		for (j = 0; j < 6; j++)
+		swit(stuplus[stu2num + i6][8], b);
+		for (j6 = 0; j6 < 6; j6++)
 		{
-			if (stuplus[stu2num + i][j] - b[j] == 1) stusubj = j;//¸ÃÉúĞèÒª×ßµÄ¿Î
+			if (stuplus[stu2num + i6][j6] - b[j6] == 1) stusubj = j6;//¸ÃÉúĞèÒª×ßµÄ¿Î
 		}
 		if (stusubj == classsubj)//Èç¹ûÔ­°à¿ÉÒÔ·Å
 		{
-			classname1[0][i] = classname[stu2num + i];//·Åµ½Ô­°à¼¶
-			classname1[1][i] = 1;
-			shu[1][classsubjno] = shu[1][classsubjno] + 1;//¼ÆÊı
+			classname1_6_3[0][i6] = classname_6_3[stu2num + i6];//·Åµ½Ô­°à¼¶
+			classname1_6_3[1][i6] = 1;
+			shu_6_3[1][classsubjno] = shu_6_3[1][classsubjno] + 1;//¼ÆÊı
 		}
 	}
-	for (i = 0; i < stu1num; i++)//±éÀúËùÓĞ¶¨¶şÑ§Éú
+	for (i6 = 0; i6 < stu1num; i6++)//±éÀúËùÓĞ¶¨¶şÑ§Éú
 	{
-		if (classname1[1][i] == 0)//Èç¹ûÕâ¸öÑ§Éú»¹Ã»·ÅÖÃ
+		if (classname1_6_3[1][i6] == 0)//Èç¹ûÕâ¸öÑ§Éú»¹Ã»·ÅÖÃ
 		{
 			int aaa = 1;//¼ÇÂ¼ÄÜ·ñ·Å½øÈ¥
 			int bbb = -1;//¼ÇÂ¼Î»ÖÃ
 			int ccc;
-			if (bigclassnum != 0)
+			if (bigclassnum_6_3 != 0)
 			{
-				ccc = bigclassmax;
+				ccc = bigclassmax_6_3;
 			}
 			else
 			{
-				ccc = lu;
+				ccc = lu_6_3;
 			}
 			int stusubj = 6;//Ñ§Éú¿ÆÄ¿
 			int b[6];
-			swit(stuplus[stu2num + i][8], b);
-			for (j = 0; j < 6; j++)
+			swit(stuplus[stu2num + i6][8], b);
+			for (j6 = 0; j6 < 6; j6++)
 			{
-				if (stuplus[stu2num + i][j] - b[j] == 1) stusubj = j;//¸ÃÉúĞèÒª×ßµÄ¿Î
+				if (stuplus[stu2num + i6][j6] - b[j6] == 1) stusubj = j6;//¸ÃÉúĞèÒª×ßµÄ¿Î
 			}
-			for (j = 0; j < countq; j++)
+			for (j6 = 0; j6 < countq_6_3; j6++)
 			{
-				aaa = stusubj - shu[2][j];//   °àĞÍÏà¼õ
+				aaa = stusubj - shu_6_3[2][j6];//   °àĞÍÏà¼õ
 				if (aaa == 0)//Èç¹ûÄÜ·Å½øÈ¥
 				{
-					if (shu[1][j] < classcontain1[j])//Èç¹û»¹Ã»·ÅÂúÕâ¸ö°à¼¶**************************
+					if (shu_6_3[1][j6] < classcontain1[j6])//Èç¹û»¹Ã»·ÅÂúÕâ¸ö°à¼¶**************************
 					{
-						if (shu[1][j] < ccc)//Èç¹û×îĞ¡
+						if (shu_6_3[1][j6] < ccc)//Èç¹û×îĞ¡
 						{
-							bbb = j;//¼ÇÂ¼Î»ÖÃ
-							ccc = shu[1][j];//×îĞ¡¸üĞÂ
+							bbb = j6;//¼ÇÂ¼Î»ÖÃ
+							ccc = shu_6_3[1][j6];//×îĞ¡¸üĞÂ
 						}
 					}
 				}
 			}
-			classname1[0][i] = shu[0][bbb];//¼ÇÂ¼Õâ¸öÑ§Éú·ÖÅäµ½ÁËÄÄ¸ö½ÌÊÒ
-			classname1[1][i] = 1;
-			shu[1][bbb] = shu[1][bbb] + 1;//¼ÆÊı
+			classname1_6_3[0][i6] = shu_6_3[0][bbb];//¼ÇÂ¼Õâ¸öÑ§Éú·ÖÅäµ½ÁËÄÄ¸ö½ÌÊÒ
+			classname1_6_3[1][i6] = 1;
+			shu_6_3[1][bbb] = shu_6_3[1][bbb] + 1;//¼ÆÊı
 		}
 	}
 	cout << "----------------------------------------------------------------" << endl;
-	for (i = 0; i < 3; i++)/************************************************************/
+	for (i6 = 0; i6 < 3; i6++)/************************************************************/
 	{
-		if (i == 0) cout << " ×ßÒ»½ÌÊÒ:  ";
-		else if (i == 1) cout << " °à¼¶ÈËÊı£º ";
-		else if (i == 2) cout << " ¿ª°àÀàĞÍ£º ";
-		for (j = 0; j < countq; j++)
+		if (i6 == 0) cout << " ×ßÒ»½ÌÊÒ:  ";
+		else if (i6 == 1) cout << " °à¼¶ÈËÊı£º ";
+		else if (i6 == 2) cout << " ¿ª°àÀàĞÍ£º ";
+		for (j6 = 0; j6 < countq_6_3; j6++)
 		{
 			cout.width(3);
-			if (i < 2) cout << shu[i][j] << "  ";
-			else if (i == 2)
+			if (i6 < 2) cout << shu_6_3[i6][j6] << "  ";
+			else if (i6 == 2)
 			{
-				if      (shu[i][j] == 0) { cout.width(3); cout << "Îï   "; }
-				else if (shu[i][j] == 1) { cout.width(3); cout << "»¯   "; }
-				else if (shu[i][j] == 2) { cout.width(3); cout << "Éú   "; }
-				else if (shu[i][j] == 3) { cout.width(3); cout << "Õş   "; }
-				else if (shu[i][j] == 4) { cout.width(3); cout << "Ê·   "; }
-				else if (shu[i][j] == 5) { cout.width(3); cout << "µØ   "; }
+				if (shu_6_3[i6][j6] == 0) { cout.width(3); cout << "Îï   "; }
+				else if (shu_6_3[i6][j6] == 1) { cout.width(3); cout << "»¯   "; }
+				else if (shu_6_3[i6][j6] == 2) { cout.width(3); cout << "Éú   "; }
+				else if (shu_6_3[i6][j6] == 3) { cout.width(3); cout << "Õş   "; }
+				else if (shu_6_3[i6][j6] == 4) { cout.width(3); cout << "Ê·   "; }
+				else if (shu_6_3[i6][j6] == 5) { cout.width(3); cout << "µØ   "; }
 			}
 		}
 		cout << " \n";
@@ -650,48 +655,48 @@ void sectionclassroom(int **stu1out, int **stu2out, int**tools)
 	cout << endl;
 
 }
-int **  genetic(int**stu1, int **tools)
+int** genetic(int** stu1, int** tools)
 {
 	int gen = 0;                      //ÒÅ´«´úÊı¼ÆÊıÆ÷
 	int stu1numb = tools[4][4];       //»ñÈ¡¶¨¶şÑ§ÉúÊıÁ¿
 	int PRECI = tools[4][5];           //»ñÈ¡¶¨¶ş°à¼¶ÊıÁ¿
 
-	int **pop = new int *[NIND];      //popÎªÉú³ÉÖÖÈº pop[NIND][tools[4][5]]
-	for ( i = 0; i < NIND; i++)		pop[i] = new int[PRECI];
+	int** pop = new int* [NIND];      //popÎªÉú³ÉÖÖÈº pop[NIND][tools[4][5]]
+	for (i6 = 0; i6 < NIND; i6++)		pop[i6] = new int[PRECI];
 
 
-	for ( i = 0; i < 2; i++)		    out1[i] = new int[PRECI];
+	for (i6 = 0; i6 < 2; i6++)		    out1_6_3[i6] = new int[PRECI];
 
-	double **trace = new double *[2];     //´æ·ÅÀú´ú×î¼Ñ·Ö°à·½Ê½ trace[2][MAXGEN]ÓÃÓÚÉú³ÉÇúÏß
-	for ( i = 0; i < 2; i++)		trace[i] = new double[MAXGEN];
+	double** trace = new double* [2];     //´æ·ÅÀú´ú×î¼Ñ·Ö°à·½Ê½ trace[2][MAXGEN]ÓÃÓÚÉú³ÉÇúÏß
+	for (i6 = 0; i6 < 2; i6++)		trace[i6] = new double[MAXGEN];
 
-	double *objv = new double[NIND];  //ÊÊÓ¦¶ÈÖµ
+	double* objv = new double[NIND];  //ÊÊÓ¦¶ÈÖµ
 
 	double globalminobjv = 0.0; //¼ÇÂ¼È«¾Ö×îĞ¡ÊÊÓ¦¶ÈÖµ
 
-	int *stufinalclass = new int[stu1numb];  //ÓÃÓÚ¼ÇÂ¼Ñ§Éú×îÖÕÑ¡Ôñ
+	int* stufinalclass = new int[stu1numb];  //ÓÃÓÚ¼ÇÂ¼Ñ§Éú×îÖÕÑ¡Ôñ
 
-	int **stu1out = new int *[stu1numb];        //´æ·Å×ßÒ»°àÑ§ÉúÑ¡¿ÎĞÅÏ¢¼°·Ö°à½á¹û
-	for ( i = 0; i < stu1numb; i++)		    stu1out[i] = new int[9];
+	int** stu1out = new int* [stu1numb];        //´æ·Å×ßÒ»°àÑ§ÉúÑ¡¿ÎĞÅÏ¢¼°·Ö°à½á¹û
+	for (i6 = 0; i6 < stu1numb; i6++)		    stu1out[i6] = new int[9];
 
-	for ( i = 0; i < NIND; i++)       //Ëæ»úÉú³É³õÊ¼ÖÖÈº
+	for (i6 = 0; i6 < NIND; i6++)       //Ëæ»úÉú³É³õÊ¼ÖÖÈº
 	{
-		for ( j = 0; j < PRECI; j++)
+		for (j6 = 0; j6 < PRECI; j6++)
 		{
 			int randompop = rand();
-			pop[i][j] = randompop % 15;           //Éú³É0-14µÄËæ»úÊı£¬±íÊ¾Éú³ÉµÄËæ»ú¶¨¶ş×ßÒ»°à¼¶ÀàĞÍ
+			pop[i6][j6] = randompop % 15;           //Éú³É0-14µÄËæ»úÊı£¬±íÊ¾Éú³ÉµÄËæ»ú¶¨¶ş×ßÒ»°à¼¶ÀàĞÍ
 		}
 	}
 
 	while (gen < MAXGEN)                    //
 	{
-		
-		double ** tools2 = ranking(stu1, tools, pop);     //»ñÈ¡ÊÊÓ¦¶ÈÖµ£¬²¢·µ»Øµ¥´Ê×îÓÅ¸÷Ñ§Éú·Ö°àÈ¥ÏòÒÔ¼°¸÷°àÈËÊı
-	
-		for (int i = 0; i < NIND; i++)
+
+		double** tools2 = ranking(stu1, tools, pop);     //»ñÈ¡ÊÊÓ¦¶ÈÖµ£¬²¢·µ»Øµ¥´Ê×îÓÅ¸÷Ñ§Éú·Ö°àÈ¥ÏòÒÔ¼°¸÷°àÈËÊı
+
+		for (int i6 = 0; i6 < NIND; i6++)
 		{
-			double tempobjv = tools2[i][2];
-			objv[i] = tempobjv;
+			double tempobjv = tools2[i6][2];
+			objv[i6] = tempobjv;
 		}
 
 		double minobjv = (*min_element(objv, objv + NIND)); //×îĞ¡ÊÊÓ¦¶ÈÖµ
@@ -699,187 +704,187 @@ int **  genetic(int**stu1, int **tools)
 
 		trace[0][gen] = minobjv; //ÓÃÓÚ¹Û²ìÊÊÓ¦¶ÈÖµ±ä»¯ ¼ÇÂ¼Ã¿´ú×îĞ¡ÊÊÓ¦¶ÈÖµ
 		trace[1][gen] = gen;     // µÚn´ú
-		
+
 		if (gen > 0)
 		{
 			if (minobjv < globalminobjv)               //Èç¹ûÊÇÈ«¾Ö×îÓÅ
 			{
 				globalminobjv = minobjv;               //¼ÇÂ¼È«¾Ö×îÓÅÊÊÓ¦¶ÈÖµ
-				for ( i = 0; i < stu1numb; i++)
+				for (i6 = 0; i6 < stu1numb; i6++)
 				{
-					stufinalclass[i] = tools2[i][0];   //¼ÇÂ¼×îÓÅ½âÑ§Éú°à¼¶¹éÊô
+					stufinalclass[i6] = tools2[i6][0];   //¼ÇÂ¼×îÓÅ½âÑ§Éú°à¼¶¹éÊô
 				}
-				for ( i = 0; i < PRECI; i++)
+				for (i6 = 0; i6 < PRECI; i6++)
 				{
-					out1[0][i] = pop[minpos][i];       //È«¾Ö×îÓÅ¸öÌåid
-					out1[1][i] = tools2[i][1];         //È«¾Ö×îÓÅ¸öÌå¸÷°àÑ§ÉúÊıÁ¿
+					out1_6_3[0][i6] = pop[minpos][i6];       //È«¾Ö×îÓÅ¸öÌåid
+					out1_6_3[1][i6] = tools2[i6][1];         //È«¾Ö×îÓÅ¸öÌå¸÷°àÑ§ÉúÊıÁ¿
 				}
 			}
 		}
 		else//Èç¹ûÊÇµÚ0´ú Ôò¼ÇÂ¼0´ú×îÓÅ½â
 		{
 			globalminobjv = minobjv;             //¼ÇÂ¼È«¾Ö×îÓÅÊÊÓ¦¶ÈÖµ
-			for ( i = 0; i < stu1numb; i++)
+			for (i6 = 0; i6 < stu1numb; i6++)
 			{
-				stufinalclass[i] = tools2[i][0];    //¼ÇÂ¼×îÓÅ½âÑ§Éú°à¼¶¹éÊô
+				stufinalclass[i6] = tools2[i6][0];    //¼ÇÂ¼×îÓÅ½âÑ§Éú°à¼¶¹éÊô
 			}
-			for ( i = 0; i < PRECI; i++)
+			for (i6 = 0; i6 < PRECI; i6++)
 			{
-				out1[0][i] = pop[minpos][i];      //È«¾Ö×îÓÅ¸öÌåid
-				out1[1][i] = tools2[i][1];      //È«¾Ö×îÓÅ¸öÌå¸÷°àÑ§ÉúÊıÁ¿
+				out1_6_3[0][i6] = pop[minpos][i6];      //È«¾Ö×îÓÅ¸öÌåid
+				out1_6_3[1][i6] = tools2[i6][1];      //È«¾Ö×îÓÅ¸öÌå¸÷°àÑ§ÉúÊıÁ¿
 			}
 		}
-		
-		pop = updatepopulation(pop, objv, gen, PRECI, out1);//Ñ¡Ôñ½»²æ±äÒì
-	
+
+		pop = updatepopulation(pop, objv, gen, PRECI, out1_6_3);//Ñ¡Ôñ½»²æ±äÒì
+
 		gen = gen + 1;
 	}
-	
-	
+
+
 	if (globalminobjv < PRECI * 10)//ÅĞ¶ÏÊÊÓ¦¶ÈÖµÊÇ·ñ´ï±ê
 	{
-		complete = 1;   // Èç¹ûÊÊÓ¦¶ÈÖµ½ÏĞ¡£¨´ú±í³É¹¦·Ö°à£©£¬Ôò±êÖ¾·Ö°àÍê³É
+		complete_6_3 = 1;   // Èç¹ûÊÊÓ¦¶ÈÖµ½ÏĞ¡£¨´ú±í³É¹¦·Ö°à£©£¬Ôò±êÖ¾·Ö°àÍê³É
 		cout << "----------------------------------------------------------------" << endl;
 		cout << "×îĞ¡ÊÊÓ¦¶ÈÖµ£º" << globalminobjv << endl;
 
-		for ( i = 0; i < 2; i++)
+		for (i6 = 0; i6 < 2; i6++)
 		{
-			if (i == 0) cout << "¶¨Èı°à¼¶ÀàĞÍ£º";
+			if (i6 == 0) cout << "¶¨Èı°à¼¶ÀàĞÍ£º";
 			else cout << "¶¨Èı°à¼¶ÈËÊı£º";
-			for (int j = 0; j < tools[4][2]; j++)
+			for (int j6 = 0; j6 < tools[4][2]; j6++)
 			{
 				cout.width(3);
-				cout << lists[i][j] << ' ';
+				cout << lists_6_3[i6][j6] << ' ';
 			}
 			cout << '\n' << endl;
 		}
 
-		for ( i = 0; i < 2; i++)
+		for (i6 = 0; i6 < 2; i6++)
 		{
-			if (i == 0) cout << "×ßÒ»°à¼¶ÀàĞÍ£º";
+			if (i6 == 0) cout << "×ßÒ»°à¼¶ÀàĞÍ£º";
 			else cout << "×ßÒ»°à¼¶ÈËÊı£º";
-			for ( j = 0; j < PRECI; j++)
+			for (j6 = 0; j6 < PRECI; j6++)
 			{
 				cout.width(3);
-				cout << out1[i][j] << ' ';
+				cout << out1_6_3[i6][j6] << ' ';
 			}
 			cout << '\n' << endl;
 		}
 		int zongrenshu = 0;
-		for ( j = 0; j < PRECI; j++)
+		for (j6 = 0; j6 < PRECI; j6++)
 		{
-			zongrenshu = zongrenshu + out1[1][j];
+			zongrenshu = zongrenshu + out1_6_3[1][j6];
 		}
 		if (stu1numb - zongrenshu == 0) 	cout << "ËùÓĞÍ¬Ñ§¾ùÒÑ·Ö°àÍê³É" << endl;
 		else cout << "ÈÔÓĞÍ¬Ñ§Î´³É¹¦·ÖÅä°à¼¶" << endl;
 		cout << "----------------------------------------------------------------" << endl;
-		for ( i = 0; i < stu1numb; i++)
+		for (i6 = 0; i6 < stu1numb; i6++)
 		{
-			for ( j = 0; j < 8; j++)
+			for (j6 = 0; j6 < 8; j6++)
 			{
-				stu1out[i][j] = stu1[i][j];
+				stu1out[i6][j6] = stu1[i6][j6];
 			}
-			stu1out[i][8] = stufinalclass[i];
+			stu1out[i6][8] = stufinalclass[i6];
 		}
 		return stu1out;
 	}
 	return 0;
 }
-double  ** ranking(int**stu1, int **tools, int ** pop)
+double** ranking(int** stu1, int** tools, int** pop)
 {
-	
-	double *objv = new double[NIND];  //ÊÊÓ¦¶ÈÖµ
-	
+
+	double* objv = new double[NIND];  //ÊÊÓ¦¶ÈÖµ
+
 	int stu1numb = tools[4][4];       //»ñÈ¡¶¨¶şÑ§ÉúÊıÁ¿
 	int PRECI = tools[4][5];           //»ñÈ¡¶¨¶ş°à¼¶ÊıÁ¿
-	
-	
-	int *classcontain = new int[PRECI]; 
-	for ( i = 0; i < PRECI; i++)
+
+
+	int* classcontain = new int[PRECI];
+	for (i6 = 0; i6 < PRECI; i6++)
 	{
-		if (i < bigclassnum)classcontain[i] = bigclassmax;
-		else classcontain[i] = lu;
+		if (i6 < bigclassnum_6_3)classcontain[i6] = bigclassmax_6_3;
+		else classcontain[i6] = lu_6_3;
 	}
 	int total[6];                     //ÓÃÓÚ¼ÆËãÊ£ÓàÎ´Ñ¡¿ÆÄ¿ÈËÊı
 	int total1[6];                    //Í³¼ÆÒÑ¾­·ÅÈë¿ÆÄ¿µÄÈËÊı
 	int total2[6];                    //¶Ôstu11½øĞĞ°´ÁĞÏà¼Ó,Í³¼Æ¶¨¶ş°à¸÷¿Æ×ÜÈËÊı
 
-	int **class1 = new int *[stu1numb];      //·ÅÃ¿¸öÉú³ÉµÄ¶¨¶ş×ßÒ»°à¼¶ÈËÊı num[NIND][tools[4][5]]
-	for ( i = 0; i < stu1numb; i++)		class1[i] = new int[NIND];
+	int** class1 = new int* [stu1numb];      //·ÅÃ¿¸öÉú³ÉµÄ¶¨¶ş×ßÒ»°à¼¶ÈËÊı num[NIND][tools[4][5]]
+	for (i6 = 0; i6 < stu1numb; i6++)		class1[i6] = new int[NIND];
 
-	int **num = new int *[NIND];      //·ÅÃ¿¸öÉú³ÉµÄ¶¨¶ş×ßÒ»°à¼¶ÈËÊı num[NIND][tools[4][5]]
-	for ( i = 0; i < NIND; i++)		num[i] = new int[PRECI];
+	int** num = new int* [NIND];      //·ÅÃ¿¸öÉú³ÉµÄ¶¨¶ş×ßÒ»°à¼¶ÈËÊı num[NIND][tools[4][5]]
+	for (i6 = 0; i6 < NIND; i6++)		num[i6] = new int[PRECI];
 
 	int tools2line = stu1numb + NIND;
-	double ** tools2 = new double*[tools2line];  //ÓÃÓÚ¼ÇÂ¼Ñ§Éú×îÖÕÑ¡Ôñ
-	for ( i = 0; i < tools2line; i++)		tools2[i] = new double[3];
+	double** tools2 = new double* [tools2line];  //ÓÃÓÚ¼ÇÂ¼Ñ§Éú×îÖÕÑ¡Ôñ
+	for (i6 = 0; i6 < tools2line; i6++)		tools2[i6] = new double[3];
 
-	for ( i = 0; i < 6; i++)//ÇåÁã
+	for (i6 = 0; i6 < 6; i6++)//ÇåÁã
 	{
-		total[i] = 0;
-		total1[i] = 0;
-		total2[i] = 0;
+		total[i6] = 0;
+		total1[i6] = 0;
+		total2[i6] = 0;
 	}
-	for ( i = 0; i < NIND; i++)
+	for (i6 = 0; i6 < NIND; i6++)
 	{
-		for ( j = 0; j < PRECI; j++)
+		for (j6 = 0; j6 < PRECI; j6++)
 		{
-			num[i][j] = 0;
+			num[i6][j6] = 0;
 		}
-		for ( j = 0; j < stu1numb; j++)
+		for (j6 = 0; j6 < stu1numb; j6++)
 		{
-			class1[j][i] = 0;
+			class1[j6][i6] = 0;
 		}
 	}
-	
 
 
 
-	for ( i = 0; i < NIND; i++)         //¼ÆËãÖÖÈºÃ¿Ò»¸ö¸öÌå£¨Ã¿Ò»ÖÖ°à¼¶×éºÏ£©
+
+	for (i6 = 0; i6 < NIND; i6++)         //¼ÆËãÖÖÈºÃ¿Ò»¸ö¸öÌå£¨Ã¿Ò»ÖÖ°à¼¶×éºÏ£©
 	{
-		for ( j = 0; j < 6; j++)//ÇåÁã
+		for (j6 = 0; j6 < 6; j6++)//ÇåÁã
 		{
-			total[j] = 0;
-			total1[j] = 0;
-			total2[j] = 0;
+			total[j6] = 0;
+			total1[j6] = 0;
+			total2[j6] = 0;
 		}
-		for ( j = 0; j < 6; j++) //Í³¼Æ¶¨¶ş°à¸÷¿Æ×ÜÈËÊı
+		for (j6 = 0; j6 < 6; j6++) //Í³¼Æ¶¨¶ş°à¸÷¿Æ×ÜÈËÊı
 		{
-			for ( k = 0; k < stu1numb; k++)
+			for (k6 = 0; k6 < stu1numb; k6++)
 			{
-				total2[j] = stu1[k][j] + total2[j];//´æ·Åstu11°´ÁĞÏà¼Ó Í³¼Æ¸÷¿ÆÊıÁ¿°É£¿
+				total2[j6] = stu1[k6][j6] + total2[j6];//´æ·Åstu11°´ÁĞÏà¼Ó Í³¼Æ¸÷¿ÆÊıÁ¿°É£¿
 			}
 		}
-		for ( k = 0; k < stu1numb; k++)     //±éÀú¶¨¶şËùÓĞÑ§Éú   
+		for (k6 = 0; k6 < stu1numb; k6++)     //±éÀú¶¨¶şËùÓĞÑ§Éú   
 		{
 			int e = -1;                  //ÓÃÓÚ¼Ä´æ·ûºÏÌõ¼şµÄ°à¼¶ĞòºÅ£¨ÓÃÓÚÅĞ¶ÏÊÇ·ñ·Å½øÁË°à¼¶£©
 			int f = 0;                   //ÓÃÓÚ¼Ä´æ·ûºÏÌõ¼şµÄ°à¼¶ÖĞÈËÊı×îÉÙµÄ°à¼¶Ñ§ÉúÊıÁ¿£¨ÓÅÏÈ·ÅÈë£©
-			if (bigclassnum > 0) f = bigclassmax;
-			else f = lu;
+			if (bigclassnum_6_3 > 0) f = bigclassmax_6_3;
+			else f = lu_6_3;
 
 
-			for ( j = 0; j < PRECI; j++)    //±éÀúÃ¿¸ö¶¨¶ş×ßÒ»°à¼¶      
+			for (j6 = 0; j6 < PRECI; j6++)    //±éÀúÃ¿¸ö¶¨¶ş×ßÒ»°à¼¶      
 			{
 
 				int b[6];
-				swit(pop[i][j], b);      //·­Òë³öµÚiĞĞµÚj¸ö°à¼¶
+				swit(pop[i6][j6], b);      //·­Òë³öµÚiĞĞµÚj¸ö°à¼¶
 				int p = 0;
 				for (int q = 0; q < 6; q++)
 				{
 
-					if (b[q] - stu1[k][q] == 0)
+					if (b[q] - stu1[k6][q] == 0)
 					{
 						p = p + 1;
 					}
 				}
 				if (p == 5)
 				{
-					if (num[i][j] < classcontain[j]) //Ã¿´Î¶¼·Åµ½ÈËÊı×îÉÙµÄ°à¼¶
+					if (num[i6][j6] < classcontain[j6]) //Ã¿´Î¶¼·Åµ½ÈËÊı×îÉÙµÄ°à¼¶
 					{
-						if (num[i][j] < f)
+						if (num[i6][j6] < f)
 						{
-							e = j;
-							f = num[i][j];
+							e = j6;
+							f = num[i6][j6];
 						}
 					}
 				}
@@ -888,266 +893,266 @@ double  ** ranking(int**stu1, int **tools, int ** pop)
 
 			if (e > -1)
 			{
-				num[i][e] = num[i][e] + 1; //ÖÖÈºÖĞÄ³È¾É«Ìå¼ÆÊı+1
-				class1[k][i] = pop[i][e];//¼ÇÂ¼Ñ§Éú±»·Öµ½ÁËÊ²Ã´°à¼¶
+				num[i6][e] = num[i6][e] + 1; //ÖÖÈºÖĞÄ³È¾É«Ìå¼ÆÊı+1
+				class1[k6][i6] = pop[i6][e];//¼ÇÂ¼Ñ§Éú±»·Öµ½ÁËÊ²Ã´°à¼¶
 			}
 		}
 
 		/*int **stu1outtemp = new int *[stu1numb];      //·ÅÃ¿¸öÉú³ÉµÄ¶¨¶ş×ßÒ»°à¼¶ÈËÊı num[NIND][tools[4][5]]
-		for (int j = 0; j < stu1numb; j++)		stu1outtemp[j] = new int[9];
-		for (int j = 0; j < stu1numb; j++)
+		for (int j6 = 0; j6 < stu1numb; j6++)		stu1outtemp[j6] = new int[9];
+		for (int j6 = 0; j6 < stu1numb; j6++)
 		{
-			for (int k = 0; k < 8; k++)
+			for (int k6 = 0; k6 < 8; k6++)
 			{
-				stu1outtemp[j][k] = stu1[j][k];
+				stu1outtemp[j6][k6] = stu1[j6][k6];
 			}
-			stu1outtemp[j][8] = class1[j][i];
+			stu1outtemp[j6][8] = class1[j6][i6];
 		}
 		*/
 
 
 		//¸øÃ¿¸öÑ§Éú·ÖÅä°à¼¶,6ĞĞÒÀ´Î´æ·Å°à¼¶ÀàĞÍ¡¢°à¼¶Ãû³Æ¡¢±¾À´Ó¦¸Ã·ÅµÄÈËÊı¡¢²Ù×÷¹ı³ÌÖĞ·ÅÁËµÄÈËÊı¡¢ÄĞÉúµÄÈËÊı¡¢Å®ÉúµÄÈËÊı¡£
-		int **stuplus = new int *[tools[4][3]];
-		for ( ii = 0; ii < tools[4][3]; ii++)		stuplus[ii] = new int[9];
+		int** stuplus = new int* [tools[4][3]];
+		for (ii6 = 0; ii6 < tools[4][3]; ii6++)		stuplus[ii6] = new int[9];
 
-		for ( ii = tools[4][1]; ii < tools[4][3]; ii++)//·ÅÈë¶¨¶şÑ§ÉúĞÅÏ¢
+		for (ii6 = tools[4][1]; ii6 < tools[4][3]; ii6++)//·ÅÈë¶¨¶şÑ§ÉúĞÅÏ¢
 		{
-			for ( j = 0; j < 8; j++)
-			{	
-				stuplus[ii][j] = stu1[ii-tools[4][1]][j];
+			for (j6 = 0; j6 < 8; j6++)
+			{
+				stuplus[ii6][j6] = stu1[ii6 - tools[4][1]][j6];
 			}
-			stuplus[ii][8] = class1[ii - tools[4][1]][i];
+			stuplus[ii6][8] = class1[ii6 - tools[4][1]][i6];
 		}
 
-		
+
 
 
 		//int stu2num = tools[4][1];//¶¨ÈıÈËÊı
 		int ss = tools[4][2];//¶¨Èı°àÊı
 		int NUM = tools[4][2] + tools[4][5];//×Ü°à¼¶ÊıÁ¿
 		int stu1num = tools[4][4];//¶¨¶şÈËÊı
-		disclass = new int *[6]; //
-		for ( ii = 0; ii < 6; ii++)		disclass[ii] = new int[NUM];
-		classname = new int[tools[4][3]];//ĞĞÕş°à°àÃû
-		for ( ii = 0; ii < ss; ii++)
+		disclass_6_3 = new int* [6]; //
+		for (ii6 = 0; ii6 < 6; ii6++)		disclass_6_3[ii6] = new int[NUM];
+		classname_6_3 = new int[tools[4][3]];//ĞĞÕş°à°àÃû
+		for (ii6 = 0; ii6 < ss; ii6++)
 		{
-			disclass[0][ii] = lists[0][ii];//¹Ì¶¨°àĞÍ
-			disclass[2][ii] = lists[1][ii];//¹Ì¶¨°àÈİÁ¿
+			disclass_6_3[0][ii6] = lists_6_3[0][ii6];//¹Ì¶¨°àĞÍ
+			disclass_6_3[2][ii6] = lists_6_3[1][ii6];//¹Ì¶¨°àÈİÁ¿
 		}
-		for ( j = ss; j < NUM; j++)
+		for (j6 = ss; j6 < NUM; j6++)
 		{
-			disclass[0][j] = pop[i][j - ss];//×ß°à°àĞÍ
-			disclass[2][j] = num[i][j - ss];//×ß°àÈİÁ¿
+			disclass_6_3[0][j6] = pop[i6][j6 - ss];//×ß°à°àĞÍ
+			disclass_6_3[2][j6] = num[i6][j6 - ss];//×ß°àÈİÁ¿
 		}
-		for ( j = 0; j < classroomno[1][5]; j++)
+		for (j6 = 0; j6 < classroomno_6_3[1][5]; j6++)
 		{
-			if (classroomno[j][4] == 2)    classroomno[j][4] = 0;
-			else if (classroomno[j][4] == 3)    classroomno[j][4] = 1;
+			if (classroomno_6_3[j6][4] == 2)    classroomno_6_3[j6][4] = 0;
+			else if (classroomno_6_3[j6][4] == 3)    classroomno_6_3[j6][4] = 1;
 		}
-		for ( ii = 0; ii < NUM; ii++)
+		for (ii6 = 0; ii6 < NUM; ii6++)
 		{
 			int flag = 0;
-			for ( j = 0; j < classroomno[1][5]; j++)//ÎŞÂÛ¶¨×ß È«¶¼·ÖÅäÉÏ½ÌÊÒ
+			for (j6 = 0; j6 < classroomno_6_3[1][5]; j6++)//ÎŞÂÛ¶¨×ß È«¶¼·ÖÅäÉÏ½ÌÊÒ
 			{
-				if (classroomno[j][4] == 0 && flag == 0)//ÆÕÍ¨½ÌÊÒ
+				if (classroomno_6_3[j6][4] == 0 && flag == 0)//ÆÕÍ¨½ÌÊÒ
 				{
-					disclass[1][ii] = classroomno[j][1];//½ÌÊÒÃüÃû ÓÃµÄ½ÌÊÒid
-					classroomno[j][4] = 2;
+					disclass_6_3[1][ii6] = classroomno_6_3[j6][1];//½ÌÊÒÃüÃû ÓÃµÄ½ÌÊÒid
+					classroomno_6_3[j6][4] = 2;
 					flag = 1;
 				}
 			}
-		
-			disclass[3][ii] = 0;//
-			disclass[4][ii] = 0;//ÄĞ
-			disclass[5][ii] = 0;//Å®
+
+			disclass_6_3[3][ii6] = 0;//
+			disclass_6_3[4][ii6] = 0;//ÄĞ
+			disclass_6_3[5][ii6] = 0;//Å®
 		}
-		for ( ii = tools[4][1]; ii < tools[4][3]; ii++)//±éÀúÑ§Éú ·Ö¶¨Èı ÄĞÅ®¾ù·Ö
+		for (ii6 = tools[4][1]; ii6 < tools[4][3]; ii6++)//±éÀúÑ§Éú ·Ö¶¨Èı ÄĞÅ®¾ù·Ö
 		{
 			int aaa = 1;//¼ÇÂ¼ÄÜ·ñ·Å½øÈ¥
 			int bbb = -1;//¼ÇÂ¼Î»ÖÃ
-			int ccc = lu;//¼ÇÂ¼×îĞ¡ÉÏÏŞ
-			for ( j = 0; j < NUM; j++)//±éÀúËùÓĞ°à¼¶
+			int ccc = lu_6_3;//¼ÇÂ¼×îĞ¡ÉÏÏŞ
+			for (j6 = 0; j6 < NUM; j6++)//±éÀúËùÓĞ°à¼¶
 			{
-				aaa = stuplus[ii][8] - disclass[0][j];//8°àĞÍ   °àĞÍÏà¼õ
+				aaa = stuplus[ii6][8] - disclass_6_3[0][j6];//8°àĞÍ   °àĞÍÏà¼õ
 				if (aaa == 0)//Èç¹ûÄÜ·Å½øÈ¥
 				{
-					if (disclass[3][j] < disclass[2][j])//Èç¹û»¹Ã»·ÅÂúÕâ¸ö°à¼¶
+					if (disclass_6_3[3][j6] < disclass_6_3[2][j6])//Èç¹û»¹Ã»·ÅÂúÕâ¸ö°à¼¶
 					{
-						if (stuplus[ii][7] == 1)//Èç¹ûÄĞ
+						if (stuplus[ii6][7] == 1)//Èç¹ûÄĞ
 						{
-							if (disclass[4][j] < ccc)//Èç¹û×îĞ¡
+							if (disclass_6_3[4][j6] < ccc)//Èç¹û×îĞ¡
 							{
-								bbb = j;//¼ÇÂ¼Î»ÖÃ
-								ccc = disclass[4][j];//×îĞ¡¸üĞÂ
+								bbb = j6;//¼ÇÂ¼Î»ÖÃ
+								ccc = disclass_6_3[4][j6];//×îĞ¡¸üĞÂ
 							}
 						}
 						else
 						{
-							if (disclass[5][j] < ccc)
+							if (disclass_6_3[5][j6] < ccc)
 							{
 
-								bbb = j;
-								ccc = disclass[5][j];
+								bbb = j6;
+								ccc = disclass_6_3[5][j6];
 							}
 						}
 					}
 				}
 			}
-			classname[ii] = disclass[1][bbb];//¼ÇÂ¼Õâ¸öÑ§Éú·ÖÅäµ½ÁËÄÄ¸ö½ÌÊÒ£¬ÊÓÎªĞÅÏ¢±íµÚÊ®ÁĞ
-			if (stuplus[ii][7] == 1)
+			classname_6_3[ii6] = disclass_6_3[1][bbb];//¼ÇÂ¼Õâ¸öÑ§Éú·ÖÅäµ½ÁËÄÄ¸ö½ÌÊÒ£¬ÊÓÎªĞÅÏ¢±íµÚÊ®ÁĞ
+			if (stuplus[ii6][7] == 1)
 			{
-				disclass[4][bbb] = disclass[4][bbb] + 1;//ÅĞ¶ÏĞÔ±ğ 
+				disclass_6_3[4][bbb] = disclass_6_3[4][bbb] + 1;//ÅĞ¶ÏĞÔ±ğ 
 			}
 			else
 			{
-				disclass[5][bbb] = disclass[5][bbb] + 1;//
+				disclass_6_3[5][bbb] = disclass_6_3[5][bbb] + 1;//
 			}
-			disclass[3][bbb] = disclass[4][bbb] + disclass[5][bbb];
+			disclass_6_3[3][bbb] = disclass_6_3[4][bbb] + disclass_6_3[5][bbb];
 		}
 
 
-		int ** goone = new int *[8]; //´´½¨×ß¶ş¸÷°àÑ§¿ÆÍ³¼ÆÁĞ±í
-		for ( ii = 0; ii < 8; ii++)		goone[ii] = new int[PRECI];//0 °àĞÍ 1°à¼¶id 2ÎïÀí3»¯Ñ§ 4ÉúÎï 5ÕşÖÎ 6ÀúÊ· 7µØÀí
-		for ( ii = 0; ii < 8; ii++)
+		int** goone = new int* [8]; //´´½¨×ß¶ş¸÷°àÑ§¿ÆÍ³¼ÆÁĞ±í
+		for (ii6 = 0; ii6 < 8; ii6++)		goone[ii6] = new int[PRECI];//0 °àĞÍ 1°à¼¶id 2ÎïÀí3»¯Ñ§ 4ÉúÎï 5ÕşÖÎ 6ÀúÊ· 7µØÀí
+		for (ii6 = 0; ii6 < 8; ii6++)
 		{
-			for ( j = 0; j < PRECI; j++)
+			for (j6 = 0; j6 < PRECI; j6++)
 			{
-				goone[ii][j] = 0;
+				goone[ii6][j6] = 0;
 			}
 		}
-		int ** goone1 = new int *[8]; //´´½¨×ß¶ş¸÷°àÑ§¿ÆÍ³¼ÆÁĞ±í
-		for ( ii = 0; ii < 8; ii++)		goone1[ii] = new int[PRECI];//0 °àĞÍ 1°à¼¶id 2ÎïÀí3»¯Ñ§ 4ÉúÎï 5ÕşÖÎ 6ÀúÊ· 7µØÀí
-		for ( ii = ss; ii < NUM; ii++)
+		int** goone1 = new int* [8]; //´´½¨×ß¶ş¸÷°àÑ§¿ÆÍ³¼ÆÁĞ±í
+		for (ii6 = 0; ii6 < 8; ii6++)		goone1[ii6] = new int[PRECI];//0 °àĞÍ 1°à¼¶id 2ÎïÀí3»¯Ñ§ 4ÉúÎï 5ÕşÖÎ 6ÀúÊ· 7µØÀí
+		for (ii6 = ss; ii6 < NUM; ii6++)
 		{
-			goone[0][ii - ss] = disclass[0][ii];//°àĞÍ Õª³ö¶¨¶ş
-			goone[1][ii - ss] = disclass[1][ii];//°à¼¶Ãû
+			goone[0][ii6 - ss] = disclass_6_3[0][ii6];//°àĞÍ Õª³ö¶¨¶ş
+			goone[1][ii6 - ss] = disclass_6_3[1][ii6];//°à¼¶Ãû
 		}
-		for ( ii = 0; ii < stu1num; ii++)//±éÀúÑ§Éú
+		for (ii6 = 0; ii6 < stu1num; ii6++)//±éÀúÑ§Éú
 		{
 			int ddd = 1;
-			for ( j = 0; j < PRECI; j++)//±éÀú°à°à¼¶
+			for (j6 = 0; j6 < PRECI; j6++)//±éÀú°à°à¼¶
 			{
-				ddd = goone[1][j] - classname[ii + tools[4][1]];//Èç¹ûÕâÑ§ÉúÊÇÕâ¸ö°àµÄ
+				ddd = goone[1][j6] - classname_6_3[ii6 + tools[4][1]];//Èç¹ûÕâÑ§ÉúÊÇÕâ¸ö°àµÄ
 				if (ddd == 0)
 				{
-					for ( k = 0; k < 6; k++)
+					for (k6 = 0; k6 < 6; k6++)
 					{
-						goone[k + 2][j] = goone[k + 2][j] + stuplus[ii + tools[4][1]][k];//Í³¼ÆÑ§Éú¿ÆÄ¿ 
+						goone[k6 + 2][j6] = goone[k6 + 2][j6] + stuplus[ii6 + tools[4][1]][k6];//Í³¼ÆÑ§Éú¿ÆÄ¿ 
 					}
 					break;
 				}
 			}
 		}
-		
-		for ( ii = 2; ii < 8; ii++)//ÇåÁã¶¨¶ş°àµÄ¹Ì¶¨¿ÆÄ¿
+
+		for (ii6 = 2; ii6 < 8; ii6++)//ÇåÁã¶¨¶ş°àµÄ¹Ì¶¨¿ÆÄ¿
 		{
-			for ( j = 0; j < PRECI; j++)
+			for (j6 = 0; j6 < PRECI; j6++)
 			{
 				int b[6];
-				swit(goone[0][j], b);
-				for ( k = 0; k < 6; k++)
+				swit(goone[0][j6], b);
+				for (k6 = 0; k6 < 6; k6++)
 				{
-					if (b[k] == 1) goone[k + 2][j] = 0;
+					if (b[k6] == 1) goone[k6 + 2][j6] = 0;
 				}
 			}
 		}
-		/*for (int j = 0; j < 8; j++)
+		/*for (int j6 = 0; j6 < 8; j6++)
 		{
-			for (int k = 0; k < PRECI; k++)
+			for (int k6 = 0; k6 < PRECI; k6++)
 			{
-				cout << goone[j][k] << ' ';
+				cout << goone[j6][k6] << ' ';
 			}
 			cout << '\n' << endl;
 		}*/
 
-		for ( j = 0; j < 8; j++)
+		for (j6 = 0; j6 < 8; j6++)
 		{
-			for ( k=0 ; k < PRECI; k++)
+			for (k6 = 0; k6 < PRECI; k6++)
 			{
-				goone1[j][k] = goone[j][k];
+				goone1[j6][k6] = goone[j6][k6];
 			}
 		}
 
-		for ( j = 0; j < PRECI; j++)
+		for (j6 = 0; j6 < PRECI; j6++)
 		{
 			int b[6];
-			swit(pop[i][j], b);
-			for ( k = 0; k < 6; k++)
+			swit(pop[i6][j6], b);
+			for (k6 = 0; k6 < 6; k6++)
 			{
-				total1[k] = total1[k] + num[i][j] * b[k]; //·Å½øÈ¥ÁËµÄ¸÷¿ÆÄ¿ÈËÊı£¿
+				total1[k6] = total1[k6] + num[i6][j6] * b[k6]; //·Å½øÈ¥ÁËµÄ¸÷¿ÆÄ¿ÈËÊı£¿
 			}
 		}
-		for ( j = 0; j < 6; j++)
+		for (j6 = 0; j6 < 6; j6++)
 		{
-			total[j] = total2[j] - total1[j];//»¹Ê£ÏÂÃ»·Å½øÈ¥µÄ¸÷¿ÆÈËÊı¡¢
-			//cout << total[j] << " " << total2[j] << " " << total1[j] << endl;
+			total[j6] = total2[j6] - total1[j6];//»¹Ê£ÏÂÃ»·Å½øÈ¥µÄ¸÷¿ÆÈËÊı¡¢
+			//cout << total[j6] << " " << total2[j6] << " " << total1[j6] << endl;
 		}
 		int meansum = 0;                   //ÒÑ·ÅÈë°à¼¶µÄ×ÜÈËÊı
 		int d1 = 0;                       //Ã»·Å½øÈ¥µÄÈËÊı
 
 
-		for ( j = 0; j < PRECI; j++)//Çó·Å½øÈ¥µÄ×ÜÈËÊı
+		for (j6 = 0; j6 < PRECI; j6++)//Çó·Å½øÈ¥µÄ×ÜÈËÊı
 		{
-			meansum = meansum + num[i][j];
+			meansum = meansum + num[i6][j6];
 		}
 		d1 = stu1numb - meansum;
-		float mean = meansum / (PRECI*1.0);//Æ½¾ùÊı
+		float mean = meansum / (PRECI * 1.0);//Æ½¾ùÊı
 
 		float sum1 = 0.0;
-		for ( j = 0; j < PRECI; j++)
+		for (j6 = 0; j6 < PRECI; j6++)
 		{
-			sum1 = (num[i][j] - mean)*(num[i][j] - mean)*1.0 + sum1;
+			sum1 = (num[i6][j6] - mean) * (num[i6][j6] - mean) * 1.0 + sum1;
 		}
-		float s1 = sum1 / (PRECI*1.0);   //·½²î
+		float s1 = sum1 / (PRECI * 1.0);   //·½²î
 		int d2 = 0;                         //ÓÃÓÚÅĞ¶ÏÊÇ·ñÈËÊı¹ıÉÙ
-		for ( j = 0; j < PRECI; j++)     //Èç¹ûÈËÊı²»¹»×îµÍÏŞ¶È ³Í·£
+		for (j6 = 0; j6 < PRECI; j6++)     //Èç¹ûÈËÊı²»¹»×îµÍÏŞ¶È ³Í·£
 		{
-			if (num[i][j] < ld)
+			if (num[i6][j6] < ld_6_3)
 			{
-				d2 = d2 + ld - num[i][j];
+				d2 = d2 + ld_6_3 - num[i6][j6];
 			}
 		}
-		objv[i] = s1 + ad1 * d1 + ad2 * d2;
+		objv[i6] = s1 + ad1 * d1 + ad2 * d2;
 		int rn[6] = { 0,0,0,0,0,0 };
 
-		if (objv[i] < 1000)
+		if (objv[i6] < 1000)
 		{
 			int q = 0;
-			countq = 0;
-			for ( j = 0; j < 6; j++)
+			countq_6_3 = 0;
+			for (j6 = 0; j6 < 6; j6++)
 			{
-				q = q + ceil(total[j] / (lu*1.0));
-				rn[j] = ceil(total[j] / (lu*1.0));
+				q = q + ceil(total[j6] / (lu_6_3 * 1.0));
+				rn[j6] = ceil(total[j6] / (lu_6_3 * 1.0));
 			}
 
 			int rn1[6];
-			for ( j = 0; j < 6; j++)
+			for (j6 = 0; j6 < 6; j6++)
 			{
-				rn1[j] = rn[j];
+				rn1[j6] = rn[j6];
 			}
-			
-			int * shu1 = new int [NUM+add];
-			for ( j = 0; j < NUM+add; j++)
+
+			int* shu1 = new int[NUM + add_6_3];
+			for (j6 = 0; j6 < NUM + add_6_3; j6++)
 			{
-				shu1[j] = -1;
+				shu1[j6] = -1;
 			}
 
 			while (q)
 			{
-				if (countq < PRECI)
+				if (countq_6_3 < PRECI)
 				{
 					int aa = -1;
 					int bb = -1;
 					int cc = -1;
-					for ( j = 0; j < 6; j++)
+					for (j6 = 0; j6 < 6; j6++)
 					{
-						for ( k = 0; k < PRECI; k++)
+						for (k6 = 0; k6 < PRECI; k6++)
 						{
-							if (goone1[j + 2][k] > aa)
+							if (goone1[j6 + 2][k6] > aa)
 							{
-								aa = goone1[j + 2][k];
-								bb = j;
-								cc = k;
+								aa = goone1[j6 + 2][k6];
+								bb = j6;
+								cc = k6;
 							}
 						}
 					}
@@ -1157,11 +1162,11 @@ double  ** ranking(int**stu1, int **tools, int ** pop)
 						shu1[cc] = bb;
 						rn1[bb] = rn1[bb] - 1;
 						q = q - 1;
-						countq = countq + 1;
+						countq_6_3 = countq_6_3 + 1;
 						if (classcontain[cc] < total[bb])
 						{
 							total[bb] = total[bb] - classcontain[cc];
-							if (ceil(total[bb] / (lu*1.0)) < rn1[bb])
+							if (ceil(total[bb] / (lu_6_3 * 1.0)) < rn1[bb])
 							{
 								rn[bb] = rn[bb] - 1;
 								rn1[bb] = rn1[bb] - 1;
@@ -1171,298 +1176,298 @@ double  ** ranking(int**stu1, int **tools, int ** pop)
 					}
 
 				}
-				else if (countq >= PRECI)
+				else if (countq_6_3 >= PRECI)
 				{
-					for ( j = 0; j < 6; j++)
+					for (j6 = 0; j6 < 6; j6++)
 					{
-						if (rn1[j] != 0)
+						if (rn1[j6] != 0)
 						{
-							shu1[countq + 1] = j;
-							rn1[j] = rn1[j] - 1;
+							shu1[countq_6_3 + 1] = j6;
+							rn1[j6] = rn1[j6] - 1;
 							q = q - 1;
-							countq = countq + 1;
+							countq_6_3 = countq_6_3 + 1;
 							break;
 						}
 					}
 				}
 			}
 			int d3 = 0;
-			if (countq > (PRECI + add))
+			if (countq_6_3 > (PRECI + add_6_3))
 			{
-				d3 = countq - (PRECI + add);
-				objv[i] = objv[i] + ad3 * d3;
+				d3 = countq_6_3 - (PRECI + add_6_3);
+				objv[i6] = objv[i6] + ad3 * d3;
 			}
 
 			int d4 = 0;
-			for ( j = 0; j < 6; j++)
+			for (j6 = 0; j6 < 6; j6++)
 			{
-				if (teacher[j] < rn[j])
+				if (teacher_6_3[j6] < rn[j6])
 				{
-					d4 = d4 + (rn[j]-teacher[j]);
+					d4 = d4 + (rn[j6] - teacher_6_3[j6]);
 				}
 			}
-			objv[i] = objv[i] + ad4 * d4;
+			objv[i6] = objv[i6] + ad4 * d4;
 
 			int d5 = 0;//ÓÃÓÚÅĞ¶Ï¶¨¶ş°à¼¶×ßÒ»ÀàĞÍÊÇ·ñÉÙ
-			for ( j = 0; j < tools[4][5]; j++)
+			for (j6 = 0; j6 < tools[4][5]; j6++)
 			{
 				int stuclass[6] = { 0,0,0,0,0,0 };
-				for ( k = 0; k < stu1numb; k++)
+				for (k6 = 0; k6 < stu1numb; k6++)
 				{
-					if (class1[k][i] == pop[i][j])
+					if (class1[k6][i6] == pop[i6][j6])
 					{
 						for (int kk = 0; kk < 6; kk++)
 						{
-							stuclass[kk] = stuclass[kk] + stu1[k][kk];
+							stuclass[kk] = stuclass[kk] + stu1[k6][kk];
 						}
 					}
 				}
-				for ( k = 0; k < 6; k++)
+				for (k6 = 0; k6 < 6; k6++)
 				{
-					if (stuclass[k] != 0)
+					if (stuclass[k6] != 0)
 					{
 						d5 = d5 + 1;
 					}
 				}
 			}
 			d5 = d5 - 2 * PRECI;
-			objv[i] = objv[i] + ad5 * d5;
+			objv[i6] = objv[i6] + ad5 * d5;
 		}
 		else
 		{
-			objv[i] = objv[i] * 2;
+			objv[i6] = objv[i6] * 2;
 		}
 
-		for (j = 0; j < tools[4][3];j++)
+		for (j6 = 0; j6 < tools[4][3]; j6++)
 		{
-			delete[] stuplus[j];
+			delete[] stuplus[j6];
 		}
 		delete[] stuplus;
-		for (j = 0; j < 8;j++)
+		for (j6 = 0; j6 < 8; j6++)
 		{
-			delete[] goone[j];
+			delete[] goone[j6];
 		}
-		for (j = 0; j < 8;j++)
+		for (j6 = 0; j6 < 8; j6++)
 		{
-			delete[] goone1[j];
+			delete[] goone1[j6];
 		}
-		
-		
-		delete[] disclass;
+
+
+		delete[] disclass_6_3;
 		delete[] goone;
 		delete[] goone1;
 	}
-	
 
-	//for (int j = 0; j <NIND; j++)//********************************************************************
+
+	//for (int j6 = 0; j6 <NIND; j6++)//********************************************************************
 	//{
-	//	for (int k = 0; k <PRECI; k++)
+	//	for (int k6 = 0; k6 <PRECI; k6++)
 	//	{
-	//		cout << num[j][k] << " ";
+	//		cout << num[j6][k6] << " ";
 	//	}
 	//	cout << endl;
 	//}
 
-	for ( i = 0; i < NIND; i++)
+	for (i6 = 0; i6 < NIND; i6++)
 	{
-		tools2[i][2] = objv[i]; //tools2[i][2]´æÈë±¾´ÎÊÊÓ¦¶ÈÖµ
+		tools2[i6][2] = objv[i6]; //tools2[i6][2]´æÈë±¾´ÎÊÊÓ¦¶ÈÖµ
 	}
 	int minpos = (min_element(objv, objv + NIND) - objv);          //µ¥´Î×îĞ¡ÖµµÄÎ»ÖÃ 
 
-	for ( i = 0; i < stu1numb; i++)
+	for (i6 = 0; i6 < stu1numb; i6++)
 	{
-		tools2[i][0] = class1[i][minpos];// tools2[i][0]´æÈë±¾´Î×îÓÅÑ§Éú°à¼¶¹éÊô
+		tools2[i6][0] = class1[i6][minpos];// tools2[i6][0]´æÈë±¾´Î×îÓÅÑ§Éú°à¼¶¹éÊô
 	}
-	for ( i = 0; i < PRECI; i++)
+	for (i6 = 0; i6 < PRECI; i6++)
 	{
-		tools2[i][1] = num[minpos][i];// tools2[i][1]´æÈë±¾´Î×îÓÅ¸÷°àÑ§ÉúÊıÁ¿
+		tools2[i6][1] = num[minpos][i6];// tools2[i6][1]´æÈë±¾´Î×îÓÅ¸÷°àÑ§ÉúÊıÁ¿
 	}
 	return tools2;
 }
-int ** updatepopulation(int ** pop, double * objv, int gen, int PRECI, int ** out)
+int** updatepopulation(int** pop, double* objv, int gen, int PRECI, int** out)
 {
-	int **popnext = new int *[NIND];      //popnextÎª¸üĞÂºóÖÖÈº popnext[NIND][tools[4][5]]
-	for ( i = 0; i < NIND; i++)		popnext[i] = new int[PRECI];
+	int** popnext = new int* [NIND];      //popnextÎª¸üĞÂºóÖÖÈº popnext[NIND][tools[4][5]]
+	for (i6 = 0; i6 < NIND; i6++)		popnext[i6] = new int[PRECI];
 
-	for ( i = 0; i < NIND; i++)
+	for (i6 = 0; i6 < NIND; i6++)
 	{
-		for ( j = 0; j < PRECI; j++)
+		for (j6 = 0; j6 < PRECI; j6++)
 		{
-			popnext[i][j] = pop[i][j];
+			popnext[i6][j6] = pop[i6][j6];
 		}
 	}
 
-	int *temp0 = new int[PRECI];
-	for ( i = 0; i < NIND; i++)                 // ¸ù¾İ¸öÌåÊÊÓ¦¶ÈÀ´ÅÅĞò£»£¨Ã°Åİ·¨£©
+	int* temp0 = new int[PRECI];
+	for (i6 = 0; i6 < NIND; i6++)                 // ¸ù¾İ¸öÌåÊÊÓ¦¶ÈÀ´ÅÅĞò£»£¨Ã°Åİ·¨£©
 	{
-		for ( j = 1; j < NIND - i; j++)
+		for (j6 = 1; j6 < NIND - i6; j6++)
 		{
-			if (objv[j] < objv[j - 1])
+			if (objv[j6] < objv[j6 - 1])
 			{
-				for ( k = 0; k < PRECI; k++)
+				for (k6 = 0; k6 < PRECI; k6++)
 				{
-					temp0[k] = popnext[j][k];
-					popnext[j][k] = popnext[j - 1][k];
-					popnext[j - 1][k] = temp0[k];
+					temp0[k6] = popnext[j6][k6];
+					popnext[j6][k6] = popnext[j6 - 1][k6];
+					popnext[j6 - 1][k6] = temp0[k6];
 				}
 			}
 		}
 	}
 
-	for ( i = NIND * GGAP; i < NIND; i++)       //°´ÕÕ´ú¹µ±£ÁôÓÅÊÆ¸öÌå
+	for (i6 = NIND * GGAP; i6 < NIND; i6++)       //°´ÕÕ´ú¹µ±£ÁôÓÅÊÆ¸öÌå
 	{
-		for ( j = 0; j < PRECI; j++)
+		for (j6 = 0; j6 < PRECI; j6++)
 		{
 
-			popnext[i][j] = popnext[NIND - i - 1][j];
+			popnext[i6][j6] = popnext[NIND - i6 - 1][j6];
 		}
 	}
 
 
 
-	int *temp1 = new int[PRECI];
-	for ( i = 0; i < (NIND / 2); i++)
+	int* temp1 = new int[PRECI];
+	for (i6 = 0; i6 < (NIND / 2); i6++)
 	{
 		double random1 = (rand() % 10) / 10.0;  //²úÉú0-1µÄËæ»úĞ¡Êı,ÓÃÀ´ÅĞ¶ÏÊÇ·ñ½»²æ
 		if (random1 >= (1.0 - px))
 		{
 			int random2 = rand() % PRECI;                     // Ëæ»úÉú³É½»²æÎ»ÖÃ£¬½»²æµã¿ØÖÆÔÚ0µ½PRECIÖ®¼ä£»
-			for ( j = random2; j < PRECI; j++)
+			for (j6 = random2; j6 < PRECI; j6++)
 			{
-				temp1[j] = popnext[i * 2 + 1][j];
-				popnext[i * 2 + 1][j] = popnext[i * 2][j];
-				popnext[i * 2][j] = temp1[j];
+				temp1[j6] = popnext[i6 * 2 + 1][j6];
+				popnext[i6 * 2 + 1][j6] = popnext[i6 * 2][j6];
+				popnext[i6 * 2][j6] = temp1[j6];
 			}
 		}
 	}
 
-	for ( i = 0; i<int(NIND*PRECI*pm); i++)                             //±äÒì
+	for (i6 = 0; i6<int(NIND * PRECI * pm); i6++)                             //±äÒì
 	{
 		int col = rand() % PRECI;                            // Ëæ»ú²úÉúÒª±äÒìµÄ»ùÒòÎ»ºÅ£»
 		int row = rand() % NIND;                             // Ëæ»ú²úÉúÒª±äÒìµÄÈ¾É«ÌåºÅ£»
 		popnext[row][col] = rand() % 15;                  //ÔÚ0-14Ö®¼äËæ»ú±ä»»Ò»ÖÖ
 	}
-	for ( i = 0; i < PRECI; i++)                         //°ÑÈ«¾Ö×îÓÅ²åÈë
+	for (i6 = 0; i6 < PRECI; i6++)                         //°ÑÈ«¾Ö×îÓÅ²åÈë
 	{
-		popnext[(NIND - 1)][i] = out[0][i];
+		popnext[(NIND - 1)][i6] = out[0][i6];
 	}
 
 
 	return popnext;
 
 }
-int ** sectionstu2(int**stu2, int**tools)
+int** sectionstu2(int** stu2, int** tools)
 {
 	int num = tools[4][2];//¶¨Èı°à¸öÊı
-	int ** stu2out = new int *[tools[4][1]]; //´´½¨¶¨Èı·Ö°à½á¹ûÁĞ±í
-	for ( i = 0; i < tools[4][1]; i++)		stu2out[i] = new int[9];
+	int** stu2out = new int* [tools[4][1]]; //´´½¨¶¨Èı·Ö°à½á¹ûÁĞ±í
+	for (i6 = 0; i6 < tools[4][1]; i6++)		stu2out[i6] = new int[9];
 
-	for ( i = 0; i < 2; i++)		lists[i] = new int[num];
+	for (i6 = 0; i6 < 2; i6++)		lists_6_3[i6] = new int[num];
 	int knum = 0; //³õÊ¼»¯list¼ÆÊıÆ÷
-	for ( i = 0; i < 20; i++)//±éÀú¶şÊ®ÖÖ°àĞÍ
+	for (i6 = 0; i6 < 20; i6++)//±éÀú¶şÊ®ÖÖ°àĞÍ
 	{
-		if (tools[2][i] > 0)//Èç¹û¿ª°à
+		if (tools[2][i6] > 0)//Èç¹û¿ª°à
 		{
 
-			for ( j = 0; j < tools[2][i]; j++)//¿ªx¸ö°à
+			for (j6 = 0; j6 < tools[2][i6]; j6++)//¿ªx¸ö°à
 			{
 
-				lists[0][knum] = tools[0][i];
+				lists_6_3[0][knum] = tools[0][i6];
 
-				lists[1][knum] = 0;
+				lists_6_3[1][knum] = 0;
 				knum++;
 			}
 		}
 	}
-	for ( i = 0; i < tools[4][1]; i++)
+	for (i6 = 0; i6 < tools[4][1]; i6++)
 	{
 		int o[6];
 		int e = -1;                  //ÓÃÓÚ¼Ä´æ·ûºÏÌõ¼şµÄ°à¼¶ĞòºÅ£¨ÓÃÓÚÅĞ¶ÏÊÇ·ñ·Å½øÁË°à¼¶£©
-		int f = lu;                  //ÓÃÓÚ¼Ä´æ·ûºÏÌõ¼şµÄ°à¼¶ÖĞÈËÊı×îÉÙµÄ°à¼¶Ñ§ÉúÊıÁ¿£¨ÓÅÏÈ·ÅÈë£©
+		int f = lu_6_3;                  //ÓÃÓÚ¼Ä´æ·ûºÏÌõ¼şµÄ°à¼¶ÖĞÈËÊı×îÉÙµÄ°à¼¶Ñ§ÉúÊıÁ¿£¨ÓÅÏÈ·ÅÈë£©
 
-		for ( j = 0; j < 6; j++)
+		for (j6 = 0; j6 < 6; j6++)
 		{
-			o[j] = stu2[i][j];
+			o[j6] = stu2[i6][j6];
 		}
 
-		for ( k = 0; k < tools[4][2]; k++)
+		for (k6 = 0; k6 < tools[4][2]; k6++)
 		{
 			int p = 0;
 			for (int e = 0; e < 6; e++)
 			{
 				int b[6];
-				swit(lists[0][k], b);
+				swit(lists_6_3[0][k6], b);
 				if (o[e] - b[e] == 0)
 				{
 					p = p + 1;
 				}
 			}
-			if ((p == 6) && ((lists[1][k]) < lu) && lists[1][k] < f)
+			if ((p == 6) && ((lists_6_3[1][k6]) < lu_6_3) && lists_6_3[1][k6] < f)
 			{
-				e = k;
-				f = lists[1][k];
+				e = k6;
+				f = lists_6_3[1][k6];
 			}
 		}
 		if (e > -1)
 		{
-			lists[1][e] = lists[1][e] + 1;
-			stu2out[i][8] = lists[0][e];
+			lists_6_3[1][e] = lists_6_3[1][e] + 1;
+			stu2out[i6][8] = lists_6_3[0][e];
 		}
 
 	}
 
-	for ( i = 0; i < tools[4][1]; i++)
+	for (i6 = 0; i6 < tools[4][1]; i6++)
 	{
-		for ( j = 0; j < 8; j++)
+		for (j6 = 0; j6 < 8; j6++)
 		{
-			stu2out[i][j] = stu2[i][j];
+			stu2out[i6][j6] = stu2[i6][j6];
 		}
 	}
 	return stu2out;
 }
-int ** getstu2(int**stuinform, int **tools, int*randnumber)
+int** getstu2(int** stuinform, int** tools, int* randnumber)
 {
 	int u[20][6];//°à¼¶±àÂë±È½ÏÄ£°å
-	for ( i = 0; i < 20; i++)
+	for (i6 = 0; i6 < 20; i6++)
 	{
 		int b[6];
-		swit(tools[0][i], b);
-		for ( j = 0; j < 6; j++)
+		swit(tools[0][i6], b);
+		for (j6 = 0; j6 < 6; j6++)
 		{
-			u[i][j] = b[j];                    //u[i][j]´æ·ÅµÚÒ»´Î·ÖºÃÑ¡¿ÎĞÅÏ¢µÄ¹Ì¶¨°à¼¶µÄÀàĞÍ
+			u[i6][j6] = b[j6];                    //u[i6][j6]´æ·ÅµÚÒ»´Î·ÖºÃÑ¡¿ÎĞÅÏ¢µÄ¹Ì¶¨°à¼¶µÄÀàĞÍ
 		}
 	}
 
 	int num2 = tools[4][1];//¶¨ÈıÈËÊı
-	int **stu2 = new int *[num2];
-	for ( i = 0; i < num2; i++)		stu2[i] = new int[9];
+	int** stu2 = new int* [num2];
+	for (i6 = 0; i6 < num2; i6++)		stu2[i6] = new int[9];
 	int y[20];
 	int stu2num = 0;
 	int stu2num2 = 0;
-	for ( i = 0; i < 20; i++)          y[i] = 0;
-	for ( i = 0; i < tools[4][3]; i++) //tools[4][3]ÊÇÑ§Éú×ÜÊı
+	for (i6 = 0; i6 < 20; i6++)          y[i6] = 0;
+	for (i6 = 0; i6 < tools[4][3]; i6++) //tools[4][3]ÊÇÑ§Éú×ÜÊı
 	{
 		int f[9];//Ôİ´æÊ¹ÓÃµÄÑ§ÉúĞÅÏ¢
-		for ( j = 0; j < 9; j++)
+		for (j6 = 0; j6 < 9; j6++)
 		{
-			f[j] = stuinform[(randnumber[i] - 1)][j];       //Ç§Íò×¢ÒâÕâÀïµÄstu±ØĞëÊÇÇ°ÃæµÄstu£¬²»ÄÜÔÙÖØĞÂÉú³É£¬·ñÔò»áºÍËùÇóµÄÆ¥Åä²»ÉÏ£¡£¡£¡£¡£¡£¡£¡
+			f[j6] = stuinform[(randnumber[i6] - 1)][j6];       //Ç§Íò×¢ÒâÕâÀïµÄstu±ØĞëÊÇÇ°ÃæµÄstu£¬²»ÄÜÔÙÖØĞÂÉú³É£¬·ñÔò»áºÍËùÇóµÄÆ¥Åä²»ÉÏ£¡£¡£¡£¡£¡£¡£¡
 		}
-		for ( k = 0; k < 20; k++) //±éÀú20ÖÖ¿ÉÄÜ°à
+		for (k6 = 0; k6 < 20; k6++) //±éÀú20ÖÖ¿ÉÄÜ°à
 		{
-			if (tools[2][k] > 0) //Èç¹ûÓĞ¿ª°à
+			if (tools[2][k6] > 0) //Èç¹ûÓĞ¿ª°à
 			{
-				if (y[k] < tools[3][k]) //»¹Ã»·ÅÂú
+				if (y[k6] < tools[3][k6]) //»¹Ã»·ÅÂú
 				{
 					int h = 0; //±È½Ï¼ÆÊıÎ»
 
 					for (int g = 0; g < 6; g++)
 					{
-						if (f[g] - u[k][g] == 0)    h = h + 1;//Í³¼ÆÏàÍ¬Î»¸öÊı	
+						if (f[g] - u[k6][g] == 0)    h = h + 1;//Í³¼ÆÏàÍ¬Î»¸öÊı	
 					}
 					if (h == 6)          //Ã¿¸öÑ§ÉúÓë¹Ì¶¨°à¼¶µÄ¿ÆÄ¿½øĞĞ±È½Ï£¬·ûºÏµÄ¾Í·Å½øÈ¥
 					{
 						for (int l = 0; l < 9; l++)  stu2[stu2num][l] = f[l];
-						y[k] = y[k] + 1;
+						y[k6] = y[k6] + 1;
 						stu2num = stu2num + 1;
 						break;
 					}
@@ -1476,49 +1481,49 @@ int ** getstu2(int**stuinform, int **tools, int*randnumber)
 	}
 	return stu2;
 }
-int ** getstu1(int**stuinform, int **tools, int*randnumber)
+int** getstu1(int** stuinform, int** tools, int* randnumber)
 {
 	int u[20][6];//°à¼¶±àÂë±È½ÏÄ£°å
-	for ( i = 0; i < 20; i++)
+	for (i6 = 0; i6 < 20; i6++)
 	{
 		int b[6];
-		swit(tools[0][i], b);
-		for ( j = 0; j < 6; j++)
+		swit(tools[0][i6], b);
+		for (j6 = 0; j6 < 6; j6++)
 		{
-			u[i][j] = b[j];                    //u[i][j]´æ·ÅµÚÒ»´Î·ÖºÃÑ¡¿ÎĞÅÏ¢µÄ¹Ì¶¨°à¼¶µÄÀàĞÍ
+			u[i6][j6] = b[j6];                    //u[i6][j6]´æ·ÅµÚÒ»´Î·ÖºÃÑ¡¿ÎĞÅÏ¢µÄ¹Ì¶¨°à¼¶µÄÀàĞÍ
 		}
 	}
 	int num1 = tools[4][4];
-	int **stu1 = new int *[num1];
-	for ( i = 0; i < num1; i++)		stu1[i] = new int[9];
+	int** stu1 = new int* [num1];
+	for (i6 = 0; i6 < num1; i6++)		stu1[i6] = new int[9];
 	int y[20];
-	for ( i = 0; i < 20; i++)          y[i] = 0;
+	for (i6 = 0; i6 < 20; i6++)          y[i6] = 0;
 	int stunum = 0;
 	int q = 0;//ÊÇ·ñÑ¡ÖĞµÄ±êÖ¾Î»
-	for ( i = 0; i < tools[4][3]; i++) //tools[4][3]ÊÇÑ§Éú×ÜÊı
+	for (i6 = 0; i6 < tools[4][3]; i6++) //tools[4][3]ÊÇÑ§Éú×ÜÊı
 	{
 		q = 0;//ÊÇ·ñÑ¡ÖĞµÄ±êÖ¾Î»
 		int f[9];//Ôİ´æÊ¹ÓÃµÄÑ§ÉúĞÅÏ¢
-		for ( j = 0; j < 9; j++)
+		for (j6 = 0; j6 < 9; j6++)
 		{
-			f[j] = stuinform[(randnumber[i] - 1)][j];       //Ç§Íò×¢ÒâÕâÀïµÄstu±ØĞëÊÇÇ°ÃæµÄstu£¬²»ÄÜÔÙÖØĞÂÉú³É£¬·ñÔò»áºÍËùÇóµÄÆ¥Åä²»ÉÏ£¡£¡£¡£¡£¡£¡£¡
+			f[j6] = stuinform[(randnumber[i6] - 1)][j6];       //Ç§Íò×¢ÒâÕâÀïµÄstu±ØĞëÊÇÇ°ÃæµÄstu£¬²»ÄÜÔÙÖØĞÂÉú³É£¬·ñÔò»áºÍËùÇóµÄÆ¥Åä²»ÉÏ£¡£¡£¡£¡£¡£¡£¡
 		}
-		for ( k = 0; k < 20; k++) //±éÀú20ÖÖ¿ÉÄÜ°à
+		for (k6 = 0; k6 < 20; k6++) //±éÀú20ÖÖ¿ÉÄÜ°à
 		{
-			if (tools[2][k] > 0) //Èç¹ûÓĞ¿ª°à
+			if (tools[2][k6] > 0) //Èç¹ûÓĞ¿ª°à
 			{
-				if (y[k] < tools[3][k]) //»¹Ã»·ÅÂú
+				if (y[k6] < tools[3][k6]) //»¹Ã»·ÅÂú
 				{
 					int h = 0; //±È½Ï¼ÆÊıÎ»
 
 					for (int g = 0; g < 6; g++)
 					{
-						if (f[g] - u[k][g] == 0)    h = h + 1;//Í³¼ÆÏàÍ¬Î»¸öÊı	
+						if (f[g] - u[k6][g] == 0)    h = h + 1;//Í³¼ÆÏàÍ¬Î»¸öÊı	
 					}
 					if (h == 6)          //Ã¿¸öÑ§ÉúÓë¹Ì¶¨°à¼¶µÄ¿ÆÄ¿½øĞĞ±È½Ï£¬·ûºÏµÄ¾Í·Å½øÈ¥
 					{
 						q = 1;
-						y[k] = y[k] + 1;
+						y[k6] = y[k6] + 1;
 						break;
 					}
 				}
@@ -1534,26 +1539,26 @@ int ** getstu1(int**stuinform, int **tools, int*randnumber)
 	}
 	return stu1;
 }
-int ** gettools(int**stuinform, int stunum, int*randnumber)
+int** gettools(int** stuinform, int stunum, int* randnumber)
 {
-	int  ** r;
-	r = (int**)new int*[5];
-	for ( i = 0; i < 5; i++)
+	int** r;
+	r = (int**)new int* [5];
+	for (i6 = 0; i6 < 5; i6++)
 	{
-		*(r + i) = new int[20];
+		*(r + i6) = new int[20];
 	}
-	for ( i = 0; i < 20; i++)//¸ør0°´ÕÕ¿Î³ÌID±àÂë
+	for (i6 = 0; i6 < 20; i6++)//¸ør0°´ÕÕ¿Î³ÌID±àÂë
 	{
-		r[0][i] = i + 15;
-		r[1][i] = 0;
-		r[2][i] = 0;
-		r[3][i] = 0;
-		r[4][i] = 0;
+		r[0][i6] = i6 + 15;
+		r[1][i6] = 0;
+		r[2][i6] = 0;
+		r[3][i6] = 0;
+		r[4][i6] = 0;
 	}
-	for ( i = 0; i < stunum; i = i + 1) //Í³¼Æ¸÷ÖÖÑ¡¿ÎÇé¿öµÄÈËÊı
+	for (i6 = 0; i6 < stunum; i6 = i6 + 1) //Í³¼Æ¸÷ÖÖÑ¡¿ÎÇé¿öµÄÈËÊı
 	{
 		int o[6];
-		for (int j = 0; j < 6; j++) 	o[j] = stuinform[(randnumber[i] - 1)][j];
+		for (int j6 = 0; j6 < 6; j6++) 	o[j6] = stuinform[(randnumber[i6] - 1)][j6];
 		if ((o[0] + o[1] + o[2]) == 3)              r[1][0] = r[1][0] + 1;
 		else if ((o[0] + o[1] + o[3]) == 3)			r[1][1] = r[1][1] + 1;
 		else if ((o[0] + o[1] + o[4]) == 3)			r[1][2] = r[1][2] + 1;
@@ -1576,37 +1581,37 @@ int ** gettools(int**stuinform, int stunum, int*randnumber)
 		else if ((o[3] + o[4] + o[5]) == 3)			r[1][19] = r[1][19] + 1;
 	}
 	int c = 0;
-	for ( i = 0; i < 20; i++)
+	for (i6 = 0; i6 < 20; i6++)
 	{
-		if (r[1][i] >= ld)
+		if (r[1][i6] >= ld_6_3)
 		{
-			float rs = (r[1][i] * 1.0 / (lu*1.0));
-			int rsint = r[1][i] / lu;
-			int temp2 = rsint * (lu - ld) + r[1][i] - rsint * lu;
-			if (temp2 >= ld)       rsint = rsint + 1;
-			r[2][i] = rsint; //¿ªrsint¸ö°à¼¶
+			float rs = (r[1][i6] * 1.0 / (lu_6_3 * 1.0));
+			int rsint = r[1][i6] / lu_6_3;
+			int temp2 = rsint * (lu_6_3 - ld_6_3) + r[1][i6] - rsint * lu_6_3;
+			if (temp2 >= ld_6_3)       rsint = rsint + 1;
+			r[2][i6] = rsint; //¿ªrsint¸ö°à¼¶
 			c = c + 1;//¼ÆÊı ¿ª¶àÉÙÖÖ¹Ì¶¨°à¼¶
 		}
 	}
 	int numclassnumb = 0;
-	if (runsnumber == 0)//Ëã·¨µÚÒ»´ÎÖ´ĞĞ
+	if (runsnumber_6_3 == 0)//Ëã·¨µÚÒ»´ÎÖ´ĞĞ
 	{
-		for ( i = 0; i < 20; i++)
+		for (i6 = 0; i6 < 20; i6++)
 		{
-			numclassnumb = numclassnumb + r[2][i];//Í³¼Æ°à¼¶×ÜÊı
+			numclassnumb = numclassnumb + r[2][i6];//Í³¼Æ°à¼¶×ÜÊı
 		}
-		maxrunsnumber = times * (numclassnumb + 2);
+		maxrunsnumber_6_3 = times_6_3 * (numclassnumb + 2);
 	}
 
-	if (runsnumber > 0)  //Èç¹û¶à´Î·Ö°àÎŞ¹û Ã¿Èı´Î¼õÉÙÒ»¸ö¹Ì¶¨°à¼¶
+	if (runsnumber_6_3 > 0)  //Èç¹û¶à´Î·Ö°àÎŞ¹û Ã¿Èı´Î¼õÉÙÒ»¸ö¹Ì¶¨°à¼¶
 	{
-		int e = runsnumber / times; //¼ÆËã¼õÉÙ¶àÉÙ¸ö¹Ì¶¨°à£¬Ã¿Á½´Î¼õÉÙÒ»¸ö
-		for ( i = 0; i < e; i++)
+		int e = runsnumber_6_3 / times_6_3; //¼ÆËã¼õÉÙ¶àÉÙ¸ö¹Ì¶¨°à£¬Ã¿Á½´Î¼õÉÙÒ»¸ö
+		for (i6 = 0; i6 < e; i6++)
 		{
 			int a = 0;                //Í³¼Æµ±Ç°ÓĞxÖÖ¿ª°à
-			for ( j = 0; j < 20; j++)
+			for (j6 = 0; j6 < 20; j6++)
 			{
-				if (r[2][j] > 0)
+				if (r[2][j6] > 0)
 				{
 					a = a + 1;
 				}
@@ -1615,15 +1620,15 @@ int ** gettools(int**stuinform, int stunum, int*randnumber)
 			{
 				int b = rand() % a + 1; //ÔÚÄ¿Ç°µÄ¼¸ÖÖ¿ª°àÀïÑ¡Ò»ÖÖ
 				int c = 0;
-				for ( j = 0; j < 20; j++) //±éÀú¶şÊ®¸ö°àĞÍ
+				for (j6 = 0; j6 < 20; j6++) //±éÀú¶şÊ®¸ö°àĞÍ
 				{
-					if (r[2][j] > 0) //Èç¹û¿ª°àÁË
+					if (r[2][j6] > 0) //Èç¹û¿ª°àÁË
 					{
 						c = c + 1;         //¼ÆÊı
 						if (c == b)   //ÅĞ¶ÏÊÇ·ñÊÇµÚd¸ö°àĞÍ
 						{
 
-							r[2][j] = r[2][j] - 1; //Èç¹ûÊÇ Ôò¼õÉÙÒ»¸ö¹Ì¶¨°à
+							r[2][j6] = r[2][j6] - 1; //Èç¹ûÊÇ Ôò¼õÉÙÒ»¸ö¹Ì¶¨°à
 						}
 					}
 				}
@@ -1631,29 +1636,29 @@ int ** gettools(int**stuinform, int stunum, int*randnumber)
 
 		}
 		int d = 0;
-		for ( j = 0; j < 20; j++)
+		for (j6 = 0; j6 < 20; j6++)
 		{
 
-			d = d + r[2][j];
+			d = d + r[2][j6];
 
 		}
 	}
 
-	for ( i = 0; i < 20; i++)
+	for (i6 = 0; i6 < 20; i6++)
 	{
-		if ((r[2][i])*lu < (r[1][i])) r[3][i] = (r[2][i])*lu;//Èç¹ûÈËÊı¶àÓÚ¿ª°àÈİÁ¿ÉÏÏŞr3¸üĞÂÎªÄÜÑ¡µ½Õâ¸ö¿ÎµÄÑ§Éú
-		else r[3][i] = r[1][i]; //¶¼ÄÜ·Å½øÈ¥
+		if ((r[2][i6]) * lu_6_3 < (r[1][i6])) r[3][i6] = (r[2][i6]) * lu_6_3;//Èç¹ûÈËÊı¶àÓÚ¿ª°àÈİÁ¿ÉÏÏŞr3¸üĞÂÎªÄÜÑ¡µ½Õâ¸ö¿ÎµÄÑ§Éú
+		else r[3][i6] = r[1][i6]; //¶¼ÄÜ·Å½øÈ¥
 	}
 
 	int num1 = 0;
 	int num2 = 0;
-	for ( i = 0; i < 20; i++) num1 = num1 + r[3][i];
-	for ( i = 0; i < 20; i++) num2 = num2 + r[2][i];
+	for (i6 = 0; i6 < 20; i6++) num1 = num1 + r[3][i6];
+	for (i6 = 0; i6 < 20; i6++) num2 = num2 + r[2][i6];
 	r[4][1] = num1; //¹Ì¶¨°àµÄÈËÊı
 	r[4][2] = num2; //¹Ì¶¨°àµÄ¸öÊı
 	r[4][3] = stunum;
 	r[4][4] = stunum - num1;
-	r[4][5] = classsum - num2;
+	r[4][5] = classsum_6_3 - num2;
 	cout << "µ±Ç°Äâ¶¨¹Ì¶¨°àÊıÁ¿£º" << r[4][2] << endl;
 	return r;
 
@@ -1663,48 +1668,48 @@ int getstudentnumber()
 	Json::Reader reader;
 	Json::Value root;
 	Json::Value temp;
-	int studentnumber;
+	int studentnumber_6_3;
 	//´ÓÎÄ¼şÖĞ¶ÁÈ¡£¬±£Ö¤µ±Ç°ÎÄ¼şÓĞjsonÎÄ¼ş  
 	ifstream in(jsonfilename, ios::binary);
 	if (!in.is_open()) return 0;
 	if (reader.parse(in, root))
 	{
 
-		for ( i = 0; i < root.size(); i++)//±éÀúÃ¿Ò»¿é
+		for (i6 = 0; i6 < root.size(); i6++)//±éÀúÃ¿Ò»¿é
 		{
-			if (root[i]["key"] == "Student")//Èç¹ûÊÇStudent
+			if (root[i6]["key"] == "Student")//Èç¹ûÊÇStudent
 			{
-				studentnumber = root[i]["value"].size();
+				studentnumber_6_3 = root[i6]["value"].size();
 			}
-			if (root[i]["key"] == "Class")//Èç¹ûÊÇClass ÒÔ×Ö·û´®ĞÎÊ½´æ´¢½ÌÊÒºÍ°à¼¶Ãû³Æ 0ÁĞ½ÌÊÒ 1ÁĞ°à¼¶Ãû³Æ
+			if (root[i6]["key"] == "Class")//Èç¹ûÊÇClass ÒÔ×Ö·û´®ĞÎÊ½´æ´¢½ÌÊÒºÍ°à¼¶Ãû³Æ 0ÁĞ½ÌÊÒ 1ÁĞ°à¼¶Ãû³Æ
 			{
-				classsum = root[i]["value"].size();
+				classsum_6_3 = root[i6]["value"].size();
 			}
 		}
 		in.close();
-		if (classsum < 10)
+		if (classsum_6_3 < 10)
 		{
-			lu = (studentnumber / classsum) + 2;
-			ld = (studentnumber / classsum) - 5;
+			lu_6_3 = (studentnumber_6_3 / classsum_6_3) + 2;
+			ld_6_3 = (studentnumber_6_3 / classsum_6_3) - 5;
 		}
-		else if (classsum < 20)
+		else if (classsum_6_3 < 20)
 		{
-			lu = (studentnumber / classsum) + 1;
-			ld = (studentnumber / classsum) - 4;
+			lu_6_3 = (studentnumber_6_3 / classsum_6_3) + 1;
+			ld_6_3 = (studentnumber_6_3 / classsum_6_3) - 4;
 		}
-		else if (classsum < 30)
+		else if (classsum_6_3 < 30)
 		{
-			lu = (studentnumber / classsum) + 1;
-			ld = (studentnumber / classsum) - 3;
+			lu_6_3 = (studentnumber_6_3 / classsum_6_3) + 1;
+			ld_6_3 = (studentnumber_6_3 / classsum_6_3) - 3;
 		}
 		else
 		{
-			lu = (studentnumber / classsum) + 1;
-			ld = (studentnumber / classsum) - 2;
+			lu_6_3 = (studentnumber_6_3 / classsum_6_3) + 1;
+			ld_6_3 = (studentnumber_6_3 / classsum_6_3) - 2;
 		}
 
 
-		return studentnumber;
+		return studentnumber_6_3;
 	}
 	in.close();
 	return 0;
@@ -1714,49 +1719,49 @@ int getstudentnumberfromstring()
 	Json::Reader reader;
 	Json::Value root;
 	Json::Value temp;
-	int studentnumber;
+	int studentnumber_6_3;
 
-	if (reader.parse(str, root))
+	if (reader.parse(str7, root))
 	{
 
-		for ( i = 0; i < root.size(); i++)//±éÀúÃ¿Ò»¿é
+		for (i6 = 0; i6 < root.size(); i6++)//±éÀúÃ¿Ò»¿é
 		{
-			if (root[i]["key"] == "Student")//Èç¹ûÊÇStudent
+			if (root[i6]["key"] == "Student")//Èç¹ûÊÇStudent
 			{
-				studentnumber = root[i]["value"].size();
+				studentnumber_6_3 = root[i6]["value"].size();
 			}
-			if (root[i]["key"] == "Class")//Èç¹ûÊÇClass ÒÔ×Ö·û´®ĞÎÊ½´æ´¢½ÌÊÒºÍ°à¼¶Ãû³Æ 0ÁĞ½ÌÊÒ 1ÁĞ°à¼¶Ãû³Æ
+			if (root[i6]["key"] == "Class")//Èç¹ûÊÇClass ÒÔ×Ö·û´®ĞÎÊ½´æ´¢½ÌÊÒºÍ°à¼¶Ãû³Æ 0ÁĞ½ÌÊÒ 1ÁĞ°à¼¶Ãû³Æ
 			{
-				classsum = root[i]["value"].size();
+				classsum_6_3 = root[i6]["value"].size();
 			}
 		}
-		if (classsum < 10)
+		if (classsum_6_3 < 10)
 		{
-			lu = (studentnumber / classsum) + 2;
-			ld = (studentnumber / classsum) - 5;
+			lu_6_3 = (studentnumber_6_3 / classsum_6_3) + 2;
+			ld_6_3 = (studentnumber_6_3 / classsum_6_3) - 5;
 		}
-		else if (classsum < 20)
+		else if (classsum_6_3 < 20)
 		{
-			lu = (studentnumber / classsum) + 1;
-			ld = (studentnumber / classsum) - 4;
+			lu_6_3 = (studentnumber_6_3 / classsum_6_3) + 1;
+			ld_6_3 = (studentnumber_6_3 / classsum_6_3) - 4;
 		}
-		else if (classsum < 30)
+		else if (classsum_6_3 < 30)
 		{
-			lu = (studentnumber / classsum) + 1;
-			ld = (studentnumber / classsum) - 3;
+			lu_6_3 = (studentnumber_6_3 / classsum_6_3) + 1;
+			ld_6_3 = (studentnumber_6_3 / classsum_6_3) - 3;
 		}
 		else
 		{
-			lu = (studentnumber / classsum) + 1;
-			ld = (studentnumber / classsum) - 2;
+			lu_6_3 = (studentnumber_6_3 / classsum_6_3) + 1;
+			ld_6_3 = (studentnumber_6_3 / classsum_6_3) - 2;
 		}
 
 
-		return studentnumber;
+		return studentnumber_6_3;
 	}
 	return 0;
 }
-int ** readFileJson(int studentnumber)//´ÓÎÄ¼şÖĞ¶ÁÈ¡JSON  
+int** readFileJson(int studentnumber_6_3)//´ÓÎÄ¼şÖĞ¶ÁÈ¡JSON  
 {
 	Json::Reader reader;
 	Json::Value root;
@@ -1772,111 +1777,111 @@ int ** readFileJson(int studentnumber)//´ÓÎÄ¼şÖĞ¶ÁÈ¡JSON
 
 	if (reader.parse(in, root))     //if(reader.parse(str,root))
 	{
-		int ** arr = new int *[studentnumber];
-		for ( i = 0; i < studentnumber; i++)		 arr[i] = new int[9];
-		for ( i = 0; i < root.size(); i++)//±éÀúÃ¿Ò»¿é
+		int** arr = new int* [studentnumber_6_3];
+		for (i6 = 0; i6 < studentnumber_6_3; i6++)		 arr[i6] = new int[9];
+		for (i6 = 0; i6 < root.size(); i6++)//±éÀúÃ¿Ò»¿é
 		{
-			if (root[i]["key"] == "Student")//Èç¹ûÊÇStudent
+			if (root[i6]["key"] == "Student")//Èç¹ûÊÇStudent
 			{
-				studentno = new string *[studentnumber]; //´´½¨Ñ§Éú×Ö·û´®Êı×é 0ÁĞÑ§ºÅ 1ÁĞĞÕÃû
-				for ( j = 0; j < studentnumber; j++)		studentno[j] = new string[2];
+				studentno_6_3 = new string * [studentnumber_6_3]; //´´½¨Ñ§Éú×Ö·û´®Êı×é 0ÁĞÑ§ºÅ 1ÁĞĞÕÃû
+				for (j6 = 0; j6 < studentnumber_6_3; j6++)		studentno_6_3[j6] = new string[2];
 				//¶ÁÈ¡Êı×éĞÅÏ¢  
-				for (unsigned int j = 0; j < root[i]["value"].size(); j++)
+				for (unsigned int j6 = 0; j6 < root[i6]["value"].size(); j6++)
 				{
 					//È¡³öÑ§ºÅºÍĞÕÃû ÒÔ×Ö·û´®ĞÎÊ½´æ´¢
-					int temp = root[i]["value"][j]["studentno"].asInt();
+					int temp = root[i6]["value"][j6]["studentno_6_3"].asInt();
 					stringstream s1;
 					s1 << temp;
 					string s11;
 					s1 >> s11;
-					studentno[j][0] = s11;
-					studentno[j][1] = root[i]["value"][j]["name"].asString();
+					studentno_6_3[j6][0] = s11;
+					studentno_6_3[j6][1] = root[i6]["value"][j6]["name"].asString();
 					//È¡³öÖ¾Ô¸²¢·­Òë È¡³öĞÔ±ğ Ñ§ºÅ  ÒÔÕûĞÎ´æ´¢
-					int *p;
-					string ach = root[i]["value"][j]["vlounteer"].asString();//È¡³öÔñ¿ÎÖ¾Ô¸
+					int* p;
+					string ach = root[i6]["value"][j6]["vlounteer"].asString();//È¡³öÔñ¿ÎÖ¾Ô¸
 					p = translate(ach);//ÖĞÎÄ×ª»»Îª¶ş½øÖÆb
-					for ( k = 0; k < 10; k++)
+					for (k6 = 0; k6 < 10; k6++)
 					{
-						arr[j][k] = p[k];
+						arr[j6][k6] = p[k6];
 					}
-					arr[j][6] = root[i]["value"][j]["studentno"].asInt();//´æÈëÑ§ºÅ
-					arr[j][7] = root[i]["value"][j]["sex"].asInt();//´æÈëĞÔ±ğ
-					arr[j][8] = 0;//Õ¼Î» 
+					arr[j6][6] = root[i6]["value"][j6]["studentno_6_3"].asInt();//´æÈëÑ§ºÅ
+					arr[j6][7] = root[i6]["value"][j6]["sex"].asInt();//´æÈëĞÔ±ğ
+					arr[j6][8] = 0;//Õ¼Î» 
 				}
 			}
-			if (root[i]["key"] == "Class")//Èç¹ûÊÇClass ÒÔ×Ö·û´®ĞÎÊ½´æ´¢½ÌÊÒºÍ°à¼¶Ãû³Æ 0ÁĞ½ÌÊÒ 1ÁĞ°à¼¶Ãû³Æ
+			if (root[i6]["key"] == "Class")//Èç¹ûÊÇClass ÒÔ×Ö·û´®ĞÎÊ½´æ´¢½ÌÊÒºÍ°à¼¶Ãû³Æ 0ÁĞ½ÌÊÒ 1ÁĞ°à¼¶Ãû³Æ
 			{
-				classno = new string *[root[i]["value"].size()];
-				for ( j = 0; j < root[i]["value"].size(); j++)		classno[j] = new string[2];
-				for ( j = 0; j < root[i]["value"].size(); j++)
+				classno_6_3 = new string * [root[i6]["value"].size()];
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)		classno_6_3[j6] = new string[2];
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)
 				{
-					int temp = root[i]["value"][j]["classroom"].asInt();
+					int temp = root[i6]["value"][j6]["classroom"].asInt();
 					stringstream s2;
 					s2 << temp;
 					string s22 = s2.str();
-					classno[j][0] = s22;
-					classno[j][1] = root[i]["value"][j]["name"].asString();
+					classno_6_3[j6][0] = s22;
+					classno_6_3[j6][1] = root[i6]["value"][j6]["name"].asString();
 				}
 			}
-			if (root[i]["key"] == "Teacher")//Èç¹ûÊÇTeacher  ×Ö·û´®Êı×é 0ÁĞid 1ÁĞĞÕÃû 2ÁĞ Ñ§¿Æ 3 ÁĞĞÔ±ğ
+			if (root[i6]["key"] == "Teacher_6_3")//Èç¹ûÊÇTeacher  ×Ö·û´®Êı×é 0ÁĞid 1ÁĞĞÕÃû 2ÁĞ Ñ§¿Æ 3 ÁĞĞÔ±ğ
 			{
-				teacherno = new string *[root[i]["value"].size()];
-				for ( j = 0; j < root[i]["value"].size(); j++)		teacherno[j] = new string[4];
-				for ( j = 0; j < root[i]["value"].size(); j++)
+				teacherno_6_3 = new string * [root[i6]["value"].size()];
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)		teacherno_6_3[j6] = new string[4];
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)
 				{
-					int temp = root[i]["value"][j]["teacherno"].asInt();
+					int temp = root[i6]["value"][j6]["teacherno_6_3"].asInt();
 					stringstream s3;
 					s3 << temp;
 					string s33 = s3.str();
-					teacherno[j][0] = s33;
-					teacherno[j][1] = root[i]["value"][j]["name"].asString();
-					teacherno[j][2] = root[i]["value"][j]["subject"].asString();
-					int temp2 = root[i]["value"][j]["sex"].asInt();
+					teacherno_6_3[j6][0] = s33;
+					teacherno_6_3[j6][1] = root[i6]["value"][j6]["name"].asString();
+					teacherno_6_3[j6][2] = root[i6]["value"][j6]["subject"].asString();
+					int temp2 = root[i6]["value"][j6]["sex"].asInt();
 					stringstream s4;
 					s4 << temp2;
 					string s44 = s4.str();
-					teacherno[j][3] = s44;
-					if (teacherno[j][2] == "ÎïÀí") teacher[0] = teacher[0] + 1;
-					else if (teacherno[j][2] == "»¯Ñ§")teacher[1] = teacher[1] + 1;
-					else if (teacherno[j][2] == "ÉúÎï")teacher[2] = teacher[2] + 1;
-					else if (teacherno[j][2] == "ÕşÖÎ")teacher[3] = teacher[3] + 1;
-					else if (teacherno[j][2] == "ÀúÊ·")teacher[4] = teacher[4] + 1;
-					else if (teacherno[j][2] == "µØÀí")teacher[5] = teacher[5] + 1;
+					teacherno_6_3[j6][3] = s44;
+					if (teacherno_6_3[j6][2] == "ÎïÀí") teacher_6_3[0] = teacher_6_3[0] + 1;
+					else if (teacherno_6_3[j6][2] == "»¯Ñ§")teacher_6_3[1] = teacher_6_3[1] + 1;
+					else if (teacherno_6_3[j6][2] == "ÉúÎï")teacher_6_3[2] = teacher_6_3[2] + 1;
+					else if (teacherno_6_3[j6][2] == "ÕşÖÎ")teacher_6_3[3] = teacher_6_3[3] + 1;
+					else if (teacherno_6_3[j6][2] == "ÀúÊ·")teacher_6_3[4] = teacher_6_3[4] + 1;
+					else if (teacherno_6_3[j6][2] == "µØÀí")teacher_6_3[5] = teacher_6_3[5] + 1;
 				}
 			}
-			if (root[i]["key"] == "Classroom")//Èç¹ûÊÇClassroom 0 name(½ÌÊÒÃû³Æ) 1id 2max 3 min 4type A-0 B-1 [1][5]×Ü½ÌÊÒÊıÁ¿
+			if (root[i6]["key"] == "Classroom")//Èç¹ûÊÇClassroom 0 name(½ÌÊÒÃû³Æ) 1id 2max 3 min 4type A-0 B-1 [1][5]×Ü½ÌÊÒÊıÁ¿
 			{
-				classroomno = new int *[root[i]["value"].size()];
-				for ( j = 0; j < root[i]["value"].size(); j++)		classroomno[j] = new int[6];
-				classroomno[1][5] = root[i]["value"].size();
-				for ( j = 0; j < root[i]["value"].size(); j++)
+				classroomno_6_3 = new int* [root[i6]["value"].size()];
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)		classroomno_6_3[j6] = new int[6];
+				classroomno_6_3[1][5] = root[i6]["value"].size();
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)
 				{
-					classroomno[j][0] = root[i]["value"][j]["name"].asInt();
-					classroomno[j][1] = root[i]["value"][j]["id"].asInt();
-					classroomno[j][2] = root[i]["value"][j]["max"].asInt();
-					classroomlu = root[i]["value"][j]["max"].asInt();
-					classroomno[j][3] = root[i]["value"][j]["min"].asInt();
-					string temp = root[i]["value"][j]["type"].asString();
+					classroomno_6_3[j6][0] = root[i6]["value"][j6]["name"].asInt();
+					classroomno_6_3[j6][1] = root[i6]["value"][j6]["id"].asInt();
+					classroomno_6_3[j6][2] = root[i6]["value"][j6]["max"].asInt();
+					classroomlu_6_3 = root[i6]["value"][j6]["max"].asInt();
+					classroomno_6_3[j6][3] = root[i6]["value"][j6]["min"].asInt();
+					string temp = root[i6]["value"][j6]["type"].asString();
 					if (temp == "A")
 					{
-						classroomno[j][4] = 0;
-						unadd = unadd + 1;
+						classroomno_6_3[j6][4] = 0;
+						unadd_6_3 = unadd_6_3 + 1;
 					}
 					else if (temp == "B")
 					{
-						classroomno[j][4] = 1;
-						add = add + 1;
+						classroomno_6_3[j6][4] = 1;
+						add_6_3 = add_6_3 + 1;
 					}
 				}
 			}
-			if (root[i]["key"] == "Plot")//Èç¹ûÊÇPlot
+			if (root[i6]["key"] == "Plot")//Èç¹ûÊÇPlot
 			{
-				plotno = new int *[root[i]["value"].size()];
-				for ( j = 0; j < root[i]["value"].size(); j++)		plotno[j] = new int[2];
-				for ( j = 0; j < root[i]["value"].size(); j++)
+				plotno_6_3 = new int* [root[i6]["value"].size()];
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)		plotno_6_3[j6] = new int[2];
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)
 				{
-					plotno[j][0] = root[i]["value"][j]["id"].asInt();
-					plotno[j][1] = root[i]["value"][j]["value"].asInt();
+					plotno_6_3[j6][0] = root[i6]["value"][j6]["id"].asInt();
+					plotno_6_3[j6][1] = root[i6]["value"][j6]["value"].asInt();
 				}
 			}
 
@@ -1893,120 +1898,121 @@ int ** readFileJson(int studentnumber)//´ÓÎÄ¼şÖĞ¶ÁÈ¡JSON
 	return 0;
 
 }
-int ** readJson(int studentnumber)//´Ó×Ö·û´®ÖĞ¶ÁÈ¡JSON  
+int** readJson(int studentnumber_6_3)//´Ó×Ö·û´®ÖĞ¶ÁÈ¡JSON  
 {
 	Json::Reader reader;
 	Json::Value root;
 	Json::Value temp;
 
 
-	if (reader.parse(str, root))
+	if (reader.parse(str7, root))
 	{
-		int ** arr = new int *[studentnumber]; //´´½¨¶¨Èı·Ö°à½á¹ûÁĞ±í
-		for ( i = 0; i < studentnumber; i++)		 arr[i] = new int[9];
-		for ( i = 0; i < root.size(); i++)//±éÀúÃ¿Ò»¿é
+		int** arr = new int* [studentnumber_6_3]; //´´½¨¶¨Èı·Ö°à½á¹ûÁĞ±í
+		for (i6 = 0; i6 < studentnumber_6_3; i6++)		 arr[i6] = new int[9];
+		for (i6 = 0; i6 < root.size(); i6++)//±éÀúÃ¿Ò»¿é
 		{
-			if (root[i]["key"] == "Student")//Èç¹ûÊÇStudent
+			if (root[i6]["key"] == "Student")//Èç¹ûÊÇStudent
 			{
-				studentno = new string *[studentnumber]; //´´½¨Ñ§Éú×Ö·û´®Êı×é 0ÁĞÑ§ºÅ 1ÁĞĞÕÃû
-				for ( j = 0; j < studentnumber; j++)		studentno[j] = new string[2];
+				studentno_6_3 = new string * [studentnumber_6_3]; //´´½¨Ñ§Éú×Ö·û´®Êı×é 0ÁĞÑ§ºÅ 1ÁĞĞÕÃû
+				for (j6 = 0; j6 < studentnumber_6_3; j6++)		studentno_6_3[j6] = new string[2];
 				//¶ÁÈ¡Êı×éĞÅÏ¢  
-				for (unsigned int j = 0; j < root[i]["value"].size(); j++)
+				for (unsigned int j6 = 0; j6 < root[i6]["value"].size(); j6++)
 				{
 					//È¡³öÑ§ºÅºÍĞÕÃû ÒÔ×Ö·û´®ĞÎÊ½´æ´¢
-					int temp = root[i]["value"][j]["studentno"].asInt();
+					int temp = root[i6]["value"][j6]["studentno_6_3"].asInt();
 					stringstream s1;
 					s1 << temp;
 					string s11;
 					s1 >> s11;
-					studentno[j][0] = s11;
-					studentno[j][1] = root[i]["value"][j]["name"].asString();
+					studentno_6_3[j6][0] = s11;
+					studentno_6_3[j6][1] = root[i6]["value"][j6]["name"].asString();
 					//È¡³öÖ¾Ô¸²¢·­Òë È¡³öĞÔ±ğ Ñ§ºÅ  ÒÔÕûĞÎ´æ´¢
-					int *p;
-					string ach = root[i]["value"][j]["vlounteer"].asString();//È¡³öÔñ¿ÎÖ¾Ô¸
+					int* p;
+					string ach = root[i6]["value"][j6]["vlounteer"].asString();//È¡³öÔñ¿ÎÖ¾Ô¸
+					cout << ach << endl;
 					p = translate(ach);//ÖĞÎÄ×ª»»Îª¶ş½øÖÆb
-					for ( k = 0; k < 10; k++)
+					for (k6 = 0; k6 < 10; k6++)
 					{
-						arr[j][k] = p[k];
+						arr[j6][k6] = p[k6];
 					}
-					arr[j][6] = root[i]["value"][j]["studentno"].asInt();//´æÈëÑ§ºÅ
-					arr[j][7] = root[i]["value"][j]["sex"].asInt();//´æÈëĞÔ±ğ
-					arr[j][8] = 0;//Õ¼Î» ÓÃÓÚ´æ·Å°àĞÍ
+					arr[j6][6] = root[i6]["value"][j6]["studentno_6_3"].asInt();//´æÈëÑ§ºÅ
+					arr[j6][7] = root[i6]["value"][j6]["sex"].asInt();//´æÈëĞÔ±ğ
+					arr[j6][8] = 0;//Õ¼Î» ÓÃÓÚ´æ·Å°àĞÍ
 				}
 			}
-			if (root[i]["key"] == "Class")//Èç¹ûÊÇClass ÒÔ×Ö·û´®ĞÎÊ½´æ´¢½ÌÊÒºÍ°à¼¶Ãû³Æ 0ÁĞ½ÌÊÒ 1ÁĞ°à¼¶Ãû³Æ
+			if (root[i6]["key"] == "Class")//Èç¹ûÊÇClass ÒÔ×Ö·û´®ĞÎÊ½´æ´¢½ÌÊÒºÍ°à¼¶Ãû³Æ 0ÁĞ½ÌÊÒ 1ÁĞ°à¼¶Ãû³Æ
 			{
-				classno = new string *[root[i]["value"].size()];
-				for ( j = 0; j < root[i]["value"].size(); j++)		classno[j] = new string[2];
-				for ( j = 0; j < root[i]["value"].size(); j++)
+				classno_6_3 = new string * [root[i6]["value"].size()];
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)		classno_6_3[j6] = new string[2];
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)
 				{
-					int temp = root[i]["value"][j]["classroom"].asInt();
+					int temp = root[i6]["value"][j6]["classroom"].asInt();
 					stringstream s2;
 					s2 << temp;
 					string s22 = s2.str();
-					classno[j][0] = s22;
-					classno[j][1] = root[i]["value"][j]["name"].asString();
+					classno_6_3[j6][0] = s22;
+					classno_6_3[j6][1] = root[i6]["value"][j6]["name"].asString();
 				}
 			}
-			if (root[i]["key"] == "Teacher")//Èç¹ûÊÇTeacher  ×Ö·û´®Êı×é 0ÁĞid 1ÁĞĞÕÃû 2ÁĞ Ñ§¿Æ 3 ÁĞĞÔ±ğ
+			if (root[i6]["key"] == "Teacher_6_3")//Èç¹ûÊÇTeacher  ×Ö·û´®Êı×é 0ÁĞid 1ÁĞĞÕÃû 2ÁĞ Ñ§¿Æ 3 ÁĞĞÔ±ğ
 			{
-				teacherno = new string *[root[i]["value"].size()];
-				for ( j = 0; j < root[i]["value"].size(); j++)		teacherno[j] = new string[4];
-				for ( j = 0; j < root[i]["value"].size(); j++)
+				teacherno_6_3 = new string * [root[i6]["value"].size()];
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)		teacherno_6_3[j6] = new string[4];
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)
 				{
-					int temp = root[i]["value"][j]["teacherno"].asInt();
+					int temp = root[i6]["value"][j6]["teacherno_6_3"].asInt();
 					stringstream s3;
 					s3 << temp;
 					string s33 = s3.str();
-					teacherno[j][0] = s33;
-					teacherno[j][1] = root[i]["value"][j]["name"].asString();
-					teacherno[j][2] = root[i]["value"][j]["subject"].asString();
-					int temp2 = root[i]["value"][j]["sex"].asInt();
+					teacherno_6_3[j6][0] = s33;
+					teacherno_6_3[j6][1] = root[i6]["value"][j6]["name"].asString();
+					teacherno_6_3[j6][2] = root[i6]["value"][j6]["subject"].asString();
+					int temp2 = root[i6]["value"][j6]["sex"].asInt();
 					stringstream s4;
 					s4 << temp2;
 					string s44 = s4.str();
-					teacherno[j][3] = s44;
-					if      (teacherno[j][2] == "ÎïÀí")teacher[0] = teacher[0] + 1;
-					else if (teacherno[j][2] == "»¯Ñ§")teacher[1] = teacher[1] + 1;
-					else if (teacherno[j][2] == "ÉúÎï")teacher[2] = teacher[2] + 1;
-					else if (teacherno[j][2] == "ÕşÖÎ")teacher[3] = teacher[3] + 1;
-					else if (teacherno[j][2] == "ÀúÊ·")teacher[4] = teacher[4] + 1;
-					else if (teacherno[j][2] == "µØÀí")teacher[5] = teacher[5] + 1;
+					teacherno_6_3[j6][3] = s44;
+					if (teacherno_6_3[j6][2] == "ÎïÀí")teacher_6_3[0] = teacher_6_3[0] + 1;
+					else if (teacherno_6_3[j6][2] == "»¯Ñ§")teacher_6_3[1] = teacher_6_3[1] + 1;
+					else if (teacherno_6_3[j6][2] == "ÉúÎï")teacher_6_3[2] = teacher_6_3[2] + 1;
+					else if (teacherno_6_3[j6][2] == "ÕşÖÎ")teacher_6_3[3] = teacher_6_3[3] + 1;
+					else if (teacherno_6_3[j6][2] == "ÀúÊ·")teacher_6_3[4] = teacher_6_3[4] + 1;
+					else if (teacherno_6_3[j6][2] == "µØÀí")teacher_6_3[5] = teacher_6_3[5] + 1;
 				}
 			}
-			if (root[i]["key"] == "Classroom")//Èç¹ûÊÇClassroom 0 name(½ÌÊÒÃû³Æ) 1id 2max 3 min 4type A-0 B-1 [1][5]×Ü½ÌÊÒÊıÁ¿
+			if (root[i6]["key"] == "Classroom")//Èç¹ûÊÇClassroom 0 name(½ÌÊÒÃû³Æ) 1id 2max 3 min 4type A-0 B-1 [1][5]×Ü½ÌÊÒÊıÁ¿
 			{
-				classroomno = new int *[root[i]["value"].size()];
-				for ( j = 0; j < root[i]["value"].size(); j++)		classroomno[j] = new int[6];
-				classroomno[1][5] = root[i]["value"].size();
-				for ( j = 0; j < root[i]["value"].size(); j++)
+				classroomno_6_3 = new int* [root[i6]["value"].size()];
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)		classroomno_6_3[j6] = new int[6];
+				classroomno_6_3[1][5] = root[i6]["value"].size();
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)
 				{
-					classroomno[j][0] = root[i]["value"][j]["name"].asInt();
-					classroomno[j][1] = root[i]["value"][j]["id"].asInt();
-					classroomno[j][2] = root[i]["value"][j]["max"].asInt();
-					classroomlu = root[i]["value"][j]["max"].asInt();
-					classroomno[j][3] = root[i]["value"][j]["min"].asInt();
-					string temp = root[i]["value"][j]["type"].asString();
+					classroomno_6_3[j6][0] = root[i6]["value"][j6]["name"].asInt();
+					classroomno_6_3[j6][1] = root[i6]["value"][j6]["id"].asInt();
+					classroomno_6_3[j6][2] = root[i6]["value"][j6]["max"].asInt();
+					classroomlu_6_3 = root[i6]["value"][j6]["max"].asInt();
+					classroomno_6_3[j6][3] = root[i6]["value"][j6]["min"].asInt();
+					string temp = root[i6]["value"][j6]["type"].asString();
 					if (temp == "A")
 					{
-						classroomno[j][4] = 0;
-						unadd = unadd + 1;
+						classroomno_6_3[j6][4] = 0;
+						unadd_6_3 = unadd_6_3 + 1;
 					}
 					else if (temp == "B")
 					{
-						classroomno[j][4] = 1;
-						add = add + 1;
+						classroomno_6_3[j6][4] = 1;
+						add_6_3 = add_6_3 + 1;
 					}
 				}
 			}
-			if (root[i]["key"] == "Plot")//Èç¹ûÊÇPlot
+			if (root[i6]["key"] == "Plot")//Èç¹ûÊÇPlot
 			{
-				plotno = new int *[root[i]["value"].size()];
-				for ( j = 0; j < root[i]["value"].size(); j++)		plotno[j] = new int[2];
-				for ( j = 0; j < root[i]["value"].size(); j++)
+				plotno_6_3 = new int* [root[i6]["value"].size()];
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)		plotno_6_3[j6] = new int[2];
+				for (j6 = 0; j6 < root[i6]["value"].size(); j6++)
 				{
-					plotno[j][0] = root[i]["value"][j]["id"].asInt();
-					plotno[j][1] = root[i]["value"][j]["value"].asInt();
+					plotno_6_3[j6][0] = root[i6]["value"][j6]["id"].asInt();
+					plotno_6_3[j6][1] = root[i6]["value"][j6]["value"].asInt();
 				}
 			}
 
@@ -2022,72 +2028,72 @@ int ** readJson(int studentnumber)//´Ó×Ö·û´®ÖĞ¶ÁÈ¡JSON
 	return 0;
 
 }
-void writeFileJson(int** stu1out, int** stu2out, int** tools)//½«ĞÅÏ¢±£´æÎªJSON¸ñÊ½ 
+string writeFileJson(int** stu1out, int** stu2out, int** tools)//½«ĞÅÏ¢±£´æÎªJSON¸ñÊ½ 
 {
 	Json::Value jsonoutput;
 	Json::Value student;
 	student["key"] = Json::Value("Student");
 	Json::Value value;
-	for (i = 0; i < tools[4][1]; i++)//¶¨ÈıÊä³ö
+	for (i6 = 0; i6 < tools[4][1]; i6++)//¶¨ÈıÊä³ö
 	{
-		value["studentno"] = Json::Value(stu2out[i][6]);
-		value["sex"] = Json::Value(stu2out[i][7]);
-		for (j = 0; j < tools[4][3]; j++)
+		value["studentno_6_3"] = Json::Value(stu2out[i6][7]);
+		value["sex"] = Json::Value(stu2out[i6][8]);
+		for (j6 = 0; j6 < tools[4][3]; j6++)
 		{
 			stringstream s2;
-			s2 << studentno[j][0];
+			s2 << studentno_6_3[j6][0];
 			int iii;
 			s2 >> iii;
 
-			int bb = stu2out[i][6];
+			int bb = stu2out[i6][6];
 			int aa = iii;
-			//cout << studentno[j][0] << endl;
+			//cout << studentno_6_3[j6][0] << endl;
 			//cout << aa<<"-"<<bb<<"="<<aa-bb<< endl;
 			if (aa - bb == 0)
 			{
-				value["name"] = Json::Value(studentno[j][1]);
+				value["name"] = Json::Value(studentno_6_3[j6][1]);
 			}
 		}
 		int b[6];
-		for (j = 0; j < 6; j++)
+		for (j6 = 0; j6 < 6; j6++)
 		{
-			b[j] = stu2out[i][j];
+			b[j6] = stu2out[i6][j6];
 		}
 		string subject = translate2(b);
 		value["vlounteer"] = Json::Value(subject);
-		value["class"] = Json::Value(classname[i]);
+		value["class"] = Json::Value(classname_6_3[i6]);
 		value["shiftclass"] = Json::Value(0);
 		student["value"].append(Json::Value(value));
 	}
-	for (i = 0; i < tools[4][4]; i++)//¶¨¶şÊä³ö
+	for (i6 = 0; i6 < tools[4][4]; i6++)//¶¨¶şÊä³ö
 	{
-		value["studentno"] = Json::Value(stu1out[i][6]);
-		value["sex"] = Json::Value(stu1out[i][7]);
-		for (j = 0; j < tools[4][3]; j++)
+		value["studentno_6_3"] = Json::Value(stu1out[i6][7]);
+		value["sex"] = Json::Value(stu1out[i6][8]);
+		for (j6 = 0; j6 < tools[4][3]; j6++)
 		{
 			stringstream s3;
-			s3 << studentno[j][0];
-			int ii;
-			s3 >> ii;
-			int bbb = stu1out[i][6];
-			int aaa = ii;
-			//cout << studentno[j][0] << endl;
+			s3 << studentno_6_3[j6][0];
+			int ii6;
+			s3 >> ii6;
+			int bbb = stu1out[i6][6];
+			int aaa = ii6;
+			//cout << studentno_6_3[j6][0] << endl;
 			//cout << aa<<"-"<<bb<<"="<<aa-bb<< endl;
 			if (aaa - bbb == 0)
 			{
-				value["name"] = Json::Value(studentno[j][1]);
+				value["name"] = Json::Value(studentno_6_3[j6][1]);
 			}
-			//if (stu1out[i][6] == ii) value["name"] = Json::Value(studentno[j][1]);
+			//if (stu1out[i6][6] == ii6) value["name"] = Json::Value(studentno_6_3[j6][1]);
 		}
 		int b[6];
-		for (j = 0; j < 6; j++)
+		for (j6 = 0; j6 < 6; j6++)
 		{
-			b[j] = stu1out[i][j];
+			b[j6] = stu1out[i6][j6];
 		}
 		string subject = translate2(b);
 		value["vlounteer"] = Json::Value(subject);
-		value["class"] = Json::Value(classname[tools[4][1] + i]);
-		value["shiftclass"] = Json::Value(classname1[0][i]);
+		value["class"] = Json::Value(classname_6_3[tools[4][1] + i6]);
+		value["shiftclass"] = Json::Value(classname1_6_3[0][i6]);
 		student["value"].append(Json::Value(value));
 	}
 	jsonoutput.append(Json::Value(student));
@@ -2095,36 +2101,36 @@ void writeFileJson(int** stu1out, int** stu2out, int** tools)//½«ĞÅÏ¢±£´æÎªJSON¸
 	Json::Value classroom;
 	classroom["key"] = Json::Value("classroom");
 	Json::Value classroomvalue;
-	for (i = tools[4][2]; i < tools[4][2] + countq; i++)//¶¨¶şºÍ×ß°à½ÌÊÒ
+	for (i6 = tools[4][2]; i6 < tools[4][2] + countq_6_3; i6++)//¶¨¶şºÍ×ß°à½ÌÊÒ
 	{
 
-		classroomvalue["classroomno"] = Json::Value(shu[0][i - tools[4][2]]);
-		if (i < tools[4][5] + tools[4][2])
+		classroomvalue["classroomno_6_3"] = Json::Value(shu_6_3[0][i6 - tools[4][2]]);
+		if (i6 < tools[4][5] + tools[4][2])
 		{
 			classroomvalue["type"] = Json::Value("A");
-			classroomvalue["subject1"] = Json::Value(disclass[0][i]);
-			classroomvalue["subject1num"] = Json::Value(disclass[3][i]);
+			classroomvalue["subject1"] = Json::Value(disclass_6_3[0][i6]);
+			classroomvalue["subject1num"] = Json::Value(disclass_6_3[3][i6]);
 
-			classroomvalue["subject2"] = Json::Value(shu[2][i - tools[4][2]]);
-			classroomvalue["subject2num"] = Json::Value(shu[1][i - tools[4][2]]);
+			classroomvalue["subject2"] = Json::Value(shu_6_3[2][i6 - tools[4][2]]);
+			classroomvalue["subject2num"] = Json::Value(shu_6_3[1][i6 - tools[4][2]]);
 		}
 		else
 		{
 			classroomvalue["type"] = Json::Value("B");
 			classroomvalue["subject1"] = Json::Value("ÎŞ");
 			classroomvalue["subject1num"] = Json::Value("ÎŞ");
-			classroomvalue["subject2"] = Json::Value(shu[2][i - tools[4][2]]);
-			classroomvalue["subject2num"] = Json::Value(shu[1][i - tools[4][2]]);
+			classroomvalue["subject2"] = Json::Value(shu_6_3[2][i6 - tools[4][2]]);
+			classroomvalue["subject2num"] = Json::Value(shu_6_3[1][i6 - tools[4][2]]);
 		}
 		classroom["value"].append(Json::Value(classroomvalue));
 	}
-	for (i = 0; i < tools[4][2]; i++)//¶¨ÈıĞÅÏ¢Êä³ö
+	for (i6 = 0; i6 < tools[4][2]; i6++)//¶¨ÈıĞÅÏ¢Êä³ö
 	{
 
-		classroomvalue["classroomno"] = Json::Value(disclass[1][i]);
+		classroomvalue["classroomno_6_3"] = Json::Value(disclass_6_3[1][i6]);
 		classroomvalue["type"] = Json::Value("A");
-		classroomvalue["subject1"] = Json::Value(disclass[0][i]);
-		classroomvalue["subject1num"] = Json::Value(disclass[3][i]);
+		classroomvalue["subject1"] = Json::Value(disclass_6_3[0][i6]);
+		classroomvalue["subject1num"] = Json::Value(disclass_6_3[3][i6]);
 		classroomvalue["subject2"] = Json::Value("ÎŞ");
 		classroomvalue["subject2num"] = Json::Value("ÎŞ");
 		classroom["value"].append(Json::Value(classroomvalue));
@@ -2132,34 +2138,36 @@ void writeFileJson(int** stu1out, int** stu2out, int** tools)//½«ĞÅÏ¢±£´æÎªJSON¸
 	jsonoutput.append(Json::Value(classroom));
 
 
-	cout << "·Ö°à½á¹ûJSONÎÄ¼şÒÑ¾­Êä³öµ½¹¤³ÌÄ¿Â¼ÏÂ" << endl;
-	cout << "·Ö°à½á¹ûÎÄ¼şÃûÎª£º" << endl;
-	Json::StyledWriter sw;//Ëõ½øÊä³ö
-	//cout << sw.write(jsonoutput) << endl << endl;  //ÒÔ×Ö·û´®ĞÎÊ½Êä³ö½á¹û
-	time_t nowtime = time(NULL); //»ñÈ¡Ê±¼äĞÅÏ¢
-	struct tm* p;
-	p = gmtime(&nowtime);
-	char timeinfo[256] = { 0 };
-	sprintf(timeinfo, "%d-%d-%d`%02d`%02d.json", 1 + p->tm_mon, p->tm_mday, 8 + p->tm_hour, p->tm_min, p->tm_sec);
-	puts(timeinfo);
-	ofstream os;	//Êä³öµ½ÎÄ¼ş
-	os.open(timeinfo);
-	if (!os.is_open())
-	{
-		cout << "CANNOT OPEN" << endl;
-	}
-	os << sw.write(jsonoutput);
-	os.close();
+	//cout << "·Ö°à½á¹ûJSONÎÄ¼şÒÑ¾­Êä³öµ½¹¤³ÌÄ¿Â¼ÏÂ" << endl;
+	//cout << "·Ö°à½á¹ûÎÄ¼şÃûÎª£º" << endl;
+	//Json::StyledWriter sw;//Ëõ½øÊä³ö
+	////cout << sw.write(jsonoutput) << endl << endl;  //ÒÔ×Ö·û´®ĞÎÊ½Êä³ö½á¹û
+	//time_t nowtime = time(NULL); //»ñÈ¡Ê±¼äĞÅÏ¢
+	//struct tm* p;
+	//p = gmtime(&nowtime);
+	//char timeinfo[256] = { 0 };
+	//sprintf(timeinfo, "%d-%d-%d`%02d`%02d.json", 1 + p->tm_mon, p->tm_mday, 8 + p->tm_hour, p->tm_min, p->tm_sec);
+	//puts(timeinfo);
+	Json::StyledWriter sw;
+	return sw.write(jsonoutput);
+	//ofstream os;	//Êä³öµ½ÎÄ¼ş
+	//os.open(timeinfo);
+	//if (!os.is_open())
+	//{
+	//	cout << "CANNOT OPEN" << endl;
+	//}
+	//os << sw.write(jsonoutput);
+	//os.close();
 }
-int *translate(string volunteer)   //jsonÊı¾İÖĞÎÄ¿ÆÄ¿×ª¶ş½øÖÆÊı×é±íÊ¾
+int* translate(string volunteer)   //jsonÊı¾İÖĞÎÄ¿ÆÄ¿×ª¶ş½øÖÆÊı×é±íÊ¾
 {
 	int b[6];
-	for (int i = 0; i < 6; i++) b[i] = 0;//Çå¿Õb
+	for (int i6 = 0; i6 < 6; i6++) b[i6] = 0;//Çå¿Õb
 	string a("Îï»¯ÉúÕşÀúÊ·µØ");
-	for (int i = 0; i < 6; i = i + 2)//Ã¿´Î¼ì²éÒ»¸ö£¬Ã¿´ÎÏòºóÁ½¸ö×Ö·û Ò»¹²Èı¸ö×Ö
+	for (int i6 = 0; i6 < 6; i6 = i6 + 2)//Ã¿´Î¼ì²éÒ»¸ö£¬Ã¿´ÎÏòºóÁ½¸ö×Ö·û Ò»¹²Èı¸ö×Ö
 	{
-		size_t j = a.find(volunteer[i]);//²éÕÒ²¢·µ»ØµÚÒ»´Î³öÏÖµÄÎ»ÖÃ£¬ÖĞÎÄ×Ö·ûÃ¿¸öÕ¼Á½¸ö×Ö½Ú
-		switch (j)
+		size_t j6 = a.find(volunteer[i6]);//²éÕÒ²¢·µ»ØµÚÒ»´Î³öÏÖµÄÎ»ÖÃ£¬ÖĞÎÄ×Ö·ûÃ¿¸öÕ¼Á½¸ö×Ö½Ú
+		switch (j6)
 		{
 		case 0: b[0] = 1; break;//Èç¹ûÊÇÎï£¬ÄÇbÊı×éµÚÒ»Î»¸³1£¬ÏÂÃæÀàÍÆ
 		case 2: b[1] = 1; break;
@@ -2172,7 +2180,7 @@ int *translate(string volunteer)   //jsonÊı¾İÖĞÎÄ¿ÆÄ¿×ª¶ş½øÖÆÊı×é±íÊ¾
 	}
 	return b;
 }
-string  translate2(int * b)//½«¶ş½øÖÆ¿ÆÄ¿·­ÒëÎªºº×Ö
+string  translate2(int* b)//½«¶ş½øÖÆ¿ÆÄ¿·­ÒëÎªºº×Ö
 {
 	string sub1 = "Îï";
 	string sub2 = "»¯";
@@ -2190,7 +2198,7 @@ string  translate2(int * b)//½«¶ş½øÖÆ¿ÆÄ¿·­ÒëÎªºº×Ö
 	return sub7;
 
 }
-int *swit(int p, int b[])
+int* swit(int p, int b[])
 {
 
 	switch (p)
@@ -2235,21 +2243,21 @@ int *swit(int p, int b[])
 }
 void rand_of_n(int a[], int n)
 {
-	int i;
+	int i6;
 	struct element ele[MAX];
 	srand((int)time(0));  // ³õÊ¼»¯Ëæ»úÊıÖÖ×Ó 
-	for (i = 0; i < n; i++)
+	for (i6 = 0; i6 < n; i6++)
 	{
-		ele[i].data = rand();  // Ëæ»úÉú³ÉÒ»¸öÊı 
-		ele[i].index = i + 1;
+		ele[i6].data = rand();  // Ëæ»úÉú³ÉÒ»¸öÊı 
+		ele[i6].index = i6 + 1;
 	}
 	qsort(ele, n, sizeof(ele[0]), cmp);  //ÅÅĞò 
-	for (i = 0; i < n; i++)
+	for (i6 = 0; i6 < n; i6++)
 	{
-		a[i] = ele[i].index;
+		a[i6] = ele[i6].index;
 	}
 }
-int cmp(const void *a, const void *b)   // ÉıĞòÅÅĞò
+int cmp(const void* a, const void* b)   // ÉıĞòÅÅĞò
 {
 	return((struct element*)a)->data - ((struct element*)b)->data;
 }
