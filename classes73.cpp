@@ -2286,12 +2286,14 @@ string writeFileJson_7_3(int** stu1out, int** stu2out, int** tools)//½«ĞÅÏ¢±£´æÎ
 }
 int *translate_7_3(string volunteer)   //jsonÊı¾İÖĞÎÄ¿ÆÄ¿×ª¶ş½øÖÆÊı×é±íÊ¾
 {
-	int b[7];
+	string sub;
+	int *b = new int[7];
 	for (int i = 0; i < 7; i++) b[i] = 0;//Çå¿Õb
 	string a("Îï»¯ÉúÕşÀúÊ·µØĞÅ");
 	for (int i = 0; i < 7; i = i + 2)//Ã¿´Î¼ì²éÒ»¸ö£¬Ã¿´ÎÏòºóÁ½¸ö×Ö·û Ò»¹²Èı¸ö×Ö
 	{
-		size_t j = a.find(volunteer[i]);//²éÕÒ²¢·µ»ØµÚÒ»´Î³öÏÖµÄÎ»ÖÃ£¬ÖĞÎÄ×Ö·ûÃ¿¸öÕ¼Á½¸ö×Ö½Ú
+		sub = volunteer.substr(i, 2);
+		size_t j = a.find(sub);//²éÕÒ²¢·µ»ØµÚÒ»´Î³öÏÖµÄÎ»ÖÃ£¬ÖĞÎÄ×Ö·ûÃ¿¸öÕ¼Á½¸ö×Ö½Ú
 		switch (j)
 		{
 		case 0: b[0] = 1; break;//Èç¹ûÊÇÎï£¬ÄÇbÊı×éµÚÒ»Î»¸³1£¬ÏÂÃæÀàÍÆ
